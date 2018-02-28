@@ -16,11 +16,6 @@
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.js"></script>
-
-    <!-- Custom JS scripts go here-->
-    <script type="text/javascript">
-        /* The head JS */
-    </script>
 </head>
 <body>
     <form action="" id="booking-group-lesson-form" class="lesson-form">
@@ -29,6 +24,15 @@
 
     <script type="text/javascript">
         /* The bottom JS */
+        // Initialise the objects
+        var wixData = {};
+
+        // Loads the data from Wix page
+        window.onmessage = function (event) {
+            if (event.data) {
+                wixData = event.data;
+            }
+        }
     </script>
 </body>
 </html>
