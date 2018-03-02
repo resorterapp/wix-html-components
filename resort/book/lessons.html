@@ -1,0 +1,49 @@
+---
+---
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title></title>
+  <!-- 3rd-party CSS libraries/frameworks -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+  <!-- Custom CSS goes here -->
+  <link rel="stylesheet" href="css/main.css" type="text/css">
+</head>
+
+<body ng-app="BookingLessonApp">
+  <div class="container" ng-app="BookingLessonApp">
+    <!-- Book lessons header -->
+    <h3>Book your lessons <span class="text-danger">(not available, yet)</span>:</h3>
+    {% include_relative components/lesson_options.html %}
+  </div>
+  <!-- 3rd-party JS libraries/frameworks -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-animate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+  <!--
+    <script type="text/javascript">
+        /* The bottom JS */
+        // Initialise the objects
+        var wixData = {};
+
+        // Loads the data from Wix page
+        window.onmessage = function(event) {
+            if (event.data) {
+                wixData = event.data;
+                console.log(wixData);
+                $("#lesson-slots").append(
+                    $("<li>").text(wixData)
+                );
+            }
+        };
+    </script>
+ -->
+  <script src="js/app/app.js"></script>
+  <script src="js/app/app.config.js"></script>
+  <script src="js/app/controller.lesson-type-dropdown.js"></script>
+  <script src="js/app/controller.lesson-activity-dropdown.js"></script>
+</body>
+
+</html>

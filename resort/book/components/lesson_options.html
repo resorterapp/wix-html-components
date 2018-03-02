@@ -1,0 +1,30 @@
+<div class="lesson-options">
+  <!-- Choose lesson type -->
+  <div class="lesson-type-dropdown inline-block" ng-controller="LessonTypeDropdownController as ctrl">
+    <span>Type:</span>
+    <div class="dropdown inline-block" uib-dropdown>
+      <button id="lesson-type-dropdown-toggle" class="btn btn-default dropdown-toggle" type="button" uib-dropdown-toggle>
+        [{ ctrl.selected }]
+      </button>
+      <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="lesson-type-dropdown-toggle">
+        <li role="menuitem" ng-repeat="item in ctrl.items">
+          <a ng-click="ctrl.selected = item">[{ item }]</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- Choose activity -->
+  <div class="lesson-activity-dropdown inline-block" ng-controller="LessonActivityDropdownController as ctrl">
+    <span>Choose activity:</span>
+    <div class="dropdown inline-block" uib-dropdown>
+      <button id="lesson-activity-dropdown-toggle" class="btn btn-default dropdown-toggle" type="button" uib-dropdown-toggle>
+        [{ ctrl.selected }]
+      </button>
+      <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="lesson-activity-dropdown-toggle">
+        <li role="menuitem" ng-repeat="item in ctrl.items">
+          <a ng-click="ctrl.selected = item">[{ item }]</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
