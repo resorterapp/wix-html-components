@@ -14,7 +14,6 @@
 
     function LessonItemController() {
         var ctrl = this;
-        var am = true;
 
         ctrl.isAM = true;
         ctrl.getAmPm = getAmPm;
