@@ -1,0 +1,11 @@
+<div class="lessons-list">
+  <div class="lessons-list-headers row">
+    <div class="col-md-1"></div>
+    <div class="col-md-2">Date</div>
+    <div class="col-md-2">AM/PM</div>
+    <div class="col-md-3">Ability</div>
+    <div class="col-md-4">Participants</div>
+  </div>
+
+  <lesson-item ng-repeat="lesson in $ctrl.lessons" date="lesson.date"></lesson-item>
+</div>

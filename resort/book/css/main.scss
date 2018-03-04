@@ -1,7 +1,7 @@
 ---
 ---
 
-@import url('https://fonts.googleapis.com/css?family=Poppins:200,400,600,700');
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,400,500,600,700');
 
 * {
     font-family: 'Poppins', sans-serif;
@@ -12,10 +12,17 @@ body {
     font-size: 16px;
 }
 
-h3 {
+h2 {
     font-weight: 200;
 }
 
 .inline-block {
     display: inline-block;
+}
+
+// Lessons
+.lesson-item {
+    .lesson-item-delete span {
+        cursor: hand;
+    }
 }

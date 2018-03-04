@@ -4,11 +4,11 @@
     <span>Type:</span>
     <div class="dropdown inline-block" uib-dropdown>
       <button id="lesson-type-dropdown-toggle" class="btn btn-default dropdown-toggle" type="button" uib-dropdown-toggle>
-        [{ ctrl.selected }]
+        [{ ctrl.selected }] <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="lesson-type-dropdown-toggle">
         <li role="menuitem" ng-repeat="item in ctrl.items">
-          <a ng-click="ctrl.selected = item">[{ item }]</a>
+          <a href="javascript:void(0);" ng-click="ctrl.selected = item">[{ item }]</a>
         </li>
       </ul>
     </div>
@@ -18,11 +18,11 @@
     <span>Choose activity:</span>
     <div class="dropdown inline-block" uib-dropdown>
       <button id="lesson-activity-dropdown-toggle" class="btn btn-default dropdown-toggle" type="button" uib-dropdown-toggle>
-        [{ ctrl.selected }]
+        [{ ctrl.selected }] <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="lesson-activity-dropdown-toggle">
         <li role="menuitem" ng-repeat="item in ctrl.items">
-          <a ng-click="ctrl.selected = item">[{ item }]</a>
+          <a href="javascript:void(0);" ng-click="ctrl.selected = item">[{ item }]</a>
         </li>
       </ul>
     </div>

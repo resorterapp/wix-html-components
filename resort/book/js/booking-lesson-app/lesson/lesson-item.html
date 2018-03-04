@@ -1,0 +1,31 @@
+<!-- Lesson item -->
+<div class="lesson-item row">
+  <div class="col-md-1 lesson-item-delete">
+    <span ng-click="$ctrl.deleteLesson()">
+      <i class="far fa-trash-alt"></i>
+    </span>
+  </div>
+  <div class="col-md-2 lesson-item-date">
+    [{ $ctrl.date | date: 'MMM d, yyyy' }]
+  </div>
+  <div class="col-md-2 lesson-item-time">
+    <button class="btn" type="button" uib-btn-checkbox ng-model="$ctrl.isAM" ng-class="$ctrl.getAmPmCSSClass()">
+      [{ $ctrl.getAmPm() }]
+    </button>
+  </div>
+  <div class="col-md-3 lesson-item-level">
+    <div class="selector">
+      <select name="level" class="custom-select" ng-model="$ctrl.level">
+        <option value="" disabled="" style="display: none;"></option>
+        <option value="Yellow" default="">Yellow</option>
+        <option value="Green (Light)">Green (Light)</option>
+        <option value="Green (Dark)">Green (Dark)</option>
+        <option value="Blue (Light)">Blue (Light)</option>
+        <option value="Blue (Dark)">Blue (Dark)</option>
+        <option value="Black (Light)">Black (Light)</option>
+        <option value="Black (Dark)">Black (Dark)</option>
+      </select>
+    </div>
+  </div>
+  <div class="col-md-4 lesson-item-participants"></div>
+</div>
