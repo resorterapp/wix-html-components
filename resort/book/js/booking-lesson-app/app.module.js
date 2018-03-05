@@ -5,5 +5,5 @@
         .module('BookingLessonApp', [
             'ngAnimate',
             'ui.bootstrap'
-        });
+        ]);
 })();
