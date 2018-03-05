@@ -1,30 +1,27 @@
 <div class="lesson-options">
   <!-- Choose lesson type -->
-  <div class="lesson-type-dropdown inline-block" ng-controller="LessonTypeDropdownController as ctrl">
+  <div class="lesson-type-dropdown inline-block">
     <span>Type:</span>
-    <div class="dropdown inline-block" uib-dropdown>
-      <button id="lesson-type-dropdown-toggle" class="btn btn-default dropdown-toggle" type="button" uib-dropdown-toggle>
-        [{ ctrl.selected }] <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="lesson-type-dropdown-toggle">
-        <li role="menuitem" ng-repeat="item in ctrl.items">
-          <a href="javascript:void(0);" ng-click="ctrl.selected = item">[{ item }]</a>
-        </li>
-      </ul>
+    <div class="selector inline-block">
+      <select name="lessonType" id="lesson-type" ng-init="lessonType = 'Group'" ng-model="lessonType">
+        <option value="Group">Group</option>
+        <option value="Private">Private</option>
+        <option value="Private (disabled)">Private (disabled)</option>
+      </select>
     </div>
   </div>
   <!-- Choose activity -->
-  <div class="lesson-activity-dropdown inline-block" ng-controller="LessonActivityDropdownController as ctrl">
+  <div class="lesson-activity-dropdown inline-block">
     <span>Choose activity:</span>
-    <div class="dropdown inline-block" uib-dropdown>
-      <button id="lesson-activity-dropdown-toggle" class="btn btn-default dropdown-toggle" type="button" uib-dropdown-toggle>
-        [{ ctrl.selected }] <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="lesson-activity-dropdown-toggle">
-        <li role="menuitem" ng-repeat="item in ctrl.items">
-          <a href="javascript:void(0);" ng-click="ctrl.selected = item">[{ item }]</a>
-        </li>
-      </ul>
+    <div class="selector inline-block">
+      <select name="lessonActivity" id="lesson-activity" ng-init="lessonActivity = 'Ski'" ng-model="lessonActivity">
+        <option value="Ski">Ski</option>
+        <option value="Snowboard">Snowboard</option>
+        <option value="Telemark">Telemark</option>
+        <option value="Snowmobiling">Snowmobiling</option>
+        <option value="Snowbiking">Snowbiking</option>
+        <option value="Snowshoeing">Snowshoeing</option>
+      </select>
     </div>
   </div>
 </div>

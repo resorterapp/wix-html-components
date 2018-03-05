@@ -18,12 +18,99 @@
       <!-- Book lessons header -->
       <h2>Book your lessons <span class="text-danger">(not available, yet)</span>:</h2>
       {% include_relative components/lesson_options.html %}
-      <div id="group-lessons">
-        <h4>Group Lessons - Adult (18+ yrs)</h4>
-        <lessons-list></lessons-list>
+      <div class="lessons-booker" ng-switch on="lessonType">
 
-        <h4>Group Lessons - Child (6–12 yrs) / Teen (13—17 years)</h4>
-        <lessons-list></lessons-list>
+        <div id="group-lessons" ng-switch-default>
+          <h4>Group Lessons - Adult (18+ yrs)</h4>
+          <lessons-list></lessons-list>
+
+          <h4>Group Lessons - Child (6–12 yrs) / Teen (13—17 years)</h4>
+          <lessons-list></lessons-list>
+        </div>
+
+        <div id="private-lessons" ng-switch-when="Private">
+          <h4 class="text-danger">
+            A maximum of up to 4 people can join the lesson. Everyone must be the same ability.
+          </h4>
+          <form action="" class="form-horizontal">
+            <div class="form-group specific-instructor">
+              <label for="need-specific-instructor" class="col-sm-3">Specific instructor in mind?</label>
+              <div class="col-sm-6">
+                <select name="specificInstructor" id="specific-instructor"
+                        ng-init="needSpecificInstructor = 0"
+                        ng-model="needSpecificInstructor">
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group instructor-name-description" ng-if="needSpecificInstructor == 1">
+              <label for="instructor-name-description" class="col-sm-3">Name or description of the instructors</label>
+              <div class="col-sm-6">
+                <textarea class="form-control"
+                          name="privateLessonsSpecificRequirements" id="instructor-name-description" rows="4"
+                          placeholder="Special requests? Add them here"></textarea>
+              </div>
+            </div>
+            <div class="form-group specific-requirements">
+              <label for="specific-requirements" class="col-sm-3">Any specific requirements you want your instructor to
+                know?</label>
+              <div class="col-sm-6">
+                <textarea class="form-control"
+                          name="privateLessonsSpecificRequirements" id="specific-requirements" rows="4"
+                          placeholder="Special requests? Add them here"></textarea>
+              </div>
+            </div>
+          </form>
+
+          <h4>Private Lessons</h4>
+          <lessons-list></lessons-list>
+        </div>
+
+        <div id="private-disabled-lessons" ng-switch-when="Private (disabled)">
+          <h4 class="text-danger">
+            A maximum of up to 4 people can join the lesson. Everyone must be the same ability.
+          </h4>
+          <form action="" class="form-horizontal">
+            <div class="form-group dwa-membership">
+              <label for="dwa-membership" class="col-sm-3">Enter your DWA Membership ID</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" id="dwa-membership">
+              </div>
+            </div>
+            <div class="form-group specific-instructor">
+              <label for="need-specific-instructor" class="col-sm-3">Specific instructor in mind?</label>
+              <div class="col-sm-6">
+                <select name="specificInstructor" id="specific-instructor"
+                        ng-init="needSpecificInstructor = 0"
+                        ng-model="needSpecificInstructor">
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group instructor-name-description" ng-if="needSpecificInstructor == 1">
+              <label for="instructor-name-description" class="col-sm-3">Name or description of the instructors</label>
+              <div class="col-sm-6">
+                <textarea class="form-control"
+                          name="privateLessonsSpecificRequirements" id="instructor-name-description" rows="4"
+                          placeholder="Special requests? Add them here"></textarea>
+              </div>
+            </div>
+            <div class="form-group specific-requirements">
+              <label for="specific-requirements" class="col-sm-3">Any specific requirements you want your instructor to
+                know?</label>
+              <div class="col-sm-6">
+                <textarea class="form-control"
+                          name="privateLessonsSpecificRequirements" id="specific-requirements" rows="4"
+                          placeholder="Special requests? Add them here"></textarea>
+              </div>
+            </div>
+          </form>
+
+          <h4>Private (disabled) Lessons</h4>
+          <lessons-list></lessons-list>
+        </div>
       </div>
     </div>
     <!-- 3rd-party JS libraries/frameworks -->
