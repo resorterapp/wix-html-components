@@ -1,8 +1,9 @@
-(function() {
-    "use strict";
+(function () {
+    'use strict';
 
-    angular.module("BookingLessonApp", [
-        "ngAnimate",
-        "ui.bootstrap"
-    ]);
+    angular
+        .module('BookingLessonApp', [
+            'ngAnimate',
+            'ui.bootstrap'
+        });
 })();

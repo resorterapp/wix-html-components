@@ -4,56 +4,56 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <title></title>
-  <!-- 3rd-party JS/CSS libraries/frameworks that need to be loaded in the head -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
-  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-  <!-- Custom CSS goes here -->
-  <link rel="stylesheet" href="css/main.css" type="text/css">
-</head>
+  <head>
+    <title></title>
+    <!-- 3rd-party JS/CSS libraries/frameworks that need to be loaded in the head -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <!-- Custom CSS goes here -->
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+  </head>
 
-<body ng-app="BookingLessonApp">
-  <div class="container" ng-app="BookingLessonApp">
-    <!-- Book lessons header -->
-    <h2>Book your lessons <span class="text-danger">(not available, yet)</span>:</h2>
-    {% include_relative components/lesson_options.html %}
-    <div id="group-lessons">
-      <h4>Group Lessons - Adult (18+ yrs)</h4>
-      <lessons-list></lessons-list>
+  <body ng-app="BookingLessonApp">
+    <div class="container" ng-app="BookingLessonApp">
+      <!-- Book lessons header -->
+      <h2>Book your lessons <span class="text-danger">(not available, yet)</span>:</h2>
+      {% include_relative components/lesson_options.html %}
+      <div id="group-lessons">
+        <h4>Group Lessons - Adult (18+ yrs)</h4>
+        <lessons-list></lessons-list>
 
-      <h4>Group Lessons - Child (6–12 yrs) / Teen (13—17 years)</h4>
-      <lessons-list></lessons-list>
+        <h4>Group Lessons - Child (6–12 yrs) / Teen (13—17 years)</h4>
+        <lessons-list></lessons-list>
+      </div>
     </div>
-  </div>
-  <!-- 3rd-party JS libraries/frameworks -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-animate.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
-  <!--
-    <script type="text/javascript">
-        /* The bottom JS */
-        // Initialise the objects
-        var wixData = {};
+    <!-- 3rd-party JS libraries/frameworks -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-animate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+    <!--
+      <script type="text/javascript">
+          /* The bottom JS */
+          // Initialise the objects
+          var wixData = {};
 
-        // Loads the data from Wix page
-        window.onmessage = function(event) {
-            if (event.data) {
-                wixData = event.data;
-                console.log(wixData);
-                $("#lesson-slots").append(
-                    $("<li>").text(wixData)
-                );
-            }
-        };
-    </script>
- -->
-  <script src="js/booking-lesson-app/app.module.js"></script>
-  <script src="js/booking-lesson-app/app.config.js"></script>
-  <script src="js/booking-lesson-app/lesson-options/type-dropdown.controller.js"></script>
-  <script src="js/booking-lesson-app/lesson-options/activity-dropdown.controller.js"></script>
-  <script src="js/booking-lesson-app/lesson/lessons-list.component.js"></script>
-  <script src="js/booking-lesson-app/lesson/lesson-item.component.js"></script>
-</body>
+          // Loads the data from Wix page
+          window.onmessage = function(event) {
+              if (event.data) {
+                  wixData = event.data;
+                  console.log(wixData);
+                  $("#lesson-slots").append(
+                      $("<li>").text(wixData)
+                  );
+              }
+          };
+      </script>
+   -->
+    <script src="js/booking-lesson-app/app.module.js"></script>
+    <script src="js/booking-lesson-app/app.config.js"></script>
+    <script src="js/booking-lesson-app/lesson-options/type-dropdown.controller.js"></script>
+    <script src="js/booking-lesson-app/lesson-options/activity-dropdown.controller.js"></script>
+    <script src="js/booking-lesson-app/lesson/lessons-list.component.js"></script>
+    <script src="js/booking-lesson-app/lesson/lesson-item.component.js"></script>
+  </body>
 
 </html>
