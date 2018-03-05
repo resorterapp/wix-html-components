@@ -12,6 +12,11 @@ body {
     font-size: 16px;
 }
 
+body {
+    // Hide horizontal scrolling bar when added to Wix
+    overflow-x: hidden;
+}
+
 h2 {
     font-weight: 200;
 }
