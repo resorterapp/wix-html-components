@@ -4,6 +4,7 @@
     angular
         .module('BookingLessonApp', [
             'ngAnimate',
-            'ui.bootstrap'
+            'ui.bootstrap',
+            'rx'
         ]);
 })();

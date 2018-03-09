@@ -1,4 +1,4 @@
-<div class="lessons-list">
+<div id="[{ $ctrl.id }]" class="lessons-list">
   <div class="lessons-list-headers row">
     <div class="col-sm-1"></div>
     <div class="col-sm-2">Date</div>
@@ -7,5 +7,26 @@
     <div class="col-sm-4">Participants</div>
   </div>
 
-  <lesson-item ng-repeat="lesson in $ctrl.lessons" date="lesson.date"></lesson-item>
+  <lesson-item ng-repeat="date in $ctrl.dates" date="date"></lesson-item>
+
+  <div class="add-lesson-container">
+    <button uib-popover-template="$ctrl.addLessonTemplateUrl"
+            popover-title="Add Lesson for Date" popover-placement="bottom"
+            type="button" class="btn btn-danger">
+      Add Lesson
+    </button>
+
+    <script type="text/ng-template" id="[{ $ctrl.id }]_addLessonTemplate.html">
+      <div class="">
+        <p class="input-group">
+          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt" is-open="popup2.opened"
+                 datepicker-options="dateOptions" ng-required="true" close-text="Close"/>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open2()"><i
+                class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+      </div>
+    </script>
+  </div>
 </div>
