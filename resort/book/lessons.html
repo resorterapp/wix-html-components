@@ -13,12 +13,31 @@
     <link rel="stylesheet" href="css/main.css" type="text/css">
   </head>
 
-  <body>
-    <div ng-app="BookingLessonApp">
+  <body ng-app="BookingLessonApp">
+    <div ng-controller="LessonsController as vm">
       <!-- Book lessons header -->
-      <h2>Book your lessons <span class="text-danger">(not available, yet)</span>:</h2>
-      {% include_relative components/lesson_options.html %}
-      <div class="lessons-booker" ng-switch on="lessonType">
+      <h2>Book your lessons</h2>
+      <div class="lesson-options">
+        <!-- Choose lesson type -->
+        <div class="lesson-type-dropdown inline-block">
+          <span>Type:</span>
+          <div class="selector inline-block">
+            <select name="lessonType" id="lessonType"
+                    ng-options="option for option in vm.LESSON_TYPES" ng-model="vm.lessonType"></select>
+          </div>
+        </div>
+        <!-- Choose activity -->
+        <div class="lesson-activity-dropdown inline-block">
+          <span>Choose activity:</span>
+          <div class="selector inline-block">
+            <select name="lessonActivity" id="lessonActivity"
+                    ng-options="option for option in vm.ACTIVITY_TYPES" ng-model="vm.activityType"></select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Book Lesson Details -->
+      <div class="lessons-booker" ng-switch on="vm.lessonType">
 
         <div id="group-lessons" ng-switch-default>
           <h4>Group Lessons - Adult (18+ yrs)</h4>
@@ -124,12 +143,13 @@
 
     <!-- Our own JS -->
     <script type="text/javascript">
-      // Initialise Moment
-      window['moment-range'].extendMoment(moment);
+        // Initialise Moment
+        window['moment-range'].extendMoment(moment);
     </script>
     <script src="js/booking-lesson-app/app.module.js"></script>
     <script src="js/booking-lesson-app/app.config.js"></script>
     <script src="js/booking-lesson-app/factories/wix-data-msg.factory.js"></script>
+    <script src="js/booking-lesson-app/lesson/lessons.controller.js"></script>
     <script src="js/booking-lesson-app/lesson-options/type-dropdown.controller.js"></script>
     <script src="js/booking-lesson-app/lesson-options/activity-dropdown.controller.js"></script>
     <script src="js/booking-lesson-app/lesson/lessons-list.component.js"></script>
