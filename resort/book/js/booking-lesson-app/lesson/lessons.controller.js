@@ -22,6 +22,19 @@
         vm.lessonType = settings.LESSON_TYPES[0];
         vm.activityType = settings.ACTIVITY_TYPES[0];
         vm.results = {
+            notes: {
+                privateLesson: {
+                    needSpecificInstructor: false,
+                    instructorDescription: null,
+                    specificRequirements: null
+                },
+                privateDisabledLesson: {
+                    dwaMembership: null,
+                    needSpecificInstructor: false,
+                    instructorDescription: null,
+                    specificRequirements: null
+                }
+            },
             lessons: []
         };
 
@@ -33,6 +46,8 @@
         vm.updateLessons = updateLessons;
         vm.getAdultLessons = getAdultLessons;
         vm.getChildrenLessons = getChildrenLessons;
+        vm.getPrivateLessons = getPrivateLessons;
+        vm.getPrivateDisabledLessons = getPrivateDisabledLessons;
 
         function loadData(_) {
             $scope.$apply(applyData);
@@ -65,25 +80,16 @@
         }
 
         function updateLessons() {
-            // Empties the lessons list when the type is changed
-            vm.results.lessons = [];
-
             // Then, builds the lessons list based on the chosen type
-            switch (vm.lessonType) {
-                case 'Group':
-                    let lessons = buildLessons('GroupAdult');
-                    let childrenLessons = buildLessons('GroupChildren');
-                    lessons.push.apply(lessons, childrenLessons);
+            let lessons = [];
 
-                    vm.results.lessons = lessons;
-                    break;
-                case 'Private':
-                    vm.results.lessons = buildLessons('Private');
-                    break;
-                case 'Private (disabled)':
-                    vm.results.lessons = buildLessons('Private (disabled)');
-                    break;
+            // Builds children lessons
+            for (let i = 0; i < settings.LESSON_TYPES_KEYS.length; i++) {
+                let lesson = buildLessons(settings.LESSON_TYPES_KEYS[i]);
+                lessons.push.apply(lessons, lesson);
             }
+
+            vm.results.lessons = lessons;
         }
 
         function addLesson(lesson) {
@@ -122,13 +128,25 @@
 
         function getAdultLessons() {
             return vm.results.lessons.filter(function (l) {
-                return l.type === 'GroupAdult';
+                return l.type === 'groupAdult';
             });
         }
 
         function getChildrenLessons() {
             return vm.results.lessons.filter(function (l) {
-                return l.type === 'GroupChildren';
+                return l.type === 'groupChildren';
+            });
+        }
+
+        function getPrivateLessons() {
+            return vm.results.lessons.filter(function (l) {
+                return l.type === 'private';
+            });
+        }
+
+        function getPrivateDisabledLessons() {
+            return vm.results.lessons.filter(function (l) {
+                return l.type === 'privateDisabled';
             });
         }
 

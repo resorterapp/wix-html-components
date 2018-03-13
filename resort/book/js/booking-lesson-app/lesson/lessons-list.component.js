@@ -1,3 +1,12 @@
+function buildDatesRange(fromDate, toDate) {
+    let range = moment.range(fromDate, toDate);
+    let dates = Array.from(range.by('day'));
+
+    return dates.map(function (m) {
+        return m.toDate();
+    });
+}
+
 (function () {
     'use strict';
 
@@ -7,42 +16,20 @@
             templateUrl: 'js/booking-lesson-app/lesson/lessons-list.html',
             controller: LessonsListController,
             bindings: {
-                id: '<'
+                id: '<',
+                data: '<'
             }
         });
 
-    LessonsListController.$inject = ['$scope', 'Wix'];
-
-    function LessonsListController($scope, Wix) {
+    function LessonsListController() {
         var ctrl = this;
 
-        ctrl.data = {};
-        ctrl.dates = [];
+        ctrl.dates = buildDatesRange(ctrl.data.date.checkIn, ctrl.data.date.checkOut);
         ctrl.addLessonTemplateUrl = ctrl.id + '_addLessonTemplate.html';
         ctrl.deleteLesson = deleteLesson;
 
-        var subscription = Wix.subscribe(function (data) {
-            ctrl.data = data;
-            ctrl.dates = retrieveDates();
-
-            $scope.$apply();
-        });
-
-        function retrieveDates() {
-            // Constructs a date range from checkIn to checkoutDate
-            var range = moment.range(
-                ctrl.data.date.checkIn,
-                ctrl.data.date.checkOut
-            );
-
-            // Converts the range to array
-            var dates = Array.from(range.by('day'));
-            return dates.map(m => m.toDate());
-        }
-
-
         function deleteLesson(lesson) {
-            var lessonIndex = ctrl.lessons.indexOf(lesson);
+            let lessonIndex = ctrl.lessons.indexOf(lesson);
 
             if (lessonIndex >= 0) {
                 ctrl.lessons.splice(lessonIndex, 1);

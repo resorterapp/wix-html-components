@@ -86,31 +86,36 @@
 
           <form action="" class="form-horizontal">
             <div class="form-group specific-instructor">
-              <label for="need-specific-instructor" class="col-sm-3">Specific instructor in mind?</label>
-              <div class="col-sm-6">
-                <select name="specificInstructor" id="specific-instructor"
-                        ng-init="needSpecificInstructor = 0"
-                        ng-model="needSpecificInstructor">
-                  <option value="1">Yes</option>
-                  <option value="0">No</option>
+              <label class="col-sm-3">
+                Specific instructor in mind?
+              </label>
+              <div class="col-sm-9">
+                <select ng-model="vm.results.notes.privateLesson.needSpecificInstructor"
+                        ng-options="o.value as o.name for o in vm.settings.YES_NO_OPTIONS">
                 </select>
               </div>
             </div>
-            <div class="form-group instructor-name-description" ng-if="needSpecificInstructor == 1">
-              <label for="instructor-name-description" class="col-sm-3">Name or description of the instructors</label>
-              <div class="col-sm-6">
-                <textarea class="form-control"
-                          name="privateLessonsSpecificRequirements" id="instructor-name-description" rows="4"
-                          placeholder="Special requests? Add them here"></textarea>
+            <div class="form-group instructor-name-description"
+                 ng-if="vm.results.notes.privateLesson.needSpecificInstructor">
+              <label class="col-sm-3">
+                Name or description of the instructors
+              </label>
+              <div class="col-sm-9">
+                <textarea
+                    class="form-control" rows="4"
+                    placeholder="Special requests? Add them here"
+                    ng-model="vm.results.notes.privateLesson.instructorDescription"></textarea>
               </div>
             </div>
             <div class="form-group specific-requirements">
-              <label for="specific-requirements" class="col-sm-3">Any specific requirements you want your instructor to
-                know?</label>
-              <div class="col-sm-6">
-                <textarea class="form-control"
-                          name="privateLessonsSpecificRequirements" id="specific-requirements" rows="4"
-                          placeholder="Special requests? Add them here"></textarea>
+              <label class="col-sm-3">
+                Any specific requirements you want your instructor to know?
+              </label>
+              <div class="col-sm-9">
+                <textarea
+                    class="form-control" rows="4"
+                    placeholder="Special requests? Add them here"
+                    ng-model="vm.results.notes.privateLesson.specificRequirements"></textarea>
               </div>
             </div>
           </form>
@@ -122,6 +127,11 @@
             <div class="col-sm-3">Ability</div>
             <div class="col-sm-4">Participants</div>
           </div>
+
+          <lesson-item ng-repeat="lesson in vm.getPrivateLessons()"
+                       lesson="lesson" participants="vm.data.participants"
+                       delete-lesson="vm.deleteLesson">
+          </lesson-item>
 
         </div>
         <div id="private-disabled-lessons">
@@ -131,37 +141,42 @@
           </h5>
           <form action="" class="form-horizontal">
             <div class="form-group dwa-membership">
-              <label for="dwa-membership" class="col-sm-3">Enter your DWA Membership ID</label>
-              <div class="col-sm-6">
-                <input type="text" class="form-control" id="dwa-membership">
+              <label class="col-sm-3">Enter your DWA Membership ID</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" ng-model="vm.results.notes.privateDisabledLesson.dwaMembership">
               </div>
             </div>
             <div class="form-group specific-instructor">
-              <label for="need-specific-instructor" class="col-sm-3">Specific instructor in mind?</label>
-              <div class="col-sm-6">
-                <select name="specificInstructor" id="specific-instructor"
-                        ng-init="needSpecificInstructor = 0"
-                        ng-model="needSpecificInstructor">
-                  <option value="1">Yes</option>
-                  <option value="0">No</option>
+              <label class="col-sm-3">
+                Specific instructor in mind?
+              </label>
+              <div class="col-sm-9">
+                <select ng-model="vm.results.notes.privateDisabledLesson.needSpecificInstructor"
+                    ng-options="o.value as o.name for o in vm.settings.YES_NO_OPTIONS">
                 </select>
               </div>
             </div>
-            <div class="form-group instructor-name-description" ng-if="needSpecificInstructor == 1">
-              <label for="instructor-name-description" class="col-sm-3">Name or description of the instructors</label>
-              <div class="col-sm-6">
-                <textarea class="form-control"
-                          name="privateLessonsSpecificRequirements" id="instructor-name-description" rows="4"
-                          placeholder="Special requests? Add them here"></textarea>
+            <div class="form-group instructor-name-description"
+                 ng-if="vm.results.notes.privateDisabledLesson.needSpecificInstructor">
+              <label class="col-sm-3">
+                Name or description of the instructors
+              </label>
+              <div class="col-sm-9">
+                <textarea
+                    class="form-control" rows="4"
+                    placeholder="Special requests? Add them here"
+                    ng-model="vm.results.notes.privateDisabledLesson.instructorDescription"></textarea>
               </div>
             </div>
             <div class="form-group specific-requirements">
-              <label for="specific-requirements" class="col-sm-3">Any specific requirements you want your instructor to
-                know?</label>
+              <label class="col-sm-3">
+                Any specific requirements you want your instructor to know?
+              </label>
               <div class="col-sm-6">
-                <textarea class="form-control"
-                          name="privateLessonsSpecificRequirements" id="specific-requirements" rows="4"
-                          placeholder="Special requests? Add them here"></textarea>
+                <textarea
+                    class="form-control" rows="4"
+                    placeholder="Special requests? Add them here"
+                    ng-model="vm.results.notes.privateDisabledLesson.specificRequirements"></textarea>
               </div>
             </div>
           </form>
@@ -173,6 +188,11 @@
             <div class="col-sm-3">Ability</div>
             <div class="col-sm-4">Participants</div>
           </div>
+
+          <lesson-item ng-repeat="lesson in vm.getPrivateDisabledLessons()"
+                       lesson="lesson" participants="vm.data.participants"
+                       delete-lesson="vm.deleteLesson">
+          </lesson-item>
         </div>
 
 

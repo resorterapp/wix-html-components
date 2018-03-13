@@ -25,6 +25,16 @@
                 'Blue (Dark)',
                 'Black (Light)',
                 'Black (Dark)'
+            ],
+            YES_NO_OPTIONS: [
+                { name: 'Yes', value: true },
+                { name: 'No', value: false }
+            ],
+            LESSON_TYPES_KEYS: [
+                'groupAdult',
+                'groupChildren',
+                'private',
+                'privateDisabled'
             ]
         })
         .constant('moment', moment);
