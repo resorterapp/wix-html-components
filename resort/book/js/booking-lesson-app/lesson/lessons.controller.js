@@ -39,7 +39,6 @@
         };
 
         // Binds functions
-        vm.getAdultParticipants = getAdultParticipants;
         vm.isDataAvailable = isDataAvailable;
         vm.addLesson = addLesson;
         vm.deleteLesson = deleteLesson;
@@ -58,8 +57,6 @@
             vm.wix = Wix;
             vm.data = Wix.getData();
             vm.dates = buildDatesRange(vm.data.date.checkIn, vm.data.date.checkOut);
-            vm.adultParticipants = getAdultParticipants(vm.data.participants);
-            vm.childrenParticipants = getChildrenParticipants(vm.data.participants);
             vm.participants = buildParticipantsList(vm.data.participants);
 
             updateLessons();
@@ -67,32 +64,6 @@
 
         function isDataAvailable() {
             return !angular.equals(vm.data, {});
-        }
-
-        function getAdultParticipants(participants) {
-            return participants.filter(function (p) {
-                return p.age >= 18
-                    && !p.disabled;
-            });
-        }
-
-        function getChildrenParticipants(participants) {
-            return participants.filter(function (p) {
-                return p.age < 18
-                    && !p.disabled;
-            });
-        }
-
-        function getParticipants() {
-            return vm.data.participants.filter(function (p) {
-                return !p.disabled;
-            });
-        }
-
-        function getDisabledParticipants() {
-            return vm.data.participants.filter(function (p) {
-                return p.disabled;
-            });
         }
 
         function buildParticipantsList(participants) {
