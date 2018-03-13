@@ -34,7 +34,14 @@ label {
 }
 
 // Lessons
+.lessons-booker {
+    .lessons-booker-inner {
+        margin-bottom: 40px;
+    }
+}
+
 .lessons-list {
+    margin-bottom: 30px;
 
     .lessons-list-headers,
     .lesson-item {
