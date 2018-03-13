@@ -12,29 +12,33 @@
         (function () {
             var data = {
                 date: {
-                    checkIn: new Date('2018-06-12'),
-                    checkOut: new Date('2018-06-15')
+                    checkIn: new Date('2018-07-01'),
+                    checkOut: new Date('2018-07-04')
                 },
                 participants: [
                     {
                         _id: uuid.v4(),
-                        name: 'John Smith',
-                        age: 40
+                        name: 'Jack',
+                        age: 40,
+                        disabled: false
                     },
                     {
                         _id: uuid.v4(),
-                        name: 'Jane Smith',
-                        age: 36
+                        name: 'Jane',
+                        age: 36,
+                        disabled: false
                     },
                     {
                         _id: uuid.v4(),
-                        name: 'Will Smith',
-                        age: 7
+                        name: 'Will',
+                        age: 7,
+                        disabled: true
                     },
                     {
                         _id: uuid.v4(),
-                        name: 'Eliza Smith',
-                        age: 4
+                        name: 'Eliza',
+                        age: 4,
+                        disabled: false
                     }
                 ]
             };

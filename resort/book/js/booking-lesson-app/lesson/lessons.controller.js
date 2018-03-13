@@ -20,8 +20,8 @@
         vm.dates = [];
         vm.settings = settings;
         vm.lessonType = settings.LESSON_TYPES[0];
-        vm.activityType = settings.ACTIVITY_TYPES[0];
         vm.results = {
+            activityType: settings.ACTIVITY_TYPES[0],
             notes: {
                 privateLesson: {
                     needSpecificInstructor: false,
@@ -48,6 +48,7 @@
         vm.getChildrenLessons = getChildrenLessons;
         vm.getPrivateLessons = getPrivateLessons;
         vm.getPrivateDisabledLessons = getPrivateDisabledLessons;
+        vm.getResults = getResults;
 
         function loadData(_) {
             $scope.$apply(applyData);
@@ -59,6 +60,7 @@
             vm.dates = buildDatesRange(vm.data.date.checkIn, vm.data.date.checkOut);
             vm.adultParticipants = getAdultParticipants(vm.data.participants);
             vm.childrenParticipants = getChildrenParticipants(vm.data.participants);
+            vm.participants = buildParticipantsList(vm.data.participants);
 
             updateLessons();
         }
@@ -69,14 +71,47 @@
 
         function getAdultParticipants(participants) {
             return participants.filter(function (p) {
-                return p.age >= 18;
+                return p.age >= 18
+                    && !p.disabled;
             });
         }
 
         function getChildrenParticipants(participants) {
             return participants.filter(function (p) {
-                return p.age < 18;
+                return p.age < 18
+                    && !p.disabled;
             });
+        }
+
+        function getParticipants() {
+            return vm.data.participants.filter(function (p) {
+                return !p.disabled;
+            });
+        }
+
+        function getDisabledParticipants() {
+            return vm.data.participants.filter(function (p) {
+                return p.disabled;
+            });
+        }
+
+        function buildParticipantsList(participants) {
+            return {
+                'adults': participants.filter(function (p) {
+                    return p.age >= 18
+                        && !p.disabled;
+                }),
+                'children': participants.filter(function (p) {
+                    return p.age < 18
+                        && !p.disabled;
+                }),
+                'normal': participants.filter(function (p) {
+                    return !p.disabled;
+                }),
+                'disabled': participants.filter(function (p) {
+                    return p.disabled;
+                }),
+            };
         }
 
         function updateLessons() {
@@ -157,6 +192,18 @@
             return dates.map(function (m) {
                 return m.toDate();
             });
+        }
+
+        function getResults() {
+            // Copies the original results object
+            let results = Object.assign({}, vm.results);
+
+            // Filters the lessons to have only those with participants
+            results.lessons = results.lessons.filter(function (l) {
+                return l.participants.length;
+            });
+
+            return results;
         }
     }
 })();

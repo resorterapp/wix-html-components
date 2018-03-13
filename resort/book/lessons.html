@@ -17,29 +17,19 @@
     <div ng-controller="LessonsController as vm">
       <!-- Book lessons header -->
       <h2>Book your lessons</h2>
-      <div class="lesson-options">
-        <!-- Choose lesson type -->
-        <div class="lesson-type-dropdown inline-block">
-          <span>Type:</span>
-          <div class="selector inline-block">
-            <select name="lessonType" id="lessonType"
-                    ng-options="option for option in vm.settings.LESSON_TYPES"
-                    ng-model="vm.lessonType"
-                    ng-change="vm.updateLessons()"></select>
-          </div>
-        </div>
-        <!-- Choose activity -->
-        <div class="lesson-activity-dropdown inline-block">
-          <span>Choose activity:</span>
-          <div class="selector inline-block">
-            <select name="lessonActivity" id="lessonActivity"
-                    ng-options="option for option in vm.settings.ACTIVITY_TYPES" ng-model="vm.activityType"></select>
-          </div>
+
+      <!-- Choose activity -->
+      <div class="lesson-activity-dropdown inline-block">
+        <span>Choose activity:</span>
+        <div class="selector inline-block">
+          <select name="lessonActivity" id="lessonActivity"
+                  ng-options="option for option in vm.settings.ACTIVITY_TYPES"
+                  ng-model="vm.results.activityType"></select>
         </div>
       </div>
 
       <!-- Book Lesson Details -->
-      <div class="lessons-booker" ng-switch on="vm.lessonType" ng-if="vm.isDataAvailable()">
+      <div class="lessons-booker" ng-if="vm.isDataAvailable()">
 
         <div id="group-lessons">
           <div class="group-lessons-adult lessons-list">
@@ -54,7 +44,7 @@
             </div>
 
             <lesson-item ng-repeat="lesson in vm.getAdultLessons()"
-                         lesson="lesson" participants="vm.adultParticipants"
+                         lesson="lesson" participants="vm.participants.adults"
                          delete-lesson="vm.deleteLesson">
             </lesson-item>
           </div>
@@ -71,7 +61,7 @@
             </div>
 
             <lesson-item ng-repeat="lesson in vm.getChildrenLessons()"
-                         lesson="lesson" participants="vm.childrenParticipants"
+                         lesson="lesson" participants="vm.participants.children"
                          delete-lesson="vm.deleteLesson">
             </lesson-item>
           </div>
@@ -80,9 +70,9 @@
 
         <div id="private-lessons">
           <h3>Private Lessons</h3>
-          <h5 class="text-danger">
-            A maximum of up to 4 people can join the lesson. Everyone must be at the same level of ability.
-          </h5>
+          <div class="alert alert-warning">
+            A maximum of up to 4 people can join a lesson. Everyone must be at the same level of ability.
+          </div>
 
           <form action="" class="form-horizontal">
             <div class="form-group specific-instructor">
@@ -129,16 +119,16 @@
           </div>
 
           <lesson-item ng-repeat="lesson in vm.getPrivateLessons()"
-                       lesson="lesson" participants="vm.data.participants"
+                       lesson="lesson" participants="vm.participants.normal"
                        delete-lesson="vm.deleteLesson">
           </lesson-item>
 
         </div>
         <div id="private-disabled-lessons">
           <h3>Private (disabled) Lessons</h3>
-          <h5 class="text-danger">
-            A maximum of up to 4 people can join the lesson. Everyone must be the same ability.
-          </h5>
+          <div class="alert alert-warning">
+            A maximum of up to 4 people can join a lesson. Everyone must be at the same level of ability.
+          </div>
           <form action="" class="form-horizontal">
             <div class="form-group dwa-membership">
               <label class="col-sm-3">Enter your DWA Membership ID</label>
@@ -152,7 +142,7 @@
               </label>
               <div class="col-sm-9">
                 <select ng-model="vm.results.notes.privateDisabledLesson.needSpecificInstructor"
-                    ng-options="o.value as o.name for o in vm.settings.YES_NO_OPTIONS">
+                        ng-options="o.value as o.name for o in vm.settings.YES_NO_OPTIONS">
                 </select>
               </div>
             </div>
@@ -190,7 +180,7 @@
           </div>
 
           <lesson-item ng-repeat="lesson in vm.getPrivateDisabledLessons()"
-                       lesson="lesson" participants="vm.data.participants"
+                       lesson="lesson" participants="vm.participants.disabled"
                        delete-lesson="vm.deleteLesson">
           </lesson-item>
         </div>
@@ -200,7 +190,7 @@
 
       <div class="results">
         <h2>Returned results</h2>
-        <pre>[{ vm.results | json }]</pre>
+        <pre>[{ vm.getResults() | json }]</pre>
       </div>
     </div>
     <!-- 3rd-party JS libraries/frameworks -->
