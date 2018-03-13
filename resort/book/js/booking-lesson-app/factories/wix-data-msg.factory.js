@@ -8,11 +8,42 @@
         .module('BookingLessonApp')
         .factory('Wix', Wix);
 
-    Wix.$inject = ['$window', 'rx'];
+    Wix.$inject = ['$window', 'rx', 'uuid'];
 
-    function Wix($window, rx) {
+    function Wix($window, rx, uuid) {
         var subject = new rx.Subject();
-        var data = {};
+        var data = {
+            date: {
+                checkIn: new Date('2018-07-01'),
+                checkOut: new Date('2018-07-04')
+            },
+            participants: [
+                {
+                    _id: uuid.v4(),
+                    name: 'Jack',
+                    age: 40,
+                    disabled: false
+                },
+                {
+                    _id: uuid.v4(),
+                    name: 'Jane',
+                    age: 36,
+                    disabled: false
+                },
+                {
+                    _id: uuid.v4(),
+                    name: 'Will',
+                    age: 10,
+                    disabled: true
+                },
+                {
+                    _id: uuid.v4(),
+                    name: 'Eliza',
+                    age: 7,
+                    disabled: false
+                }
+            ]
+        };
 
         $window.onmessage = windowOnMessage;
 

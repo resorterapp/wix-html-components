@@ -15,38 +15,7 @@
     function LessonsController($scope, moment, Wix, settings) {
         var vm = this;
 
-        vm.data = {
-            date: {
-                checkIn: new Date('2018-07-01'),
-                checkOut: new Date('2018-07-04')
-            },
-            participants: [
-                {
-                    _id: uuid.v4(),
-                    name: 'Jack',
-                    age: 40,
-                    disabled: false
-                },
-                {
-                    _id: uuid.v4(),
-                    name: 'Jane',
-                    age: 36,
-                    disabled: false
-                },
-                {
-                    _id: uuid.v4(),
-                    name: 'Will',
-                    age: 10,
-                    disabled: true
-                },
-                {
-                    _id: uuid.v4(),
-                    name: 'Eliza',
-                    age: 7,
-                    disabled: false
-                }
-            ]
-        };
+        vm.data = Wix.getData();
         vm.dates = [];
         vm.settings = settings;
         vm.lessonType = settings.LESSON_TYPES[0];

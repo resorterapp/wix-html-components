@@ -27,8 +27,8 @@
                 'Black (Dark)'
             ],
             YES_NO_OPTIONS: [
-                { name: 'Yes', value: true },
-                { name: 'No', value: false }
+                {name: 'Yes', value: true},
+                {name: 'No', value: false}
             ],
             LESSON_TYPES_KEYS: [
                 'groupAdult',
@@ -37,5 +37,6 @@
                 'privateDisabled'
             ]
         })
-        .constant('moment', moment);
+        .constant('moment', moment)
+        .constant('uuid', uuid);
 })();
