@@ -23,7 +23,9 @@
           <span>Type:</span>
           <div class="selector inline-block">
             <select name="lessonType" id="lessonType"
-                    ng-options="option for option in vm.settings.LESSON_TYPES" ng-model="vm.lessonType"></select>
+                    ng-options="option for option in vm.settings.LESSON_TYPES"
+                    ng-model="vm.lessonType"
+                    ng-change="vm.updateLessons()"></select>
           </div>
         </div>
         <!-- Choose activity -->
@@ -39,18 +41,49 @@
       <!-- Book Lesson Details -->
       <div class="lessons-booker" ng-switch on="vm.lessonType" ng-if="vm.isDataAvailable()">
 
-        <div id="group-lessons" ng-switch-default>
-          <h4>Group Lessons - Adult (18+ yrs)</h4>
-          <lessons-list id="'groupLessonsAdult'"></lessons-list>
+        <div id="group-lessons">
+          <div class="group-lessons-adult lessons-list">
+            <h3>Group Lessons - Adult (18+ yrs)</h3>
 
-          <h4>Group Lessons - Child (6–12 yrs) / Teen (13—17 years)</h4>
-          <lessons-list id="'groupLessonsChild'"></lessons-list>
+            <div class="lessons-list-headers row">
+              <div class="col-sm-1"></div>
+              <div class="col-sm-2">Date</div>
+              <div class="col-sm-2">AM/PM</div>
+              <div class="col-sm-3">Ability</div>
+              <div class="col-sm-4">Participants</div>
+            </div>
+
+            <lesson-item ng-repeat="lesson in vm.getAdultLessons()"
+                         lesson="lesson" participants="vm.adultParticipants"
+                         delete-lesson="vm.deleteLesson">
+            </lesson-item>
+          </div>
+
+          <div class="group-lessons-children lessons-list">
+            <h3>Group Lessons - Child (6–12 yrs) / Teen (13—17 years)</h3>
+
+            <div class="lessons-list-headers row">
+              <div class="col-sm-1"></div>
+              <div class="col-sm-2">Date</div>
+              <div class="col-sm-2">AM/PM</div>
+              <div class="col-sm-3">Ability</div>
+              <div class="col-sm-4">Participants</div>
+            </div>
+
+            <lesson-item ng-repeat="lesson in vm.getChildrenLessons()"
+                         lesson="lesson" participants="vm.childrenParticipants"
+                         delete-lesson="vm.deleteLesson">
+            </lesson-item>
+          </div>
+
         </div>
 
-        <div id="private-lessons" ng-switch-when="Private">
-          <h4 class="text-danger">
-            A maximum of up to 4 people can join the lesson. Everyone must be the same ability.
-          </h4>
+        <div id="private-lessons">
+          <h3>Private Lessons</h3>
+          <h5 class="text-danger">
+            A maximum of up to 4 people can join the lesson. Everyone must be at the same level of ability.
+          </h5>
+
           <form action="" class="form-horizontal">
             <div class="form-group specific-instructor">
               <label for="need-specific-instructor" class="col-sm-3">Specific instructor in mind?</label>
@@ -82,14 +115,20 @@
             </div>
           </form>
 
-          <h4>Private Lessons</h4>
-          <lessons-list id="'privateLessons'"></lessons-list>
-        </div>
+          <div class="lessons-list-headers row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-2">Date</div>
+            <div class="col-sm-2">AM/PM</div>
+            <div class="col-sm-3">Ability</div>
+            <div class="col-sm-4">Participants</div>
+          </div>
 
-        <div id="private-disabled-lessons" ng-switch-when="Private (disabled)">
-          <h4 class="text-danger">
+        </div>
+        <div id="private-disabled-lessons">
+          <h3>Private (disabled) Lessons</h3>
+          <h5 class="text-danger">
             A maximum of up to 4 people can join the lesson. Everyone must be the same ability.
-          </h4>
+          </h5>
           <form action="" class="form-horizontal">
             <div class="form-group dwa-membership">
               <label for="dwa-membership" class="col-sm-3">Enter your DWA Membership ID</label>
@@ -127,9 +166,21 @@
             </div>
           </form>
 
-          <h4>Private (disabled) Lessons</h4>
-          <lessons-list id="'privateDisabledLessons'"></lessons-list>
+          <div class="lessons-list-headers row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-2">Date</div>
+            <div class="col-sm-2">AM/PM</div>
+            <div class="col-sm-3">Ability</div>
+            <div class="col-sm-4">Participants</div>
+          </div>
         </div>
+
+
+      </div>
+
+      <div class="results">
+        <h2>Returned results</h2>
+        <pre>[{ vm.results | json }]</pre>
       </div>
     </div>
     <!-- 3rd-party JS libraries/frameworks -->
@@ -140,6 +191,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-range/3.1.1/moment-range.min.js"></script>
+    <script src="js/booking-lesson-app/libraries/checklist-model.js"></script>
 
     <!-- Our own JS -->
     <script type="text/javascript">
@@ -148,6 +200,7 @@
     </script>
     <script src="js/booking-lesson-app/app.module.js"></script>
     <script src="js/booking-lesson-app/app.config.js"></script>
+    <script src="js/booking-lesson-app/app.constants.js"></script>
     <script src="js/booking-lesson-app/factories/wix-data-msg.factory.js"></script>
     <script src="js/booking-lesson-app/lesson/lessons.controller.js"></script>
     <script src="js/booking-lesson-app/lesson-options/type-dropdown.controller.js"></script>
