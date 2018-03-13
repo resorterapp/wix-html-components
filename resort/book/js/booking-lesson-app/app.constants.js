@@ -26,5 +26,6 @@
                 'Black (Light)',
                 'Black (Dark)'
             ]
-        });
+        })
+        .constant('moment', moment);
 })();
