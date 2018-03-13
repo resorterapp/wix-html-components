@@ -6,7 +6,7 @@
     </a>
   </div>
   <div class="col-sm-2 lesson-item-date">
-    [{ $ctrl.lesson.date | date: 'MMM d, yyyy' }]
+    <span>[{ $ctrl.lesson.date | date: 'MMM d, yyyy' }]</span>
   </div>
   <div class="col-sm-2 lesson-item-time">
     <button class="btn" type="button" uib-btn-checkbox ng-model="$ctrl.lesson.isAM" ng-class="$ctrl.getAmPmCSSClass()">
