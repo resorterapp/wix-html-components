@@ -74,6 +74,7 @@
                 }),
                 'children': participants.filter(function (p) {
                     return p.age < 18
+                        && p.age >= 6
                         && !p.disabled;
                 }),
                 'normal': participants.filter(function (p) {
