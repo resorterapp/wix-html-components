@@ -31,7 +31,7 @@ h2 {
 
 // Lessons
 .lesson-item {
-    .lesson-item-delete span {
-        cursor: hand;
+    .lesson-item-delete .delete-lesson-btn {
+        cursor: pointer;
     }
 }

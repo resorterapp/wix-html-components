@@ -1,9 +1,9 @@
 <!-- Lesson item -->
 <div class="lesson-item row">
   <div class="col-sm-1 lesson-item-delete">
-    <span ng-click="$ctrl.deleteLesson()">
+    <a class="delete-lesson-btn" ng-click="$ctrl.onDelete()">
       <i class="far fa-trash-alt"></i>
-    </span>
+    </a>
   </div>
   <div class="col-sm-2 lesson-item-date">
     [{ $ctrl.date | date: 'MMM d, yyyy' }]
