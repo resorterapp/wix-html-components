@@ -14,9 +14,39 @@
 
     function LessonsController($scope, moment, Wix, settings) {
         var vm = this;
-        var subscription = Wix.subscribe(loadData);
 
-        vm.data = {};
+        vm.data = {
+            date: {
+                checkIn: new Date('2018-07-01'),
+                checkOut: new Date('2018-07-04')
+            },
+            participants: [
+                {
+                    _id: uuid.v4(),
+                    name: 'Jack',
+                    age: 40,
+                    disabled: false
+                },
+                {
+                    _id: uuid.v4(),
+                    name: 'Jane',
+                    age: 36,
+                    disabled: false
+                },
+                {
+                    _id: uuid.v4(),
+                    name: 'Will',
+                    age: 10,
+                    disabled: true
+                },
+                {
+                    _id: uuid.v4(),
+                    name: 'Eliza',
+                    age: 7,
+                    disabled: false
+                }
+            ]
+        };
         vm.dates = [];
         vm.settings = settings;
         vm.lessonType = settings.LESSON_TYPES[0];
@@ -38,6 +68,8 @@
             lessons: []
         };
 
+        this.$onInit = onInit;
+
         // Binds functions
         vm.isDataAvailable = isDataAvailable;
         vm.addLesson = addLesson;
@@ -53,9 +85,13 @@
             $scope.$apply(applyData);
         }
 
+        function onInit() {
+            applyData();
+        }
+
         function applyData() {
-            vm.wix = Wix;
-            vm.data = Wix.getData();
+            // vm.wix = Wix;
+            // vm.data = Wix.getData();
             vm.dates = buildDatesRange(vm.data.date.checkIn, vm.data.date.checkOut);
             vm.participants = buildParticipantsList(vm.data.participants);
 
