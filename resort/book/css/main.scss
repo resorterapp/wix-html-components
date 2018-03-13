@@ -21,6 +21,10 @@ h2 {
     font-weight: 200;
 }
 
+label {
+    font-weight: 400;
+}
+
 .container-fluid {
     max-width: 1440px;
 }
@@ -32,10 +36,18 @@ h2 {
 // Lessons
 .lessons-list {
 
+    .lessons-list-headers,
     .lesson-item {
         border-bottom: 1px solid #eee;
         margin-bottom: 10px;
         padding: 5px 0;
+    }
+
+    .lessons-list-headers {
+        font-weight: 500;
+    }
+
+    .lesson-item {
 
         a,
         span,
@@ -50,7 +62,6 @@ h2 {
 
         .lesson-item-participants label {
             margin: 0 15px 5px 0;
-            font-weight: normal;
         }
     }
 }

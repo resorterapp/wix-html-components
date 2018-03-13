@@ -32,8 +32,9 @@
       <div class="lessons-booker" ng-if="vm.isDataAvailable()">
 
         <div id="group-lessons">
+          <h3>Group Lessons</h3>
           <div class="group-lessons-adult lessons-list">
-            <h3>Group Lessons - Adult (18+ yrs)</h3>
+            <h4>Adult (18+ yrs)</h4>
 
             <div class="lessons-list-headers row">
               <div class="col-sm-1"></div>
@@ -50,7 +51,7 @@
           </div>
 
           <div class="group-lessons-children lessons-list">
-            <h3>Group Lessons - Child (6–12 yrs) / Teen (13—17 years)</h3>
+            <h4>Child (6–12 yrs) / Teen (13–17 years)</h4>
 
             <div class="lessons-list-headers row">
               <div class="col-sm-1"></div>
@@ -110,18 +111,20 @@
             </div>
           </form>
 
-          <div class="lessons-list-headers row">
-            <div class="col-sm-1"></div>
-            <div class="col-sm-2">Date</div>
-            <div class="col-sm-2">AM/PM</div>
-            <div class="col-sm-3">Ability</div>
-            <div class="col-sm-4">Participants</div>
-          </div>
+          <div class="lessons-list">
+            <div class="lessons-list-headers row">
+              <div class="col-sm-1"></div>
+              <div class="col-sm-2">Date</div>
+              <div class="col-sm-2">AM/PM</div>
+              <div class="col-sm-3">Ability</div>
+              <div class="col-sm-4">Participants</div>
+            </div>
 
-          <lesson-item ng-repeat="lesson in vm.getPrivateLessons()"
-                       lesson="lesson" participants="vm.participants.normal"
-                       delete-lesson="vm.deleteLesson">
-          </lesson-item>
+            <lesson-item ng-repeat="lesson in vm.getPrivateLessons()"
+                         lesson="lesson" participants="vm.participants.normal"
+                         delete-lesson="vm.deleteLesson">
+            </lesson-item>
+          </div>
 
         </div>
         <div id="private-disabled-lessons">
@@ -162,7 +165,7 @@
               <label class="col-sm-3">
                 Any specific requirements you want your instructor to know?
               </label>
-              <div class="col-sm-6">
+              <div class="col-sm-9">
                 <textarea
                     class="form-control" rows="4"
                     placeholder="Special requests? Add them here"
@@ -171,18 +174,20 @@
             </div>
           </form>
 
-          <div class="lessons-list-headers row">
-            <div class="col-sm-1"></div>
-            <div class="col-sm-2">Date</div>
-            <div class="col-sm-2">AM/PM</div>
-            <div class="col-sm-3">Ability</div>
-            <div class="col-sm-4">Participants</div>
-          </div>
+          <div class="lessons-list">
+            <div class="lessons-list-headers row">
+              <div class="col-sm-1"></div>
+              <div class="col-sm-2">Date</div>
+              <div class="col-sm-2">AM/PM</div>
+              <div class="col-sm-3">Ability</div>
+              <div class="col-sm-4">Participants</div>
+            </div>
 
-          <lesson-item ng-repeat="lesson in vm.getPrivateDisabledLessons()"
-                       lesson="lesson" participants="vm.participants.disabled"
-                       delete-lesson="vm.deleteLesson">
-          </lesson-item>
+            <lesson-item ng-repeat="lesson in vm.getPrivateDisabledLessons()"
+                         lesson="lesson" participants="vm.participants.disabled"
+                         delete-lesson="vm.deleteLesson">
+            </lesson-item>
+          </div>
         </div>
 
 
