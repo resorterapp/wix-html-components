@@ -23,7 +23,7 @@
           <span>Type:</span>
           <div class="selector inline-block">
             <select name="lessonType" id="lessonType"
-                    ng-options="option for option in vm.LESSON_TYPES" ng-model="vm.lessonType"></select>
+                    ng-options="option for option in vm.settings.LESSON_TYPES" ng-model="vm.lessonType"></select>
           </div>
         </div>
         <!-- Choose activity -->
@@ -31,13 +31,13 @@
           <span>Choose activity:</span>
           <div class="selector inline-block">
             <select name="lessonActivity" id="lessonActivity"
-                    ng-options="option for option in vm.ACTIVITY_TYPES" ng-model="vm.activityType"></select>
+                    ng-options="option for option in vm.settings.ACTIVITY_TYPES" ng-model="vm.activityType"></select>
           </div>
         </div>
       </div>
 
       <!-- Book Lesson Details -->
-      <div class="lessons-booker" ng-switch on="vm.lessonType">
+      <div class="lessons-booker" ng-switch on="vm.lessonType" ng-if="vm.isDataAvailable()">
 
         <div id="group-lessons" ng-switch-default>
           <h4>Group Lessons - Adult (18+ yrs)</h4>

@@ -9,23 +9,22 @@
     [{ $ctrl.date | date: 'MMM d, yyyy' }]
   </div>
   <div class="col-sm-2 lesson-item-time">
-    <button class="btn" type="button" uib-btn-checkbox ng-model="$ctrl.isAM" ng-class="$ctrl.getAmPmCSSClass()">
+    <button class="btn" type="button" uib-btn-checkbox ng-model="$ctrl.results.isAM" ng-class="$ctrl.getAmPmCSSClass()">
       [{ $ctrl.getAmPm() }]
     </button>
   </div>
   <div class="col-sm-3 lesson-item-level">
     <div class="selector">
-      <select name="level" class="custom-select" ng-model="$ctrl.level">
-        <option value="" disabled="" style="display: none;"></option>
-        <option value="Yellow" default="">Yellow</option>
-        <option value="Green (Light)">Green (Light)</option>
-        <option value="Green (Dark)">Green (Dark)</option>
-        <option value="Blue (Light)">Blue (Light)</option>
-        <option value="Blue (Dark)">Blue (Dark)</option>
-        <option value="Black (Light)">Black (Light)</option>
-        <option value="Black (Dark)">Black (Dark)</option>
+      <select name="level" class="custom-select"
+              ng-model="$ctrl.results.level" ng-options="option for option in $ctrl.ABILITY_LEVELS">
       </select>
     </div>
   </div>
-  <div class="col-sm-4 lesson-item-participants"></div>
+  <div class="col-sm-4 lesson-item-participants">
+    <label ng-repeat="participant in $ctrl.participants">
+      <input type="checkbox"
+             data-checklist-model="$ctrl.results.participants" data-checklist-value="participant">
+      [{ participant.name }]
+    </label>
+  </div>
 </div>

@@ -5,6 +5,7 @@
         .module('BookingLessonApp', [
             'ngAnimate',
             'ui.bootstrap',
-            'rx'
+            'rx',
+            'checklist-model'
         ]);
 })();

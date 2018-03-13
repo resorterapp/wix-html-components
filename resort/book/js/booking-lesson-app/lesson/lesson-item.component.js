@@ -7,26 +7,34 @@
             templateUrl: 'js/booking-lesson-app/lesson/lesson-item.html',
             controller: LessonItemController,
             bindings: {
-                date: '<'
-
+                date: '<',
+                participants: '<'
             }
         });
 
-    function LessonItemController() {
-        var ctrl = this;
+    LessonItemController.$inject = ['settings'];
 
-        ctrl.isAM = true;
-        ctrl.getAmPm = getAmPm;
-        ctrl.getAmPmCSSClass = getAmPmCSSClass;
-        ctrl.level = 'Yellow';
-        ctrl.participants = [];
+    function LessonItemController(settings) {
+        var vm = this;
+
+        vm.ABILITY_LEVELS = settings.ABILITY_LEVELS;
+        vm.results = {
+            date: vm.date,
+            isAM: true,
+            level: vm.ABILITY_LEVELS[0],
+            participants: []
+        };
+
+        // Binds functions
+        vm.getAmPm = getAmPm;
+        vm.getAmPmCSSClass = getAmPmCSSClass;
 
         function getAmPm() {
-            return ctrl.isAM ? 'AM' : 'PM';
+            return vm.results.isAM ? 'AM' : 'PM';
         }
 
         function getAmPmCSSClass() {
-            return ctrl.isAM ? 'btn-warning' : 'btn-primary';
+            return vm.results.isAM ? 'btn-warning' : 'btn-primary';
         }
     }
 })();
