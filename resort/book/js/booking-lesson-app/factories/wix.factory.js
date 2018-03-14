@@ -33,13 +33,13 @@
                 {
                     _id: uuid.v4(),
                     name: 'Will',
-                    age: 10,
+                    age: 7,
                     disabled: true
                 },
                 {
                     _id: uuid.v4(),
                     name: 'Eliza',
-                    age: 7,
+                    age: 4,
                     disabled: false
                 }
             ]

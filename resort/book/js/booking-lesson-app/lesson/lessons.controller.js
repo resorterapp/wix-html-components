@@ -46,6 +46,7 @@
         vm.updateLessons = updateLessons;
         vm.getAdultLessons = getAdultLessons;
         vm.getChildrenLessons = getChildrenLessons;
+        vm.getMiniLessons = getMiniLessons;
         vm.getPrivateLessons = getPrivateLessons;
         vm.getPrivateDisabledLessons = getPrivateDisabledLessons;
         vm.getResults = getResults;
@@ -80,6 +81,11 @@
                 'children': participants.filter(function (p) {
                     return p.age < 18
                         && p.age >= 6
+                        && !p.disabled;
+                }),
+                'mini': participants.filter(function (p) {
+                    return p.age < 6
+                        && p.age >= 3
                         && !p.disabled;
                 }),
                 'normal': participants.filter(function (p) {
@@ -128,6 +134,7 @@
                     type: lessonType,
                     date: vm.dates[i],
                     isAM: true,
+                    duration: 4,
                     level: settings.ABILITY_LEVELS[0],
                     participants: []
                 };
@@ -147,6 +154,12 @@
         function getChildrenLessons() {
             return vm.results.lessons.filter(function (l) {
                 return l.type === 'groupChildren';
+            });
+        }
+
+        function getMiniLessons() {
+            return vm.results.lessons.filter(function (l) {
+                return l.type === 'groupMini';
             });
         }
 

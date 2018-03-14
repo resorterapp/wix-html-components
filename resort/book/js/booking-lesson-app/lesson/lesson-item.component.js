@@ -30,6 +30,7 @@
             // Binds functions
             vm.getAmPm = getAmPm;
             vm.getAmPmCSSClass = getAmPmCSSClass;
+            vm.getParticipantsColumnCssClass = getParticipantsColumnCssClass;
             vm.onDelete = onDelete;
         }
 
@@ -43,6 +44,11 @@
 
         function onDelete() {
             vm.deleteLesson(vm.lesson);
+        }
+
+        function getParticipantsColumnCssClass() {
+            return vm.lesson.type === 'private' || vm.lesson.type === 'privateDisabled'
+                ? 'col-sm-4' : 'col-sm-6';
         }
     }
 })();

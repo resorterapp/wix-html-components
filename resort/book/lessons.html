@@ -32,16 +32,15 @@
 
         <div id="group-lessons" class="lessons-booker-inner">
           <h3>Group Lessons</h3>
-          <div class="group-lessons-adult lessons-list">
+          <div class="alert alert-info">
+            <strong>AM</strong> lessons start at <strong>10am</strong> and finish at <strong>12:20pm</strong>.
+            <br>
+            <strong>PM</strong> lessons start at <strong>1:30pm</strong> and finish at <strong>2:50pm</strong>.
+          </div>
+          <div class="group-lessons-adult lessons-list" ng-if="vm.participants.adults.length">
             <h4>Adult (18+ yrs)</h4>
 
-            <div class="lessons-list-headers row">
-              <div class="col-sm-1"></div>
-              <div class="col-sm-2">Date</div>
-              <div class="col-sm-2">AM/PM</div>
-              <div class="col-sm-3">Ability</div>
-              <div class="col-sm-4">Participants</div>
-            </div>
+            {% include_relative components/group_lessons_list_headers.html %}
 
             <lesson-item ng-repeat="lesson in vm.getAdultLessons()"
                          lesson="lesson" participants="vm.participants.adults"
@@ -49,19 +48,24 @@
             </lesson-item>
           </div>
 
-          <div class="group-lessons-children lessons-list">
+          <div class="group-lessons-children lessons-list" ng-if="vm.participants.children.length">
             <h4>Child (6–12 yrs) / Teen (13–17 years)</h4>
 
-            <div class="lessons-list-headers row">
-              <div class="col-sm-1"></div>
-              <div class="col-sm-2">Date</div>
-              <div class="col-sm-2">AM/PM</div>
-              <div class="col-sm-3">Ability</div>
-              <div class="col-sm-4">Participants</div>
-            </div>
+            {% include_relative components/group_lessons_list_headers.html %}
 
             <lesson-item ng-repeat="lesson in vm.getChildrenLessons()"
                          lesson="lesson" participants="vm.participants.children"
+                         delete-lesson="vm.deleteLesson">
+            </lesson-item>
+          </div>
+
+          <div class="group-lessons-mini lessons-list">
+            <h4>Mini (3–5 yrs)</h4>
+
+            {% include_relative components/group_lessons_list_headers.html %}
+
+            <lesson-item ng-repeat="lesson in vm.getMiniLessons()"
+                         lesson="lesson" participants="vm.participants.mini"
                          delete-lesson="vm.deleteLesson">
             </lesson-item>
           </div>
@@ -111,13 +115,7 @@
           </form>
 
           <div class="lessons-list">
-            <div class="lessons-list-headers row">
-              <div class="col-sm-1"></div>
-              <div class="col-sm-2">Date</div>
-              <div class="col-sm-2">AM/PM</div>
-              <div class="col-sm-3">Ability</div>
-              <div class="col-sm-4">Participants</div>
-            </div>
+            {% include_relative components/lessons_list_headers.html %}
 
             <lesson-item ng-repeat="lesson in vm.getPrivateLessons()"
                          lesson="lesson" participants="vm.participants.normal"
@@ -174,13 +172,7 @@
           </form>
 
           <div class="lessons-list">
-            <div class="lessons-list-headers row">
-              <div class="col-sm-1"></div>
-              <div class="col-sm-2">Date</div>
-              <div class="col-sm-2">AM/PM</div>
-              <div class="col-sm-3">Ability</div>
-              <div class="col-sm-4">Participants</div>
-            </div>
+            {% include_relative components/lessons_list_headers.html %}
 
             <lesson-item ng-repeat="lesson in vm.getPrivateDisabledLessons()"
                          lesson="lesson" participants="vm.participants.disabled"
@@ -211,7 +203,7 @@
     <script src="js/booking-lesson-app/app.module.js"></script>
     <script src="js/booking-lesson-app/app.config.js"></script>
     <script src="js/booking-lesson-app/app.constants.js"></script>
-    <script src="js/booking-lesson-app/factories/wix-data-msg.factory.js"></script>
+    <script src="js/booking-lesson-app/factories/wix.factory.js"></script>
     <script src="js/booking-lesson-app/lesson/lessons.controller.js"></script>
     <script src="js/booking-lesson-app/lesson-options/type-dropdown.controller.js"></script>
     <script src="js/booking-lesson-app/lesson-options/activity-dropdown.controller.js"></script>

@@ -33,8 +33,18 @@
             LESSON_TYPES_KEYS: [
                 'groupAdult',
                 'groupChildren',
+                'groupMini',
                 'private',
                 'privateDisabled'
+            ],
+            DURATION_OPTIONS: [
+                {value: 1, name: '1hr'},
+                {value: 2, name: '2hrs'},
+                {value: 3, name: '3hrs'},
+                {value: 4, name: '4hrs'},
+                {value: 5, name: '5hrs'},
+                {value: 6, name: '6hrs'},
+                {value: 7, name: '7hrs'},
             ]
         })
         .constant('moment', moment)
