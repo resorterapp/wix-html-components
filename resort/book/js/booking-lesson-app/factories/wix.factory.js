@@ -20,7 +20,7 @@
             participants: [
                 {
                     _id: uuid.v4(),
-                    name: 'Jack',
+                    name: 'John',
                     age: 40,
                     disabled: false
                 },
