@@ -1,5 +1,10 @@
 <!-- Lesson item -->
 <div class="lesson-item row">
+  <div class="col-sm-1 lesson-item-delete">
+    <a class="delete-lesson-btn" ng-click="$ctrl.onDelete()">
+      <i class="far fa-trash-alt"></i>
+    </a>
+  </div>
   <div class="col-sm-2 lesson-item-date">
     <span>[{ $ctrl.lesson.date | date: 'MMM d, yyyy' }]</span>
   </div>
@@ -30,10 +35,5 @@
              data-checklist-model="$ctrl.lesson.participants" data-checklist-value="participant">
       [{ participant.name }]
     </label>
-  </div>
-  <div class="col-sm-1 lesson-item-delete">
-    <a class="delete-lesson-btn" ng-click="$ctrl.onDelete()">
-      <i class="far fa-trash-alt"></i>
-    </a>
   </div>
 </div>
