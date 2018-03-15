@@ -29,20 +29,21 @@
 
             // Binds functions
             vm.isLessonPrivate = isLessonPrivate;
-            vm.getAmPm = getAmPm;
-            vm.getAmPmCSSClass = getAmPmCSSClass;
             vm.getParticipantsColumnCssClass = getParticipantsColumnCssClass;
+            vm.getTimeOptions = getTimeOptions;
             vm.onDelete = onDelete;
 
             checkParticipants(vm.participants);
         }
 
-        function getAmPm() {
-            return vm.lesson.isAM ? 'AM' : 'PM';
-        }
+        function getTimeOptions() {
+            if (['groupChildren', 'groupMini'].indexOf(vm.lesson.type) > -1) {
+                return settings.TIME_OPTIONS;
+            }
 
-        function getAmPmCSSClass() {
-            return vm.lesson.isAM ? 'btn-warning' : 'btn-primary';
+            return settings.TIME_OPTIONS.filter(function (item) {
+                return item !== 'All day';
+            });
         }
 
         function onDelete() {

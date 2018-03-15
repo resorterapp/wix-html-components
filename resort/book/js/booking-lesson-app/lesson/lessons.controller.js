@@ -133,7 +133,7 @@
                 let lesson = {
                     type: lessonType,
                     date: vm.dates[i],
-                    isAM: true,
+                    time: settings.TIME_OPTIONS[0],
                     duration: 4,
                     level: settings.ABILITY_LEVELS[0],
                     participants: []

@@ -45,6 +45,11 @@
                 {value: 5, name: '5hrs'},
                 {value: 6, name: '6hrs'},
                 {value: 7, name: '7hrs'},
+            ],
+            TIME_OPTIONS: [
+                'AM',
+                'PM',
+                'All day'
             ]
         })
         .constant('moment', moment)

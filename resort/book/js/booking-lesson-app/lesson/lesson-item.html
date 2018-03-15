@@ -9,10 +9,12 @@
     <span>[{ $ctrl.lesson.date | date: 'MMM d, yyyy' }]</span>
   </div>
   <div class="col-sm-1 lesson-item-time">
-    <button class="btn btn-sm" type="button" uib-btn-checkbox ng-model="$ctrl.lesson.isAM"
-            ng-class="$ctrl.getAmPmCSSClass()">
-      [{ $ctrl.getAmPm() }]
-    </button>
+    <div class="selector">
+      <select name="time"
+              ng-model="$ctrl.lesson.time"
+              ng-options="o for o in $ctrl.getTimeOptions()">
+      </select>
+    </div>
   </div>
   <div class="col-sm-2 lesson-item-duration" ng-if="$ctrl.isLessonPrivate()">
     <div class="selector">
