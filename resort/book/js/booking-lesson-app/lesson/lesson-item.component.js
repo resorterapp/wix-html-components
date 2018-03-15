@@ -28,10 +28,13 @@
             vm.settings = settings;
 
             // Binds functions
+            vm.isLessonPrivate = isLessonPrivate;
             vm.getAmPm = getAmPm;
             vm.getAmPmCSSClass = getAmPmCSSClass;
             vm.getParticipantsColumnCssClass = getParticipantsColumnCssClass;
             vm.onDelete = onDelete;
+
+            checkParticipants(vm.participants);
         }
 
         function getAmPm() {
@@ -47,8 +50,17 @@
         }
 
         function getParticipantsColumnCssClass() {
-            return vm.lesson.type === 'private' || vm.lesson.type === 'privateDisabled'
-                ? 'col-sm-4' : 'col-sm-6';
+            return isLessonPrivate() ? 'col-sm-4' : 'col-sm-6';
+        }
+
+        function checkParticipants(participants) {
+            if (participants.length !== 1) return;
+
+            vm.lesson.participants = participants;
+        }
+
+        function isLessonPrivate() {
+            return ['private', 'privateDisabled'].indexOf(vm.lesson.type) !== -1;
         }
     }
 })();

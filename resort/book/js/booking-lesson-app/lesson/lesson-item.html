@@ -9,11 +9,12 @@
     <span>[{ $ctrl.lesson.date | date: 'MMM d, yyyy' }]</span>
   </div>
   <div class="col-sm-1 lesson-item-time">
-    <button class="btn btn-sm" type="button" uib-btn-checkbox ng-model="$ctrl.lesson.isAM" ng-class="$ctrl.getAmPmCSSClass()">
+    <button class="btn btn-sm" type="button" uib-btn-checkbox ng-model="$ctrl.lesson.isAM"
+            ng-class="$ctrl.getAmPmCSSClass()">
       [{ $ctrl.getAmPm() }]
     </button>
   </div>
-  <div class="col-sm-2 lesson-item-duration" ng-if="$ctrl.lesson.type == 'private' || $ctrl.lesson.type == 'privateDisabled'">
+  <div class="col-sm-2 lesson-item-duration" ng-if="$ctrl.isLessonPrivate()">
     <div class="selector">
       <select name="duration"
               ng-model="$ctrl.lesson.duration"
@@ -32,7 +33,8 @@
   <div class="lesson-item-participants" ng-class="$ctrl.getParticipantsColumnCssClass()">
     <label ng-repeat="participant in $ctrl.participants">
       <input type="checkbox"
-             data-checklist-model="$ctrl.lesson.participants" data-checklist-value="participant">
+             data-checklist-model="$ctrl.lesson.participants" data-checklist-value="participant"
+             ng-show="$ctrl.participants.length > 1">
       [{ participant.name }]
     </label>
   </div>
