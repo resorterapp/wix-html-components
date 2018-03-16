@@ -51,7 +51,7 @@
         }
 
         function getParticipantsColumnCssClass() {
-            return isLessonPrivate() ? 'col-sm-4' : 'col-sm-6';
+            return isLessonPrivate() ? 'col-sm-3' : 'col-sm-4';
         }
 
         function checkParticipants(participants) {

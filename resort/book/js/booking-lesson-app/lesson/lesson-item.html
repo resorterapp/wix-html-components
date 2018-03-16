@@ -1,10 +1,5 @@
 <!-- Lesson item -->
 <div class="lesson-item row">
-  <div class="col-sm-1 lesson-item-delete">
-    <a class="delete-lesson-btn" ng-click="$ctrl.onDelete()">
-      <i class="far fa-trash-alt"></i>
-    </a>
-  </div>
   <div class="col-sm-2 lesson-item-date">
     <span>[{ $ctrl.lesson.date | date: 'MMM d, yyyy' }]</span>
   </div>
@@ -16,7 +11,7 @@
       </select>
     </div>
   </div>
-  <div class="col-sm-2 lesson-item-duration" ng-if="$ctrl.isLessonPrivate()">
+  <div class="col-sm-1 lesson-item-duration" ng-if="$ctrl.isLessonPrivate()">
     <div class="selector">
       <select name="duration"
               ng-model="$ctrl.lesson.duration"
@@ -39,5 +34,12 @@
              ng-show="$ctrl.participants.length > 1">
       [{ participant.name }]
     </label>
+  </div>
+  <div class="col-sm-3 lesson-item-add">
+    <a class="btn-link btn-add-lesson">Add Lesson</a>
+    &nbsp;|&nbsp;
+    <a class="btn-link btn-delete-lesson" ng-click="$ctrl.onDelete()">
+      <i class="far fa-trash-alt"></i>
+    </a>
   </div>
 </div>
