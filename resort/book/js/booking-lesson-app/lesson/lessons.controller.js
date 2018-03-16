@@ -133,16 +133,22 @@
                 let lesson = {
                     type: lessonType,
                     date: vm.dates[i],
-                    time: settings.TIME_OPTIONS[0],
                     duration: 4,
                     level: settings.ABILITY_LEVELS[0],
                     participants: []
                 };
+                lesson.time = isGroupLesson(lesson)
+                    ? settings.TIME_OPTIONS[1]
+                    : settings.TIME_OPTIONS[0];
 
                 lessons.push(lesson);
             }
 
             return lessons;
+        }
+
+        function isGroupLesson(lesson) {
+            return lesson.type.indexOf('group') > -1;
         }
 
         function getAdultLessons() {
