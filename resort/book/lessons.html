@@ -92,23 +92,22 @@
             <div class="form-group instructor-name-description"
                  ng-if="vm.results.notes.privateLesson.needSpecificInstructor">
               <label class="col-sm-3">
-                Name or description of the instructors
+                Name or description of the instructor
               </label>
               <div class="col-sm-9">
                 <textarea
                     class="form-control" rows="4"
-                    placeholder="Special requests? Add them here"
                     ng-model="vm.results.notes.privateLesson.instructorDescription"></textarea>
               </div>
             </div>
             <div class="form-group specific-requirements">
               <label class="col-sm-3">
-                Any specific requirements you want your instructor to know?
+                Any special requests?
               </label>
               <div class="col-sm-9">
                 <textarea
-                    class="form-control" rows="4"
-                    placeholder="Special requests? Add them here"
+                    class="form-control" rows="5"
+                    placeholder="Any specific requirements you want your instructor to know? What do you want to get out of the lesson? Max. 150 characters."
                     ng-model="vm.results.notes.privateLesson.specificRequirements"></textarea>
               </div>
             </div>
@@ -149,23 +148,22 @@
             <div class="form-group instructor-name-description"
                  ng-if="vm.results.notes.privateDisabledLesson.needSpecificInstructor">
               <label class="col-sm-3">
-                Name or description of the instructors
+                Name or description of the instructor
               </label>
               <div class="col-sm-9">
                 <textarea
                     class="form-control" rows="4"
-                    placeholder="Special requests? Add them here"
                     ng-model="vm.results.notes.privateDisabledLesson.instructorDescription"></textarea>
               </div>
             </div>
             <div class="form-group specific-requirements">
               <label class="col-sm-3">
-                Any specific requirements you want your instructor to know?
+                Any special requests?
               </label>
               <div class="col-sm-9">
                 <textarea
-                    class="form-control" rows="4"
-                    placeholder="Special requests? Add them here"
+                    class="form-control" rows="5"
+                    placeholder="Any specific requirements you want your instructor to know? What do you want to get out of the lesson? Max. 150 characters."
                     ng-model="vm.results.notes.privateDisabledLesson.specificRequirements"></textarea>
               </div>
             </div>
