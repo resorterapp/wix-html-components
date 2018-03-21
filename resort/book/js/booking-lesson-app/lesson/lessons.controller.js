@@ -28,7 +28,10 @@
                     specificRequirements: null
                 },
                 privateDisabledLesson: {
-                    dwaMembership: null,
+                    disabilityMembership: {
+                        type: settings.DISABILITY_MEMBERSHIP_TYPES[0],
+                        id: null
+                    },
                     needSpecificInstructor: false,
                     instructorDescription: null,
                     specificRequirements: null

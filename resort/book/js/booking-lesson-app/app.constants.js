@@ -50,6 +50,10 @@
                 'AM',
                 'PM',
                 'All day'
+            ],
+            DISABILITY_MEMBERSHIP_TYPES: [
+                'DWA',
+                'DSUSA'
             ]
         })
         .constant('moment', moment)
