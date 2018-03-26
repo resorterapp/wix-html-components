@@ -18,7 +18,7 @@
                 participants: [
                     {
                         _id: uuid.v4(),
-                        name: 'Jack',
+                        name: 'John',
                         age: 40,
                         disabled: false
                     },
@@ -31,13 +31,15 @@
                     {
                         _id: uuid.v4(),
                         name: 'Will',
-                        age: 10,
-                        disabled: true
+                        age: 7,
+                        disabled: {
+                            details: 'Mild autism.'
+                        }
                     },
                     {
                         _id: uuid.v4(),
                         name: 'Eliza',
-                        age: 7,
+                        age: 4,
                         disabled: false
                     }
                 ]

@@ -14,8 +14,9 @@
 
     function LessonsController($scope, moment, Wix, settings) {
         var vm = this;
+        var subscription = Wix.subscribe(loadData);
 
-        vm.data = Wix.getData();
+        vm.data = {};
         vm.dates = [];
         vm.settings = settings;
         vm.lessonType = settings.LESSON_TYPES[0];
@@ -63,8 +64,8 @@
         }
 
         function applyData() {
-            // vm.wix = Wix;
-            // vm.data = Wix.getData();
+            vm.wix = Wix;
+            vm.data = Wix.getData();
             vm.dates = buildDatesRange(vm.data.date.checkIn, vm.data.date.checkOut);
             vm.participants = buildParticipantsList(vm.data.participants);
 
