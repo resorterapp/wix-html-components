@@ -25,6 +25,12 @@ label {
     font-weight: 400;
 }
 
+// Fix Angular UI Bootstrap bug with cursor pointer
+// https://angular-ui.github.io/bootstrap/
+.nav,
+.pagination,
+.carousel,
+.panel-title a,
 a {
     cursor: pointer;
 }
