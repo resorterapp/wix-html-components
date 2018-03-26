@@ -128,42 +128,42 @@ let sample = {
                     instructor: {
                         description: 'Miss Cody.'
                     },
-                    requests: 'Mild autism.'
+                    requests: 'Mild autism.',
+                    lessons: [
+                        {
+                            date: '2018-07-01T00:00:00.000Z',
+                            duration: 2,
+                            time: 'PM',
+                            level: 'Green (Light)',
+                            participants: [
+                                {
+                                    _id: '620c66cc-fee4-434f-ac65-1f12f3cfa0f1',
+                                    name: 'Will',
+                                    age: 7,
+                                    disabled: {
+                                        details: 'Mild autism.'
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            date: '2018-07-02T00:00:00.000Z',
+                            duration: 2,
+                            time: 'PM',
+                            level: 'Green (Light)',
+                            participants: [
+                                {
+                                    _id: '620c66cc-fee4-434f-ac65-1f12f3cfa0f1',
+                                    name: 'Will',
+                                    age: 7,
+                                    disabled: {
+                                        details: 'Mild autism.'
+                                    }
+                                }
+                            ]
+                        }
+                    ]
                 },
-                lessons: [
-                    {
-                        date: '2018-07-01T00:00:00.000Z',
-                        duration: 2,
-                        time: 'PM',
-                        level: 'Green (Light)',
-                        participants: [
-                            {
-                                _id: '620c66cc-fee4-434f-ac65-1f12f3cfa0f1',
-                                name: 'Will',
-                                age: 7,
-                                disabled: {
-                                    details: 'Mild autism.'
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        date: '2018-07-02T00:00:00.000Z',
-                        duration: 2,
-                        time: 'PM',
-                        level: 'Green (Light)',
-                        participants: [
-                            {
-                                _id: '620c66cc-fee4-434f-ac65-1f12f3cfa0f1',
-                                name: 'Will',
-                                age: 7,
-                                disabled: {
-                                    details: 'Mild autism.'
-                                }
-                            }
-                        ]
-                    }
-                ]
             }
         }
     ]
