@@ -31,6 +31,7 @@
 
         // Binds functions
         vm.isDataAvailable = isDataAvailable;
+        vm.addActivityLessons = addActivityLessons;
         vm.getResults = getResults;
 
         function loadData(_) {
@@ -100,6 +101,10 @@
 
         function getResults() {
             return vm.results;
+        }
+
+        function addActivityLessons(activityLessons) {
+            vm.results.activityLessons.push(activityLessons);
         }
     }
 })();

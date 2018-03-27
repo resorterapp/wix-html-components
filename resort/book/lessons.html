@@ -30,11 +30,12 @@
       <!-- Book Lesson by Activity -->
       <div class="lessons-booker-container" ng-if="$ctrl.isDataAvailable()">
         <activity-lessons
-            ng-repeat="activity in $ctrl.settings.ACTIVITY_TYPES"
+            ng-repeat="activity in $ctrl.activitiesList"
             ng-show="$ctrl.currentActivity == activity"
             activity="activity"
             dates="$ctrl.dates"
-            participants="$ctrl.participants"></activity-lessons>
+            participants="$ctrl.participants"
+            add-activity-lessons="$ctrl.addActivityLessons"></activity-lessons>
       </div>
 
       <div class="results">

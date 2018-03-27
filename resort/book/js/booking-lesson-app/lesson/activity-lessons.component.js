@@ -58,6 +58,7 @@
                 }
             };
             createAllLessons();
+            vm.addActivityLessons(vm.results);
 
             // Binds the functions
             vm.deleteLessonGroupAdults = deleteLessonGroupAdults;
