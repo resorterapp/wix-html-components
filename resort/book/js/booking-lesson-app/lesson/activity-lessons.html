@@ -35,7 +35,7 @@
       </lesson-item>
     </div>
 
-    <div class="group-lessons-mini lessons-list">
+    <div class="group-lessons-mini lessons-list" ng-if="$ctrl.participants.mini.length">
       <h4>Mini (3–5 yrs)</h4>
 
       {% include components/group_lessons_list_headers.html %}
@@ -50,7 +50,7 @@
 
   </div>
 
-  <div id="private-lessons" class="lessons-booker-inner">
+  <div id="private-lessons" class="lessons-booker-inner" ng-if="$ctrl.participants.normal.length">
     <h3>Private Lessons</h3>
     <div class="alert alert-warning">
       A maximum of up to 4 people can join a lesson. Everyone must be at the same level of ability.
@@ -102,7 +102,7 @@
     </div>
 
   </div>
-  <div id="private-disabled-lessons" class="lessons-booker-inner">
+  <div id="private-disabled-lessons" class="lessons-booker-inner" ng-if="$ctrl.participants.disabled.length">
     <h3>Private (disabled) Lessons</h3>
     <div class="alert alert-warning">
       A maximum of up to 4 people can join a lesson. Everyone must be at the same level of ability.
