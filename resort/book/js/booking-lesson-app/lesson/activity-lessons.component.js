@@ -20,15 +20,15 @@
     ActivityLessonsController.$inject = ['settings'];
 
     function ActivityLessonsController(settings) {
-        var self = this;
+        var vm = this;
 
         this.$onInit = onInit;
 
         function onInit() {
-            self.settings = settings;
+            vm.settings = settings;
 
-            self.results = {
-                activity: self.activity,
+            vm.results = {
+                activity: vm.activity,
                 lessons: {
                     group: {
                         adults: [],
@@ -60,18 +60,18 @@
             createAllLessons();
 
             // Binds the functions
-            self.deleteLessonGroupAdults = deleteLessonGroupAdults;
-            self.deleteLessonGroupChildren = deleteLessonGroupChildren;
-            self.deleteLessonGroupMini = deleteLessonGroupMini;
-            self.deleteLessonPrivate = deleteLessonPrivate;
-            self.deleteLessonDisability = deleteLessonDisability;
+            vm.deleteLessonGroupAdults = deleteLessonGroupAdults;
+            vm.deleteLessonGroupChildren = deleteLessonGroupChildren;
+            vm.deleteLessonGroupMini = deleteLessonGroupMini;
+            vm.deleteLessonPrivate = deleteLessonPrivate;
+            vm.deleteLessonDisability = deleteLessonDisability;
         }
 
         function createLessons(type) {
             let lessons = [];
 
-            for (let i = 0; i < self.dates.length; i++) {
-                lessons.push(Lesson(type, self.dates[i], 4, settings));
+            for (let i = 0; i < vm.dates.length; i++) {
+                lessons.push(Lesson(type, vm.dates[i], 4, settings));
             }
 
             return lessons;
@@ -79,11 +79,11 @@
 
         function createAllLessons() {
             // LN Look for a better way to do this
-            self.results.lessons.group.adults = createLessons('group.adults');
-            self.results.lessons.group.children = createLessons('group.children');
-            self.results.lessons.group.mini = createLessons('group.mini');
-            self.results.lessons.private.lessons = createLessons('private.lessons');
-            self.results.lessons.disability.lessons = createLessons('disability.lessons');
+            vm.results.lessons.group.adults = createLessons('group.adults');
+            vm.results.lessons.group.children = createLessons('group.children');
+            vm.results.lessons.group.mini = createLessons('group.mini');
+            vm.results.lessons.private.lessons = createLessons('private.lessons');
+            vm.results.lessons.disability.lessons = createLessons('disability.lessons');
         }
 
         function deleteLesson(lessonsList, lesson) {
@@ -96,27 +96,27 @@
         }
 
         function deleteLessonGroupAdults(lesson) {
-            let lessonsList = self.results.lessons.group.adults;
+            let lessonsList = vm.results.lessons.group.adults;
             return deleteLesson(lessonsList, lesson);
         }
 
         function deleteLessonGroupChildren(lesson) {
-            let lessonsList = self.results.lessons.group.children;
+            let lessonsList = vm.results.lessons.group.children;
             return deleteLesson(lessonsList, lesson);
         }
 
         function deleteLessonGroupMini(lesson) {
-            let lessonsList = self.results.lessons.group.mini;
+            let lessonsList = vm.results.lessons.group.mini;
             return deleteLesson(lessonsList, lesson);
         }
 
         function deleteLessonPrivate(lesson) {
-            let lessonsList = self.results.lessons.private.lessons;
+            let lessonsList = vm.results.lessons.private.lessons;
             return deleteLesson(lessonsList, lesson);
         }
 
         function deleteLessonDisability(lesson) {
-            let lessonsList = self.results.lessons.disability.lessons;
+            let lessonsList = vm.results.lessons.disability.lessons;
             return deleteLesson(lessonsList, lesson);
         }
     }
