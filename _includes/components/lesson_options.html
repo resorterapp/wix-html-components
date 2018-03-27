@@ -1,0 +1,27 @@
+<div class="lesson-options">
+  <!-- Choose lesson type -->
+  <div class="lesson-type-dropdown inline-block">
+    <span>Type:</span>
+    <div class="selector inline-block">
+      <select name="lessonType" id="lesson-type" ng-init="lessonType = 'Group'" ng-model="lessonType">
+        <option value="Group">Group</option>
+        <option value="Private">Private</option>
+        <option value="Private (disabled)">Private (disabled)</option>
+      </select>
+    </div>
+  </div>
+  <!-- Choose activity -->
+  <div class="lesson-activity-dropdown inline-block">
+    <span>Choose activity:</span>
+    <div class="selector inline-block">
+      <select name="lessonActivity" id="lesson-activity" ng-init="lessonActivity = 'Ski'" ng-model="lessonActivity">
+        <option value="Ski">Ski</option>
+        <option value="Snowboard">Snowboard</option>
+        <option value="Telemark">Telemark</option>
+        <option value="Snowmobiling">Snowmobiling</option>
+        <option value="Snowbiking">Snowbiking</option>
+        <option value="Snowshoeing">Snowshoeing</option>
+      </select>
+    </div>
+  </div>
+</div>
