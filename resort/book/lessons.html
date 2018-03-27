@@ -14,7 +14,7 @@
   </head>
 
   <body ng-app="BookingLessonApp">
-    <div ng-controller="LessonsController as vm">
+    <div ng-controller="LessonsController as $ctrl">
       <!-- Book lessons header -->
 
       <!-- Choose activity -->
@@ -22,19 +22,24 @@
         <span>Choose activity:</span>
         <div class="selector inline-block">
           <select name="lessonActivity" id="lessonActivity"
-                  ng-options="option for option in vm.activitiesList"
-                  ng-model="vm.currentActivity"></select>
+                  ng-options="option for option in $ctrl.activitiesList"
+                  ng-model="$ctrl.currentActivity"></select>
         </div>
       </div>
 
       <!-- Book Lesson by Activity -->
-      <div class="lessons-booker-container" ng-if="vm.isDataAvailable()">
+      <div class="lessons-booker-container" ng-if="$ctrl.isDataAvailable()">
         <activity-lessons
-            ng-repeat="activity in vm.settings.ACTIVITY_TYPES"
-            ng-show="vm.currentActivity == activity"
+            ng-repeat="activity in $ctrl.settings.ACTIVITY_TYPES"
+            ng-show="$ctrl.currentActivity == activity"
             activity="activity"
-            dates="vm.dates"
-            participants="vm.participants"></activity-lessons>
+            dates="$ctrl.dates"
+            participants="$ctrl.participants"></activity-lessons>
+      </div>
+
+      <div class="results">
+        <h2>Returned results</h2>
+        <pre>[{ $ctrl.getResults() | json }]</pre>
       </div>
     </div>
     <!-- 3rd-party JS libraries/frameworks -->

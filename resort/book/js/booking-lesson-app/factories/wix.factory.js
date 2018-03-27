@@ -13,10 +13,12 @@
     function Wix($window, rx) {
         var subject = new rx.Subject();
         var data = {};
+        var msgOrigin = '{{ site.post_message_origin }}';
 
         $window.onmessage = windowOnMessage;
 
         return {
+            msgOrigin: msgOrigin,
             getData: getData,
             setData: setData,
             subscribe: subscribe,
@@ -27,7 +29,7 @@
 
         function windowOnMessage(event) {
             // Checks the event origin to make sure it's from our site
-            if ( event.origin !== '{{ site.post_message_origin }}' || !(event.data) ) return;
+            if ( event.origin !== msgOrigin || !(event.data) ) return;
 
             let message = event.data.msg;
 

@@ -15,6 +15,8 @@
 
     function LessonsController($scope, moment, _, Wix, settings) {
         var vm = this;
+
+        // Registers this as the listener of Wix event
         var subscription = Wix.subscribe(loadData);
 
         vm.data = {};
@@ -22,7 +24,10 @@
         vm.settings = settings;
         vm.activitiesList = settings.ACTIVITY_TYPES;
         vm.currentActivity = settings.ACTIVITY_TYPES[0];
-        vm.results = {};
+        vm.results = {
+            _originURL: null,
+            activityLessons: []
+        };
 
         // Binds functions
         vm.isDataAvailable = isDataAvailable;
@@ -34,6 +39,7 @@
 
         function applyData() {
             vm.wix = Wix;
+            vm.results._originURL = Wix.msgOrigin;
             vm.data = Wix.getData();
             vm.dates = buildDatesRange(vm.data.date.checkIn, vm.data.date.checkOut);
             vm.activitiesList = buildActivitiesList(vm.data.participants);
@@ -93,15 +99,7 @@
         }
 
         function getResults() {
-            // Copies the original results object
-            let results = Object.assign({}, vm.results);
-
-            // Filters the lessons to have only those with participants
-            results.lessons = results.lessons.filter(function (l) {
-                return l.participants.length;
-            });
-
-            return results;
+            return vm.results;
         }
     }
 })();
