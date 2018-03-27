@@ -27,7 +27,19 @@
         </div>
       </div>
 
+      <!-- Book Lesson by Activity -->
+      <div class="lessons-booker-container" ng-if="vm.isDataAvailable()">
+        <activity-lessons
+            ng-show="vm.results.activityType == 'Ski'"
+            activity="Ski"
+            dates="vm.dates"
+            participants="vm.participants"></activity-lessons>
+        <div class="lessons-booker" ng-show="vm.results.activityType == 'Snowboard'">Hello Snowboard</div>
+        <div class="lessons-booker" ng-show="vm.results.activityType == 'Telemark'">Hello Telemark</div>
+      </div>
+
       <!-- Book Lesson Details -->
+      <!--
       <div class="lessons-booker" ng-if="vm.isDataAvailable()">
 
         <div id="group-lessons" class="lessons-booker-inner">
@@ -186,7 +198,12 @@
         </div>
 
 
+        <div class="results">
+          <h2>Returned results</h2>
+          <pre>[{ vm.getResults() | json }]</pre>
+        </div>
       </div>
+      -->
     </div>
     <!-- 3rd-party JS libraries/frameworks -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
@@ -211,6 +228,7 @@
     <script src="js/booking-lesson-app/lesson/lessons.controller.js"></script>
     <script src="js/booking-lesson-app/lesson/lessons-list.component.js"></script>
     <script src="js/booking-lesson-app/lesson/lesson-item.component.js"></script>
+    <script src="js/booking-lesson-app/lesson/activity-lessons.component.js"></script>
   </body>
 
 </html>
