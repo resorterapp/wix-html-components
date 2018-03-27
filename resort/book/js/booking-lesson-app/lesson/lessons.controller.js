@@ -44,13 +44,6 @@
         // Binds functions
         vm.isDataAvailable = isDataAvailable;
         vm.addLesson = addLesson;
-        vm.deleteLesson = deleteLesson;
-        vm.updateLessons = updateLessons;
-        vm.getAdultLessons = getAdultLessons;
-        vm.getChildrenLessons = getChildrenLessons;
-        vm.getMiniLessons = getMiniLessons;
-        vm.getPrivateLessons = getPrivateLessons;
-        vm.getPrivateDisabledLessons = getPrivateDisabledLessons;
         vm.getResults = getResults;
 
         function loadData(_) {
@@ -62,8 +55,6 @@
             vm.data = Wix.getData();
             vm.dates = buildDatesRange(vm.data.date.checkIn, vm.data.date.checkOut);
             vm.participants = buildParticipantsList(vm.data.participants);
-
-            updateLessons();
         }
 
         function isDataAvailable() {
@@ -95,88 +86,9 @@
             };
         }
 
-        function updateLessons() {
-            // Then, builds the lessons list based on the chosen type
-            let lessons = [];
-
-            // Builds children lessons
-            for (let i = 0; i < settings.LESSON_TYPES_KEYS.length; i++) {
-                let lesson = buildLessons(settings.LESSON_TYPES_KEYS[i]);
-                lessons.push.apply(lessons, lesson);
-            }
-
-            vm.results.lessons = lessons;
-        }
-
         function addLesson(lesson) {
             console.log('Add Lesson: ' + lesson);
             vm.results.lessons.push(lesson);
-        }
-
-        function deleteLesson(lesson) {
-            let idx = vm.results.lessons.indexOf(lesson);
-
-            if (idx < 0) {
-                console.log('Cannot find lesson: ' + lesson);
-                return;
-            }
-
-            console.log('Delete Lesson: ' + lesson);
-            vm.results.lessons.splice(idx, 1);
-        }
-
-        function buildLessons(lessonType) {
-            let lessons = [];
-            for (let i = 0; i < vm.dates.length; i++) {
-                let lesson = {
-                    type: lessonType,
-                    date: vm.dates[i],
-                    duration: 4,
-                    level: settings.ABILITY_LEVELS[0],
-                    participants: []
-                };
-                lesson.time = isGroupLesson(lesson)
-                    ? settings.TIME_OPTIONS[1]
-                    : settings.TIME_OPTIONS[0];
-
-                lessons.push(lesson);
-            }
-
-            return lessons;
-        }
-
-        function isGroupLesson(lesson) {
-            return lesson.type.indexOf('group') > -1;
-        }
-
-        function getAdultLessons() {
-            return vm.results.lessons.filter(function (l) {
-                return l.type === 'groupAdult';
-            });
-        }
-
-        function getChildrenLessons() {
-            return vm.results.lessons.filter(function (l) {
-                return l.type === 'groupChildren';
-            });
-        }
-
-        function getMiniLessons() {
-            return vm.results.lessons.filter(function (l) {
-                return l.type === 'groupMini';
-            });
-        }
-
-        function getPrivateLessons() {
-            return vm.results.lessons.filter(function (l) {
-                return l.type === 'private';
-            });
-        }
-
-        function getPrivateDisabledLessons() {
-            return vm.results.lessons.filter(function (l) {
-                return l.type === 'privateDisabled';
-            });
         }
 
         function buildDatesRange(fromDate, toDate) {
