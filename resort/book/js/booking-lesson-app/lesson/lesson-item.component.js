@@ -9,6 +9,7 @@
             bindings: {
                 // variables
                 lesson: '<',
+                type: '<',
                 participants: '<',
 
                 // functions
@@ -37,7 +38,7 @@
         }
 
         function getTimeOptions() {
-            if (['groupChildren', 'groupMini'].indexOf(vm.lesson.type) > -1) {
+            if (['group.children', 'group.mini'].indexOf(vm.type) > -1) {
                 return settings.TIME_OPTIONS;
             }
 
@@ -61,7 +62,7 @@
         }
 
         function isLessonPrivate() {
-            return ['private', 'privateDisabled'].indexOf(vm.lesson.type) !== -1;
+            return ['private', 'disability'].indexOf(vm.type) !== -1;
         }
     }
 })();

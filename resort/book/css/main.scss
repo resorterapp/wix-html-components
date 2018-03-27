@@ -77,4 +77,12 @@ a {
             margin: 0 15px 5px 0;
         }
     }
+
+    .selector select {
+        width: 100%;
+    }
+
+    .col-sm-1 .selector select {
+        width: auto;
+    }
 }

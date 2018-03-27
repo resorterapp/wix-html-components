@@ -21,38 +21,50 @@
 
     function ActivityLessonsController(settings) {
         var self = this;
-        var results = {
-            activity: self.activity,
-            lessons: {
-                group: {
-                    adults: [],
-                    children: [],
-                    mini: [],
-                },
-                private: {
-                    instructor: null,
-                    requests: null,
-                    lessons: []
-                },
-                disability: {
-                    membership: {
-                        type: settings.DISABILITY_MEMBERSHIP_TYPES[0],
-                        id: null
-                    },
-                    instructor: null,
-                    requests: null,
-                    lessons: []
-                },
-            }
-        };
 
         this.$onInit = onInit;
 
         function onInit() {
             self.settings = settings;
 
+            self.results = {
+                activity: self.activity,
+                lessons: {
+                    group: {
+                        adults: [],
+                        children: [],
+                        mini: [],
+                    },
+                    private: {
+                        instructor: {
+                            required: false,
+                            details: null
+                        },
+                        requests: null,
+                        lessons: []
+                    },
+                    disability: {
+                        membership: {
+                            type: settings.DISABILITY_MEMBERSHIP_TYPES[0],
+                            id: null
+                        },
+                        instructor: {
+                            required: false,
+                            details: null
+                        },
+                        requests: null,
+                        lessons: []
+                    },
+                }
+            };
             createAllLessons();
-            self.results = results;
+
+            // Binds the functions
+            self.deleteLessonGroupAdults = deleteLessonGroupAdults;
+            self.deleteLessonGroupChildren = deleteLessonGroupChildren;
+            self.deleteLessonGroupMini = deleteLessonGroupMini;
+            self.deleteLessonPrivate = deleteLessonPrivate;
+            self.deleteLessonDisability = deleteLessonDisability;
         }
 
         function createLessons(type) {
@@ -67,29 +79,45 @@
 
         function createAllLessons() {
             // LN Look for a better way to do this
-            results.lessons.group.adults = createLessons('group.adults');
-            results.lessons.group.children = createLessons('group.children');
-            results.lessons.group.mini = createLessons('group.mini');
-            results.lessons.private.lessons = createLessons('private.lessons');
-            results.lessons.disability.lessons = createLessons('disability.lessons');
+            self.results.lessons.group.adults = createLessons('group.adults');
+            self.results.lessons.group.children = createLessons('group.children');
+            self.results.lessons.group.mini = createLessons('group.mini');
+            self.results.lessons.private.lessons = createLessons('private.lessons');
+            self.results.lessons.disability.lessons = createLessons('disability.lessons');
         }
 
-        function deleteLesson(type) {
-            let lessonsList = getLessonsList(type);
+        function deleteLesson(lessonsList, lesson) {
+            let idx = lessonsList.indexOf(lesson);
 
-            return function (lesson) {
-                let idx = lessonsList.indexOf(lesson);
+            if (idx < 0) return console.log('Cannot find lesson: ' + lesson);
 
-                if (idx < 0) return console.log('Cannot find lesson in ' + type + ': ' + lesson);
-
-                console.log('Delete lesson in ' + type + ': ' + lesson);
-                lessonsList.splice(idx, 1);
-            }
+            console.log('Delete lesson in: ' + lesson);
+            lessonsList.splice(idx, 1);
         }
 
-        function getLessonsList(type) {
-            let keys = type.split('.');
-            return results.lessons[keys[0]][keys[1]];
+        function deleteLessonGroupAdults(lesson) {
+            let lessonsList = self.results.lessons.group.adults;
+            return deleteLesson(lessonsList, lesson);
+        }
+
+        function deleteLessonGroupChildren(lesson) {
+            let lessonsList = self.results.lessons.group.children;
+            return deleteLesson(lessonsList, lesson);
+        }
+
+        function deleteLessonGroupMini(lesson) {
+            let lessonsList = self.results.lessons.group.mini;
+            return deleteLesson(lessonsList, lesson);
+        }
+
+        function deleteLessonPrivate(lesson) {
+            let lessonsList = self.results.lessons.private.lessons;
+            return deleteLesson(lessonsList, lesson);
+        }
+
+        function deleteLessonDisability(lesson) {
+            let lessonsList = self.results.lessons.disability.lessons;
+            return deleteLesson(lessonsList, lesson);
         }
     }
 

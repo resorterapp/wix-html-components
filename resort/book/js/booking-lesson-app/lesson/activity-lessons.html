@@ -15,20 +15,23 @@
       {% include components/group_lessons_list_headers.html %}
 
       <lesson-item ng-repeat="lesson in $ctrl.results.lessons.group.adults"
-                   lesson="lesson" participants="$ctrl.participants.adults"
-                   delete-lesson="$ctrl.deleteLesson('group.adults')">
+                   lesson="lesson"
+                   type="'group.adults'"
+                   participants="$ctrl.participants.adults"
+                   delete-lesson="$ctrl.deleteLessonGroupAdults">
       </lesson-item>
     </div>
 
-    <!--
     <div class="group-lessons-children lessons-list" ng-if="$ctrl.participants.children.length">
       <h4>Child (6–12 yrs) / Teen (13–17 years)</h4>
 
       {% include components/group_lessons_list_headers.html %}
 
-      <lesson-item ng-repeat="lesson in $ctrl.getChildrenLessons()"
-                   lesson="lesson" participants="$ctrl.participants.children"
-                   delete-lesson="$ctrl.deleteLesson">
+      <lesson-item ng-repeat="lesson in $ctrl.results.lessons.group.children"
+                   lesson="lesson"
+                   type="'group.children'"
+                   participants="$ctrl.participants.children"
+                   delete-lesson="$ctrl.deleteLessonGroupChildren">
       </lesson-item>
     </div>
 
@@ -37,9 +40,11 @@
 
       {% include components/group_lessons_list_headers.html %}
 
-      <lesson-item ng-repeat="lesson in $ctrl.getMiniLessons()"
-                   lesson="lesson" participants="$ctrl.participants.mini"
-                   delete-lesson="$ctrl.deleteLesson">
+      <lesson-item ng-repeat="lesson in $ctrl.results.lessons.group.mini"
+                   lesson="lesson"
+                   type="'group.mini'"
+                   participants="$ctrl.participants.mini"
+                   delete-lesson="$ctrl.deleteLessonGroupMini">
       </lesson-item>
     </div>
 
@@ -57,20 +62,19 @@
           Specific instructor in mind?
         </label>
         <div class="col-sm-9">
-          <select ng-model="$ctrl.results.notes.privateLesson.needSpecificInstructor"
+          <select ng-model="$ctrl.results.lessons.private.instructor.required"
                   ng-options="o.value as o.name for o in $ctrl.settings.YES_NO_OPTIONS">
           </select>
         </div>
       </div>
       <div class="form-group instructor-name-description"
-           ng-if="$ctrl.results.notes.privateLesson.needSpecificInstructor">
+           ng-if="$ctrl.results.lessons.private.instructor.required">
         <label class="col-sm-3">
           Name or description of the instructor
         </label>
         <div class="col-sm-9">
-                <textarea
-                    class="form-control" rows="4"
-                    ng-model="$ctrl.results.notes.privateLesson.instructorDescription"></textarea>
+          <textarea class="form-control" rows="4"
+                    ng-model="$ctrl.results.lessons.private.instructor.details"></textarea>
         </div>
       </div>
       <div class="form-group specific-requirements">
@@ -81,7 +85,7 @@
                 <textarea
                     class="form-control" rows="5"
                     placeholder="Any specific requirements you want your instructor to know? What do you want to get out of the lesson? Max. 150 characters."
-                    ng-model="$ctrl.results.notes.privateLesson.specificRequirements"></textarea>
+                    ng-model="$ctrl.results.lessons.private.requests"></textarea>
         </div>
       </div>
     </form>
@@ -89,9 +93,11 @@
     <div class="lessons-list">
       {% include components/lessons_list_headers.html %}
 
-      <lesson-item ng-repeat="lesson in $ctrl.getPrivateLessons()"
-                   lesson="lesson" participants="$ctrl.participants.normal"
-                   delete-lesson="$ctrl.deleteLesson">
+      <lesson-item ng-repeat="lesson in $ctrl.results.lessons.private.lessons"
+                   lesson="lesson"
+                   type="'private'"
+                   participants="$ctrl.participants.normal"
+                   delete-lesson="$ctrl.deleteLessonPrivate">
       </lesson-item>
     </div>
 
@@ -105,13 +111,13 @@
       <div class="form-group dwa-membership">
         <label class="col-sm-3">Membership ID</label>
         <div class="col-sm-1">
-          <select ng-model="$ctrl.results.notes.privateDisabledLesson.disabilityMembership.type"
+          <select ng-model="$ctrl.results.lessons.disability.membership.type"
                   ng-options="o for o in $ctrl.settings.DISABILITY_MEMBERSHIP_TYPES">
           </select>
         </div>
         <div class="col-sm-8">
           <input type="text" class="form-control"
-                 ng-model="$ctrl.results.notes.privateDisabledLesson.disabilityMembership.id">
+                 ng-model="$ctrl.results.lessons.disability.membership.id">
         </div>
       </div>
       <div class="form-group specific-instructor">
@@ -119,20 +125,19 @@
           Specific instructor in mind?
         </label>
         <div class="col-sm-9">
-          <select ng-model="$ctrl.results.notes.privateDisabledLesson.needSpecificInstructor"
+          <select ng-model="$ctrl.results.lessons.disability.instructor.required"
                   ng-options="o.value as o.name for o in $ctrl.settings.YES_NO_OPTIONS">
           </select>
         </div>
       </div>
       <div class="form-group instructor-name-description"
-           ng-if="$ctrl.results.notes.privateDisabledLesson.needSpecificInstructor">
+           ng-if="$ctrl.results.lessons.disability.instructor.required">
         <label class="col-sm-3">
           Name or description of the instructor
         </label>
         <div class="col-sm-9">
-                <textarea
-                    class="form-control" rows="4"
-                    ng-model="$ctrl.results.notes.privateDisabledLesson.instructorDescription"></textarea>
+          <textarea class="form-control" rows="4"
+                    ng-model="$ctrl.results.lessons.disability.instructor.details"></textarea>
         </div>
       </div>
       <div class="form-group specific-requirements">
@@ -140,10 +145,9 @@
           Any special requests?
         </label>
         <div class="col-sm-9">
-                <textarea
-                    class="form-control" rows="5"
+          <textarea class="form-control" rows="5"
                     placeholder="Any specific requirements you want your instructor to know? What do you want to get out of the lesson? Max. 150 characters."
-                    ng-model="$ctrl.results.notes.privateDisabledLesson.specificRequirements"></textarea>
+                    ng-model="$ctrl.results.lessons.disability.requests"></textarea>
         </div>
       </div>
     </form>
@@ -151,11 +155,17 @@
     <div class="lessons-list">
       {% include components/lessons_list_headers.html %}
 
-      <lesson-item ng-repeat="lesson in $ctrl.getPrivateDisabledLessons()"
-                   lesson="lesson" participants="$ctrl.participants.disabled"
-                   delete-lesson="$ctrl.deleteLesson">
+      <lesson-item ng-repeat="lesson in $ctrl.results.lessons.disability.lessons"
+                   lesson="lesson"
+                   type="'disability'"
+                   participants="$ctrl.participants.disabled"
+                   delete-lesson="$ctrl.deleteLessonDisability">
       </lesson-item>
     </div>
-    -->
+  </div>
+
+  <div class="results">
+    <h2>Returned results</h2>
+    <pre>[{ $ctrl.results | json }]</pre>
   </div>
 </div>

@@ -3,7 +3,7 @@
   <div class="col-sm-2 lesson-item-date">
     <span>[{ $ctrl.lesson.date | date: 'MMM d, yyyy' }]</span>
   </div>
-  <div class="col-sm-1 lesson-item-time">
+  <div class="col-sm-2 lesson-item-time">
     <div class="selector">
       <select name="time"
               ng-model="$ctrl.lesson.time"
@@ -35,7 +35,7 @@
       [{ participant.name }]
     </label>
   </div>
-  <div class="col-sm-3 lesson-item-add">
+  <div class="col-sm-2 lesson-item-add">
     <a class="btn-link btn-add-lesson">Add Lesson</a>
     &nbsp;|&nbsp;
     <a class="btn-link btn-delete-lesson" ng-click="$ctrl.onDelete()">

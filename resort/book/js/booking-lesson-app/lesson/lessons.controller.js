@@ -41,8 +41,6 @@
             lessons: []
         };
 
-        this.$onInit = onInit;
-
         // Binds functions
         vm.isDataAvailable = isDataAvailable;
         vm.addLesson = addLesson;
@@ -57,10 +55,6 @@
 
         function loadData(_) {
             $scope.$apply(applyData);
-        }
-
-        function onInit() {
-            applyData();
         }
 
         function applyData() {
