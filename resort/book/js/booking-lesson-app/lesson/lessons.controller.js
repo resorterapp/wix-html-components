@@ -8,11 +8,12 @@
     LessonsController.$inject = [
         '$scope',
         'moment',
+        '_',
         'Wix',
         'settings'
     ];
 
-    function LessonsController($scope, moment, Wix, settings) {
+    function LessonsController($scope, moment, _, Wix, settings) {
         var vm = this;
         var subscription = Wix.subscribe(loadData);
 

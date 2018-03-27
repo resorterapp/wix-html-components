@@ -57,5 +57,6 @@
             ]
         })
         .constant('moment', moment)
-        .constant('uuid', uuid);
+        .constant('uuid', uuid)
+        .constant('_', window._);
 })();
