@@ -82,9 +82,9 @@
             for (let i = 0; i < participants.length; i++) {
                 let participant = participants[i];
 
-                if (participant['Ski Level']) activities.push('Ski');
-                if (participant['Snowboard Level']) activities.push('Snowboard');
-                if (participant['Telemark Level']) activities.push('Telemark');
+                if (participant.skiLevel && participant.skiLevel !== 'None') activities.push('Ski');
+                if (participant.snowboardLevel && participant.snowboardLevel !== 'None') activities.push('Snowboard');
+                if (participant.telemarkLevel && participant.telemarkLevel !== 'None') activities.push('Telemark');
             }
 
             return _.uniq(activities);
