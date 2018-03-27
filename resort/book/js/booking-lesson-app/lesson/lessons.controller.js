@@ -20,31 +20,12 @@
         vm.data = {};
         vm.dates = [];
         vm.settings = settings;
-        vm.lessonType = settings.LESSON_TYPES[0];
-        vm.results = {
-            activityType: settings.ACTIVITY_TYPES[0],
-            notes: {
-                privateLesson: {
-                    needSpecificInstructor: false,
-                    instructorDescription: null,
-                    specificRequirements: null
-                },
-                privateDisabledLesson: {
-                    disabilityMembership: {
-                        type: settings.DISABILITY_MEMBERSHIP_TYPES[0],
-                        id: null
-                    },
-                    needSpecificInstructor: false,
-                    instructorDescription: null,
-                    specificRequirements: null
-                }
-            },
-            lessons: []
-        };
+        vm.activitiesList = settings.ACTIVITY_TYPES;
+        vm.currentActivity = settings.ACTIVITY_TYPES[0];
+        vm.results = {};
 
         // Binds functions
         vm.isDataAvailable = isDataAvailable;
-        vm.addLesson = addLesson;
         vm.getResults = getResults;
 
         function loadData(_) {
@@ -55,6 +36,7 @@
             vm.wix = Wix;
             vm.data = Wix.getData();
             vm.dates = buildDatesRange(vm.data.date.checkIn, vm.data.date.checkOut);
+            vm.activitiesList = buildActivitiesList(vm.data.participants);
             vm.participants = buildParticipantsList(vm.data.participants);
         }
 
@@ -87,9 +69,18 @@
             };
         }
 
-        function addLesson(lesson) {
-            console.log('Add Lesson: ' + lesson);
-            vm.results.lessons.push(lesson);
+        function buildActivitiesList(participants) {
+            let activities = [];
+
+            for (let i = 0; i < participants.length; i++) {
+                let participant = participants[i];
+
+                if (participant['Ski Level']) activities.push('Ski');
+                if (participant['Snowboard Level']) activities.push('Snowboard');
+                if (participant['Telemark Level']) activities.push('Telemark');
+            }
+
+            return _.uniq(activities);
         }
 
         function buildDatesRange(fromDate, toDate) {

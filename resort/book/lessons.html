@@ -22,8 +22,8 @@
         <span>Choose activity:</span>
         <div class="selector inline-block">
           <select name="lessonActivity" id="lessonActivity"
-                  ng-options="option for option in vm.settings.ACTIVITY_TYPES"
-                  ng-model="vm.results.activityType"></select>
+                  ng-options="option for option in vm.activitiesList"
+                  ng-model="vm.currentActivity"></select>
         </div>
       </div>
 
@@ -31,7 +31,7 @@
       <div class="lessons-booker-container" ng-if="vm.isDataAvailable()">
         <activity-lessons
             ng-repeat="activity in vm.settings.ACTIVITY_TYPES"
-            ng-show="vm.results.activityType == activity"
+            ng-show="vm.currentActivity == activity"
             activity="activity"
             dates="vm.dates"
             participants="vm.participants"></activity-lessons>
