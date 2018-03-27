@@ -11,38 +11,41 @@
     <script type="text/javascript">
         (function () {
             var data = {
-                date: {
-                    checkIn: new Date('2018-07-01'),
-                    checkOut: new Date('2018-07-04')
-                },
-                participants: [
-                    {
-                        _id: uuid.v4(),
-                        name: 'John',
-                        age: 40,
-                        disabled: false
+                msg: 'SEND_TRIP_DATA',
+                msgData: {
+                    date: {
+                        checkIn: new Date('2018-07-01'),
+                        checkOut: new Date('2018-07-04')
                     },
-                    {
-                        _id: uuid.v4(),
-                        name: 'Jane',
-                        age: 36,
-                        disabled: false
-                    },
-                    {
-                        _id: uuid.v4(),
-                        name: 'Will',
-                        age: 7,
-                        disabled: {
-                            details: 'Mild autism.'
+                    participants: [
+                        {
+                            _id: uuid.v4(),
+                            name: 'John',
+                            age: 40,
+                            disabled: false
+                        },
+                        {
+                            _id: uuid.v4(),
+                            name: 'Jane',
+                            age: 36,
+                            disabled: false
+                        },
+                        {
+                            _id: uuid.v4(),
+                            name: 'Will',
+                            age: 7,
+                            disabled: {
+                                details: 'Mild autism.'
+                            }
+                        },
+                        {
+                            _id: uuid.v4(),
+                            name: 'Eliza',
+                            age: 4,
+                            disabled: false
                         }
-                    },
-                    {
-                        _id: uuid.v4(),
-                        name: 'Eliza',
-                        age: 4,
-                        disabled: false
-                    }
-                ]
+                    ]
+                },
             };
 
             window.onload = function (_) {

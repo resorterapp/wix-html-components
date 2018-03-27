@@ -31,7 +31,11 @@
                 || !(event.data)
             ) return;
 
-            setData(event.data);
+            let message = event.data.msg;
+
+            if (message === 'SEND_TRIP_DATA') {
+                return setData(event.data.msgData);
+            }
         }
 
         function getData() {
