@@ -29,7 +29,7 @@
 
         function windowOnMessage(event) {
             // Checks the event origin to make sure it's from our site
-            if ( event.origin !== msgOrigin || !(event.data) ) return;
+            if (event.origin !== msgOrigin || !(event.data)) return;
 
             let message = event.data.msg;
 

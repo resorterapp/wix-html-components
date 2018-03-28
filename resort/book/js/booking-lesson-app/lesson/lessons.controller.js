@@ -55,23 +55,23 @@
             return {
                 'adults': participants.filter(function (p) {
                     return p.age >= 18
-                        && !p.disabled;
+                        && !p.physicalDisability;
                 }),
                 'children': participants.filter(function (p) {
                     return p.age < 18
                         && p.age >= 6
-                        && !p.disabled;
+                        && !p.physicalDisability;
                 }),
                 'mini': participants.filter(function (p) {
                     return p.age < 6
                         && p.age >= 3
-                        && !p.disabled;
+                        && !p.physicalDisability;
                 }),
                 'normal': participants.filter(function (p) {
-                    return !p.disabled;
+                    return !p.physicalDisability;
                 }),
                 'disabled': participants.filter(function (p) {
-                    return p.disabled;
+                    return p.physicalDisability;
                 }),
             };
         }
