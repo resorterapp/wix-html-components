@@ -13,6 +13,7 @@
                 participants: '<',
 
                 // functions
+                duplicateLesson: '<',
                 deleteLesson: '<'
             }
         });
@@ -32,6 +33,7 @@
             vm.isLessonPrivate = isLessonPrivate;
             vm.getParticipantsColumnCssClass = getParticipantsColumnCssClass;
             vm.getTimeOptions = getTimeOptions;
+            vm.onAddLesson = onAddLesson;
             vm.onDelete = onDelete;
         }
 
@@ -55,6 +57,10 @@
 
         function isLessonPrivate() {
             return ['private', 'disability'].indexOf(vm.type) !== -1;
+        }
+
+        function onAddLesson() {
+            vm.duplicateLesson(vm.lesson);
         }
     }
 })();

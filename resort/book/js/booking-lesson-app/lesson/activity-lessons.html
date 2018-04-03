@@ -17,10 +17,12 @@
 
       {% include components/group_lessons_list_headers.html %}
 
-      <lesson-item ng-repeat="lesson in $ctrl.results.lessons.group.adults"
+      <lesson-item ng-repeat="lesson in $ctrl.results.lessons.group.adults | orderBy: 'date'"
+                   class="lesson-item"
                    lesson="lesson"
                    type="'group.adults'"
                    participants="$ctrl.participants.adults"
+                   duplicate-lesson="$ctrl.duplicateLessonGroupAdults"
                    delete-lesson="$ctrl.deleteLessonGroupAdults">
       </lesson-item>
     </div>
@@ -30,10 +32,12 @@
 
       {% include components/group_lessons_list_headers.html %}
 
-      <lesson-item ng-repeat="lesson in $ctrl.results.lessons.group.children"
+      <lesson-item ng-repeat="lesson in $ctrl.results.lessons.group.children | orderBy: 'date'"
+                   class="lesson-item"
                    lesson="lesson"
                    type="'group.children'"
                    participants="$ctrl.participants.children"
+                   duplicate-lesson="$ctrl.duplicateLessonGroupChildren"
                    delete-lesson="$ctrl.deleteLessonGroupChildren">
       </lesson-item>
     </div>
@@ -43,10 +47,12 @@
 
       {% include components/group_lessons_list_headers.html %}
 
-      <lesson-item ng-repeat="lesson in $ctrl.results.lessons.group.mini"
+      <lesson-item ng-repeat="lesson in $ctrl.results.lessons.group.mini | orderBy: 'date'"
+                   class="lesson-item"
                    lesson="lesson"
                    type="'group.mini'"
                    participants="$ctrl.participants.mini"
+                   duplicate-lesson="$ctrl.duplicateLessonGroupMini"
                    delete-lesson="$ctrl.deleteLessonGroupMini">
       </lesson-item>
     </div>
@@ -99,10 +105,12 @@
     <div class="lessons-list">
       {% include components/lessons_list_headers.html %}
 
-      <lesson-item ng-repeat="lesson in $ctrl.results.lessons.private.lessons"
+      <lesson-item ng-repeat="lesson in $ctrl.results.lessons.private.lessons | orderBy: 'date'"
+                   class="lesson-item"
                    lesson="lesson"
                    type="'private'"
                    participants="$ctrl.participants.normal"
+                   duplicate-lesson="$ctrl.duplicateLessonPrivate"
                    delete-lesson="$ctrl.deleteLessonPrivate">
       </lesson-item>
     </div>
@@ -161,10 +169,12 @@
     <div class="lessons-list">
       {% include components/lessons_list_headers.html %}
 
-      <lesson-item ng-repeat="lesson in $ctrl.results.lessons.disability.lessons"
+      <lesson-item ng-repeat="lesson in $ctrl.results.lessons.disability.lessons | orderBy: 'date'"
+                   class="lesson-item"
                    lesson="lesson"
                    type="'disability'"
                    participants="$ctrl.participants.disabled"
+                   duplicate-lesson="$ctrl.duplicateLessonDisability"
                    delete-lesson="$ctrl.deleteLessonDisability">
       </lesson-item>
     </div>

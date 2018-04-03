@@ -19,10 +19,11 @@
 
     ActivityLessonsController.$inject = [
         'settings',
+        'Lesson',
         'AnchorSmoothScroll'
     ];
 
-    function ActivityLessonsController(settings, AnchorSmoothScroll) {
+    function ActivityLessonsController(settings, Lesson, AnchorSmoothScroll) {
         var vm = this;
 
         this.$onInit = onInit;
@@ -70,13 +71,18 @@
             vm.deleteLessonGroupMini = deleteLessonGroupMini;
             vm.deleteLessonPrivate = deleteLessonPrivate;
             vm.deleteLessonDisability = deleteLessonDisability;
+            vm.duplicateLessonGroupAdults = duplicateLessonGroupAdults;
+            vm.duplicateLessonGroupChildren = duplicateLessonGroupChildren;
+            vm.duplicateLessonGroupMini = duplicateLessonGroupMini;
+            vm.duplicateLessonPrivate = duplicateLessonPrivate;
+            vm.duplicateLessonDisability = duplicateLessonDisability;
         }
 
         function createLessons(type) {
             let lessons = [];
 
             for (let i = 0; i < vm.dates.length; i++) {
-                lessons.push(Lesson(type, vm.dates[i], 4, settings));
+                lessons.push(Lesson.new(type, vm.dates[i], 4));
             }
 
             return lessons;
@@ -128,27 +134,39 @@
         function scrollTo(elementID) {
             AnchorSmoothScroll.scrollTo(elementID);
         }
-    }
 
-    function Lesson(type, date, duration, settings) {
+        function duplicateLesson(lessonsList, lesson) {
+            let copiedLesson = Lesson.copy(lesson);
 
-        return build();
+            // Empty the participants list
+            copiedLesson.participants = [];
 
-        function build() {
-            let lesson = {
-                date: date,
-                duration: duration,
-                level: settings.ABILITY_LEVELS[0],
-                participants: []
-            };
-
-            lesson.time = settings.TIME_OPTIONS[isGroup() ? 1 : 0];
-
-            return lesson;
+            lessonsList.push(copiedLesson);
         }
 
-        function isGroup() {
-            return type.indexOf('group') > -1;
+        function duplicateLessonGroupAdults(lesson) {
+            let lessonsList = vm.results.lessons.group.adults;
+            return duplicateLesson(lessonsList, lesson);
+        }
+
+        function duplicateLessonGroupChildren(lesson) {
+            let lessonsList = vm.results.lessons.group.children;
+            return duplicateLesson(lessonsList, lesson);
+        }
+
+        function duplicateLessonGroupMini(lesson) {
+            let lessonsList = vm.results.lessons.group.mini;
+            return duplicateLesson(lessonsList, lesson);
+        }
+
+        function duplicateLessonPrivate(lesson) {
+            let lessonsList = vm.results.lessons.private.lessons;
+            return duplicateLesson(lessonsList, lesson);
+        }
+
+        function duplicateLessonDisability(lesson) {
+            let lessonsList = vm.results.lessons.disability.lessons;
+            return duplicateLesson(lessonsList, lesson);
         }
     }
 })();
