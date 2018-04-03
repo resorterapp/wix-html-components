@@ -1,12 +1,12 @@
-(function() {
-    "use strict";
+(function () {
+  'use strict';
 
-    angular
-        .module("BookingLessonApp")
-        .config(config);
+  angular
+    .module('BookingLessonApp')
+    .config(config);
 
-    function config($interpolateProvider) {
-        $interpolateProvider.startSymbol('[{');
-        $interpolateProvider.endSymbol('}]');
-    }
+  function config($interpolateProvider) {
+    $interpolateProvider.startSymbol('[{');
+    $interpolateProvider.endSymbol('}]');
+  }
 })();

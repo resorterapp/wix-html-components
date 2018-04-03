@@ -1,11 +1,11 @@
 (function () {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('BookingLessonApp', [
-            'ngAnimate',
-            'ui.bootstrap',
-            'rx',
-            'checklist-model'
-        ]);
+  angular
+    .module('BookingLessonApp', [
+      'ngAnimate',
+      'ui.bootstrap',
+      'rx',
+      'checklist-model'
+    ]);
 })();

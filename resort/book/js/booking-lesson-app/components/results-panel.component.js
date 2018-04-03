@@ -3,14 +3,14 @@
  */
 
 (function () {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('BookingLessonApp')
-        .component('resultsPanel', {
-            templateUrl: 'js/booking-lesson-app/components/results-panel.html',
-            bindings: {
-                results: '<'
-            }
-        });
+  angular
+    .module('BookingLessonApp')
+    .component('resultsPanel', {
+      templateUrl: 'js/booking-lesson-app/components/results-panel.html',
+      bindings: {
+        results: '<'
+      }
+    });
 })();

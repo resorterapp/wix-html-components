@@ -4,25 +4,25 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:200,400,500,600,700');
 
 * {
-    font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 html,
 body {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 body {
-    // Hide horizontal scrolling bar when added to Wix
-    overflow-x: hidden;
+  // Hide horizontal scrolling bar when added to Wix
+  overflow-x: hidden;
 }
 
 h2 {
-    font-weight: 200;
+  font-weight: 200;
 }
 
 label {
-    font-weight: 400;
+  font-weight: 400;
 }
 
 // Fix Angular UI Bootstrap bug with cursor pointer
@@ -32,89 +32,89 @@ label {
 .carousel,
 .panel-title a,
 a {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .container-fluid {
-    max-width: 1440px;
+  max-width: 1440px;
 }
 
 .inline-block {
-    display: inline-block;
+  display: inline-block;
 }
 
 // Lessons
 .lessons-booker {
-    .lessons-booker-inner {
-        margin-bottom: 40px;
-    }
+  .lessons-booker-inner {
+    margin-bottom: 40px;
+  }
 }
 
 .activity-lessons {
-    h3 .small.skip-btn {
-        color: #337ab7;
-        margin: 0 10px;
-    }
+  h3 .small.skip-btn {
+    color: #337ab7;
+    margin: 0 10px;
+  }
 }
 
 .lessons-list {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 
-    .lessons-list-headers,
-    .lesson-item {
-        border-bottom: 1px solid #eee;
-        margin-bottom: 10px;
-        padding: 5px 0;
+  .lessons-list-headers,
+  .lesson-item {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+    padding: 5px 0;
+  }
+
+  .lessons-list-headers {
+    font-weight: 500;
+  }
+
+  .lesson-item {
+
+    a,
+    span,
+    select,
+    label {
+      line-height: 34px;
     }
 
-    .lessons-list-headers {
-        font-weight: 500;
+    .lesson-item-participants label {
+      margin: 0 15px 5px 0;
     }
 
-    .lesson-item {
-
-        a,
-        span,
-        select,
-        label {
-            line-height: 34px;
-        }
-
-        .lesson-item-participants label {
-            margin: 0 15px 5px 0;
-        }
-
-        &.ng-enter,
-        &.ng-leave,
-        &.ng-move {
-            -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-            -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-            -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-            -o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-            transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-            position: relative;
-        }
-
-        &.ng-enter.ng-enter-active,
-        &.ng-leave {
-            opacity: 1;
-            top: 0;
-            height: 60px;
-        }
-
-        &.ng-leave.ng-leave-active,
-        &.ng-enter {
-            opacity: 0;
-            top: -60px;
-            height: 0px;
-        }
+    &.ng-enter,
+    &.ng-leave,
+    &.ng-move {
+      -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+      -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+      -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+      -o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+      transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+      position: relative;
     }
 
-    .selector select {
-        width: 100%;
+    &.ng-enter.ng-enter-active,
+    &.ng-leave {
+      opacity: 1;
+      top: 0;
+      height: 60px;
     }
 
-    .col-sm-1 .selector select {
-        width: auto;
+    &.ng-leave.ng-leave-active,
+    &.ng-enter {
+      opacity: 0;
+      top: -60px;
+      height: 0px;
     }
+  }
+
+  .selector select {
+    width: 100%;
+  }
+
+  .col-sm-1 .selector select {
+    width: auto;
+  }
 }

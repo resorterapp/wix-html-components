@@ -62,7 +62,8 @@
   <div id="[{ $ctrl.activity }]-private-lessons" class="lessons-booker-inner" ng-if="$ctrl.participants.normal.length">
     <h3>
       Private Lessons
-      <a class="skip-btn small btn-link" ng-click="$ctrl.scrollTo($ctrl.activity + '-private-disabled-lessons')">Skip</a>
+      <a class="skip-btn small btn-link"
+         ng-click="$ctrl.scrollTo($ctrl.activity + '-private-disabled-lessons')">Skip</a>
     </h3>
     <div class="alert alert-warning">
       A maximum of up to 4 people can join a lesson. Everyone must be at the same level of ability.
@@ -116,7 +117,8 @@
     </div>
 
   </div>
-  <div id="[{ $ctrl.activity }]-private-disabled-lessons" class="lessons-booker-inner" ng-if="$ctrl.participants.disabled.length">
+  <div id="[{ $ctrl.activity }]-private-disabled-lessons" class="lessons-booker-inner"
+       ng-if="$ctrl.participants.disabled.length">
     <h3>Private (disabled) Lessons</h3>
     <div class="alert alert-warning">
       A maximum of up to 4 people can join a lesson. Everyone must be at the same level of ability.
