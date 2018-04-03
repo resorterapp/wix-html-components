@@ -33,8 +33,6 @@
             vm.getParticipantsColumnCssClass = getParticipantsColumnCssClass;
             vm.getTimeOptions = getTimeOptions;
             vm.onDelete = onDelete;
-
-            checkParticipants(vm.participants);
         }
 
         function getTimeOptions() {
@@ -53,12 +51,6 @@
 
         function getParticipantsColumnCssClass() {
             return isLessonPrivate() ? 'col-sm-3' : 'col-sm-4';
-        }
-
-        function checkParticipants(participants) {
-            if (participants.length !== 1) return;
-
-            vm.lesson.participants = participants;
         }
 
         function isLessonPrivate() {

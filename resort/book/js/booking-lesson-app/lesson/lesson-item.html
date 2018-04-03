@@ -30,8 +30,7 @@
   <div class="lesson-item-participants" ng-class="$ctrl.getParticipantsColumnCssClass()">
     <label ng-repeat="participant in $ctrl.participants">
       <input type="checkbox"
-             data-checklist-model="$ctrl.lesson.participants" data-checklist-value="participant"
-             ng-show="$ctrl.participants.length > 1">
+             data-checklist-model="$ctrl.lesson.participants" data-checklist-value="participant">
       [{ participant.title }]
     </label>
   </div>
