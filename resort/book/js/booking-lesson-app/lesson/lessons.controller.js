@@ -10,11 +10,11 @@
         '$window',
         'moment',
         '_',
+        'settings',
         'Wix',
-        'settings'
     ];
 
-    function LessonsController($scope, $window, moment, _, Wix, settings) {
+    function LessonsController($scope, $window, moment, _, settings, Wix) {
         var vm = this;
 
         // Registers this as the listener of Wix event

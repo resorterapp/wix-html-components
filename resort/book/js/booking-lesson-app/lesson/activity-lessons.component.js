@@ -17,9 +17,12 @@
             }
         });
 
-    ActivityLessonsController.$inject = ['settings'];
+    ActivityLessonsController.$inject = [
+        'settings',
+        'AnchorSmoothScroll'
+    ];
 
-    function ActivityLessonsController(settings) {
+    function ActivityLessonsController(settings, AnchorSmoothScroll) {
         var vm = this;
 
         this.$onInit = onInit;
@@ -61,6 +64,7 @@
             vm.addActivityLessons(vm.results);
 
             // Binds the functions
+            vm.scrollTo = scrollTo;
             vm.deleteLessonGroupAdults = deleteLessonGroupAdults;
             vm.deleteLessonGroupChildren = deleteLessonGroupChildren;
             vm.deleteLessonGroupMini = deleteLessonGroupMini;
@@ -119,6 +123,10 @@
         function deleteLessonDisability(lesson) {
             let lessonsList = vm.results.lessons.disability.lessons;
             return deleteLesson(lessonsList, lesson);
+        }
+
+        function scrollTo(elementID) {
+            AnchorSmoothScroll.scrollTo(elementID);
         }
     }
 
