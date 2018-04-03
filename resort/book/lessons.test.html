@@ -10,72 +10,9 @@
   </head>
   <body>
     <div style="width: 980px; height: 2200px;">
-      <iframe id="myFrame" src="./lessons.html" frameborder="0" width="100%" height="100%" scrolling="auto"></iframe>
+      <iframe id="myFrame" name="lessons" frameborder="0" width="100%" height="100%" scrolling="auto"></iframe>
     </div>
 
-    <script type="text/javascript">
-        (function () {
-            var myFrameWindow = document.getElementById('myFrame').contentWindow;
-            var data = {
-                msg: 'SEND_TRIP_DATA',
-                msgData: {
-                    date: {
-                        checkIn: new Date('2018-07-01'),
-                        checkOut: new Date('2018-07-04')
-                    },
-                    participants: [
-                        {
-                            _id: uuid.v4(),
-                            title: 'John',
-                            age: 40,
-                            skiLevel: 'Black (Light)',
-                            snowboardLevel: 'None',
-                            telemarkLevel: 'None',
-                            physicalDisability: false,
-                            physicalDetails: null
-                        },
-                        {
-                            _id: uuid.v4(),
-                            title: 'Jane',
-                            age: 36,
-                            skiLevel: 'Blue (Light)',
-                            snowboardLevel: 'None',
-                            telemarkLevel: 'None',
-                            physicalDisability: false,
-                            physicalDetails: null
-                        },
-                        {
-                            _id: uuid.v4(),
-                            title: 'Will',
-                            age: 7,
-                            skiLevel: 'None',
-                            snowboardLevel: 'Green (Light)',
-                            telemarkLevel: 'None',
-                            physicalDisability: true,
-                            physicalDetails: null
-                        },
-                        {
-                            _id: uuid.v4(),
-                            title: 'Eliza',
-                            age: 4,
-                            skiLevel: 'Yellow',
-                            snowboardLevel: 'None',
-                            telemarkLevel: 'None',
-                            physicalDisability: false,
-                            physicalDetails: null
-                        }
-                    ]
-                },
-            };
-
-            document.getElementById('myFrame').onmessage = myFrameOnMessage;
-
-            function myFrameOnMessage(event) {
-                if (event.data !== 'LESSONS_READY') return;
-
-                return myFrameWindow.postMessage(data, '{{ site.post_message_origin }}');
-            }
-        })();
-    </script>
+    <script src="js/lessons.test.main.js"></script>
   </body>
 </html>

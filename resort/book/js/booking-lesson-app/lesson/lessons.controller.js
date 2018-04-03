@@ -7,17 +7,20 @@
 
     LessonsController.$inject = [
         '$scope',
+        '$window',
         'moment',
         '_',
         'Wix',
         'settings'
     ];
 
-    function LessonsController($scope, moment, _, Wix, settings) {
+    function LessonsController($scope, $window, moment, _, Wix, settings) {
         var vm = this;
 
         // Registers this as the listener of Wix event
         var subscription = Wix.subscribe(loadData);
+
+        $window.onmessage = windowOnMessage;
 
         vm.data = {};
         vm.dates = [];
@@ -105,6 +108,19 @@
 
         function addActivityLessons(activityLessons) {
             vm.results.activityLessons.push(activityLessons);
+        }
+
+        function windowOnMessage(event) {
+            // Checks the event origin to make sure it's from our site
+            if (event.origin !== Wix.msgOrigin || !(event.data)) return;
+
+            let message = event.data.msg;
+
+            if (message === 'SEND_TRIP_DATA') return Wix.setData(event.data.msgData);
+
+            if (message === 'GET_LESSONS_DATA') {
+                return $window.parent.postMessage(getResults(), '*');
+            }
         }
     }
 })();

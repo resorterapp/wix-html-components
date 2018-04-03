@@ -15,8 +15,6 @@
         var data = {};
         var msgOrigin = '{{ site.post_message_origin }}';
 
-        $window.onmessage = windowOnMessage;
-
         return {
             msgOrigin: msgOrigin,
             getData: getData,
@@ -26,15 +24,6 @@
         };
 
         ////////////
-
-        function windowOnMessage(event) {
-            // Checks the event origin to make sure it's from our site
-            if (event.origin !== msgOrigin || !(event.data)) return;
-
-            let message = event.data.msg;
-
-            if (message === 'SEND_TRIP_DATA') return setData(event.data.msgData);
-        }
 
         function getData() {
             return data;
