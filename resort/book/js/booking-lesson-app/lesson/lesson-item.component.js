@@ -38,13 +38,13 @@
     }
 
     function getTimeOptions() {
-      if (['group.children', 'group.mini'].indexOf(vm.type) > -1) {
-        return settings.TIME_OPTIONS;
+      if (isGroupAdults()) {
+        return settings.TIME_OPTIONS.filter((item) => {
+          return item !== 'All day';
+        });
       }
 
-      return settings.TIME_OPTIONS.filter(function (item) {
-        return item !== 'All day';
-      });
+      return settings.TIME_OPTIONS;
     }
 
     function onDelete() {
@@ -56,7 +56,11 @@
     }
 
     function isLessonPrivate() {
-      return ['private', 'disability'].indexOf(vm.type) !== -1;
+      return ['private', 'disability'].indexOf(vm.type) > -1;
+    }
+
+    function isGroupAdults() {
+      return ['group.adults'].indexOf(vm.type) > -1;
     }
 
     function onAddLesson() {
