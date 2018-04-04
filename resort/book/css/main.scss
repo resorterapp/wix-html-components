@@ -109,6 +109,9 @@ a {
 
     .lesson-item-participants label {
       margin: 0 15px 5px 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 
