@@ -29,10 +29,12 @@
   </div>
   <div class="lesson-item-participants" ng-class="$ctrl.getParticipantsColumnCssClass()">
     <div class="row">
-      <label ng-repeat="participant in $ctrl.participants" class="col-sm-5">
+      <label ng-repeat="pc in $ctrl.participantCheckboxes" class="col-sm-5">
         <input type="checkbox"
-               data-checklist-model="$ctrl.lesson.participants" data-checklist-value="participant">
-        [{ participant.title }]
+               ng-disabled="pc.disabled"
+               ng-click="$ctrl.pickParticipant(pc)"
+               data-checklist-model="$ctrl.lesson.participants" data-checklist-value="pc.participant">
+        [{ pc.participant.title }]
       </label>
     </div>
   </div>
