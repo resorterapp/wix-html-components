@@ -25,6 +25,46 @@
         },
         {
           _id: uuid.v4(),
+          title: 'William',
+          age: 40,
+          skiLevel: 'Black (Light)',
+          snowboardLevel: 'None',
+          telemarkLevel: 'None',
+          physicalDisability: false,
+          physicalDetails: null
+        },
+        {
+          _id: uuid.v4(),
+          title: 'Johnson',
+          age: 40,
+          skiLevel: 'Black (Light)',
+          snowboardLevel: 'None',
+          telemarkLevel: 'None',
+          physicalDisability: false,
+          physicalDetails: null
+        },
+        {
+          _id: uuid.v4(),
+          title: 'Smith',
+          age: 40,
+          skiLevel: 'Black (Light)',
+          snowboardLevel: 'None',
+          telemarkLevel: 'None',
+          physicalDisability: false,
+          physicalDetails: null
+        },
+        {
+          _id: uuid.v4(),
+          title: 'Jack',
+          age: 40,
+          skiLevel: 'Black (Light)',
+          snowboardLevel: 'None',
+          telemarkLevel: 'None',
+          physicalDisability: false,
+          physicalDetails: null
+        },
+        {
+          _id: uuid.v4(),
           title: 'Jane',
           age: 36,
           skiLevel: 'Blue (Light)',
