@@ -103,7 +103,10 @@
     }
 
     function getResults() {
-      return vm.results;
+      return {
+        msg: 'LESSONS_DATA',
+        results: vm.results
+      };
     }
 
     function addActivityLessons(activityLessons) {
