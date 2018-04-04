@@ -29,7 +29,11 @@
   </div>
   <div class="lesson-item-participants" ng-class="$ctrl.getParticipantsColumnCssClass()">
     <div class="row">
-      <label ng-repeat="pc in $ctrl.participantCheckboxes" class="col-sm-5">
+      <label ng-repeat="pc in $ctrl.participantCheckboxes"
+             uib-popover="Minis and others shouldn't do private lesson together. Please add new lesson for the same day then."
+             popover-enable="pc.disabled"
+             popover-trigger="'mouseenter'"
+             class="col-sm-5">
         <input type="checkbox"
                ng-disabled="pc.disabled"
                ng-click="$ctrl.pickParticipant(pc)"
@@ -45,4 +49,8 @@
       <i class="far fa-trash-alt"></i>
     </a>
   </div>
+</div>
+<div class="results" ng-if="$ctrl.isLessonPrivate()">
+  <pre>[{ $ctrl.innerCounts | json }]</pre>
+  <pre>[{ $ctrl.participantCheckboxes | json }]</pre>
 </div>
