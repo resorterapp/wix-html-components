@@ -18,7 +18,7 @@
       {% include components/group_lessons_list_headers.html %}
 
       <lesson-item ng-repeat="lesson in $ctrl.results.lessons.group.adults | orderBy: 'date'"
-                   class="lesson-item"
+                   class="lesson-item-component"
                    lesson="lesson"
                    type="'group.adults'"
                    participants="$ctrl.participants.adults"
@@ -33,7 +33,7 @@
       {% include components/group_lessons_list_headers.html %}
 
       <lesson-item ng-repeat="lesson in $ctrl.results.lessons.group.children | orderBy: 'date'"
-                   class="lesson-item"
+                   class="lesson-item-component"
                    lesson="lesson"
                    type="'group.children'"
                    participants="$ctrl.participants.children"
@@ -48,7 +48,7 @@
       {% include components/group_lessons_list_headers.html %}
 
       <lesson-item ng-repeat="lesson in $ctrl.results.lessons.group.mini | orderBy: 'date'"
-                   class="lesson-item"
+                   class="lesson-item-component"
                    lesson="lesson"
                    type="'group.mini'"
                    participants="$ctrl.participants.mini"
@@ -107,7 +107,7 @@
       {% include components/lessons_list_headers.html %}
 
       <lesson-item ng-repeat="lesson in $ctrl.results.lessons.private.lessons | orderBy: 'date'"
-                   class="lesson-item"
+                   class="lesson-item-component"
                    lesson="lesson"
                    type="'private'"
                    participants="$ctrl.participants.normal"
@@ -172,7 +172,7 @@
       {% include components/lessons_list_headers.html %}
 
       <lesson-item ng-repeat="lesson in $ctrl.results.lessons.disability.lessons | orderBy: 'date'"
-                   class="lesson-item"
+                   class="lesson-item-component"
                    lesson="lesson"
                    type="'disability'"
                    participants="$ctrl.participants.disabled"
