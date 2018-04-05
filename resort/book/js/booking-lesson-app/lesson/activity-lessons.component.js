@@ -48,10 +48,6 @@
             lessons: []
           },
           disability: {
-            membership: {
-              type: settings.DISABILITY_MEMBERSHIP_TYPES[0],
-              id: null
-            },
             instructor: {
               required: false,
               details: null
