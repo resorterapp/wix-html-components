@@ -81,8 +81,8 @@
     function createLessons(type) {
       let lessons = [];
 
-      for (let i = 0; i < vm.dates.length; i++) {
-        lessons.push(Lesson.new(type, vm.dates[i], 4));
+      for (let date of vm.dates) {
+        lessons.push(Lesson.new(type, date, 4));
       }
 
       return lessons;

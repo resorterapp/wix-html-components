@@ -102,11 +102,59 @@
       });
     }
 
+    /**
+     * Filter the results:
+     * - Remove lessons with no participants
+     * Then return the filtered one
+     *
+     * @returns {{msg: string, results: {_originURL: null, activityLessons: Array}}}
+     */
     function getResults() {
-      return {
-        msg: 'LESSONS_DATA',
-        results: vm.results
-      };
+      let results = angular.copy(vm.results);
+      let activityLessonsList = results.activityLessons;
+
+      // Filters the empty lessons
+      for (let activityLessons of activityLessonsList) {
+        let lessons = filterEmptyLessons(activityLessons.lessons);
+
+        // Filters the lesson sections that have no lessons (because filtered above)
+        const types = _.keys(lessons.group);
+        for (const type of types) {
+          if (_.isEmpty(lessons.group[type]))
+            delete lessons.group[type];
+        }
+
+        if (_.isEmpty(lessons.group))
+          delete lessons.group;
+
+        if (_.isEmpty(lessons.private.lessons))
+          delete lessons.private;
+
+        if (_.isEmpty(lessons.disability.lessons))
+          delete lessons.disability;
+      }
+
+      results.activityLessons = activityLessonsList.filter((al) => {
+        return !_.isEmpty(al.lessons);
+      });
+
+      return results;
+    }
+
+    function filterEmptyLessons(lessons) {
+      lessons.group.adults = filterNonParticipantLessons(lessons.group.adults);
+      lessons.group.children = filterNonParticipantLessons(lessons.group.children);
+      lessons.group.mini = filterNonParticipantLessons(lessons.group.mini);
+      lessons.private.lessons = filterNonParticipantLessons(lessons.private.lessons);
+      lessons.disability.lessons = filterNonParticipantLessons(lessons.disability.lessons);
+
+      return lessons;
+    }
+
+    function filterNonParticipantLessons(lessons) {
+      return lessons.filter((l) => {
+        return !_.isEmpty(l.participants);
+      });
     }
 
     function addActivityLessons(activityLessons) {
@@ -121,9 +169,14 @@
 
       if (message === 'SEND_TRIP_DATA') return Wix.setData(event.data.msgData);
 
-      if (message === 'GET_LESSONS_DATA') {
-        return $window.parent.postMessage(getResults(), '*');
-      }
+      if (message === 'GET_LESSONS_DATA')
+        return $window.parent.postMessage(
+          {
+            msg: 'LESSONS_DATA',
+            results: vm.getResults()
+          },
+          '*'
+        );
     }
   }
 })();
