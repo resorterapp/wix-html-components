@@ -19,15 +19,6 @@
         'Snowbiking',
         'Snowshoeing'
       ],
-      ABILITY_LEVELS: [
-        'Yellow',
-        'Green (Light)',
-        'Green (Dark)',
-        'Blue (Light)',
-        'Blue (Dark)',
-        'Black (Light)',
-        'Black (Dark)'
-      ],
       YES_NO_OPTIONS: [
         {name: 'Yes', value: true},
         {name: 'No', value: false}

@@ -7,7 +7,7 @@
       templateUrl: 'js/booking-lesson-app/lesson/lesson-item.html',
       controller: LessonItemController,
       bindings: {
-        // letiables
+        // variables
         lesson: '<',
         type: '<',
         participants: '<',
@@ -63,7 +63,7 @@
     }
 
     function getParticipantsColumnCssClass() {
-      return isLessonPrivate() ? 'col-sm-3' : 'col-sm-4';
+      return isLessonPrivate() ? 'col-sm-5' : 'col-sm-6';
     }
 
     function isLessonPrivate() {

@@ -19,21 +19,13 @@
       </select>
     </div>
   </div>
-  <div class="col-sm-2 lesson-item-level">
-    <div class="selector">
-      <select name="level" class="custom-select"
-              ng-model="$ctrl.lesson.level"
-              ng-options="option for option in $ctrl.settings.ABILITY_LEVELS">
-      </select>
-    </div>
-  </div>
   <div class="lesson-item-participants" ng-class="$ctrl.getParticipantsColumnCssClass()">
     <div class="row">
       <label ng-repeat="pc in $ctrl.participantCheckboxes"
              uib-popover="It is strongly advised for any child aged 5 and under to do a separate lesson, either as a group or a private lesson"
              popover-enable="pc.disabled"
              popover-trigger="'mouseenter'"
-             class="col-sm-5">
+             class="col-sm-3">
         <input type="checkbox"
                ng-disabled="pc.disabled"
                ng-click="$ctrl.pickParticipant(pc)"

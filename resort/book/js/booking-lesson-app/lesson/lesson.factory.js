@@ -17,12 +17,11 @@
       copy: copy
     };
 
-    function build(date, duration, level, participants, time) {
+    function build(date, duration, participants, time) {
       return {
         uuid: uuid.v4(),
         date: date,
         duration: duration,
-        level: level,
         participants: participants,
         time: time
       };
@@ -32,7 +31,6 @@
       return build(
         date,
         duration,
-        settings.ABILITY_LEVELS[0],
         [],
         settings.TIME_OPTIONS[isGroup(type) ? 1 : 0]
       );
