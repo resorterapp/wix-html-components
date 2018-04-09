@@ -32,7 +32,7 @@
       vm.settings = settings;
 
       // Binds functions
-      vm.isLessonPrivate = isLessonPrivate;
+      vm.isLessonPrivateOrDisability = isLessonPrivateOrDisability;
       vm.getParticipantsColumnCssClass = getParticipantsColumnCssClass;
       vm.getTimeOptions = getTimeOptions;
       vm.onAddLesson = onAddLesson;
@@ -46,10 +46,11 @@
 
       vm.pickParticipant = pickParticipant;
       vm.disableParticipant = disableParticipant;
+      vm.getParticipantPopoverMsg = getParticipantPopoverMsg;
     }
 
     function getTimeOptions() {
-      if (isGroupAdults()) {
+      if (isLessonMatchTypes(['group.adults'])) {
         return settings.TIME_OPTIONS.filter((item) => {
           return item !== 'All day';
         });
@@ -63,15 +64,15 @@
     }
 
     function getParticipantsColumnCssClass() {
-      return isLessonPrivate() ? 'col-sm-5' : 'col-sm-6';
+      return isLessonPrivateOrDisability() ? 'col-sm-5' : 'col-sm-6';
     }
 
-    function isLessonPrivate() {
-      return ['private', 'disability'].indexOf(vm.type) > -1;
+    function isLessonPrivateOrDisability() {
+      return isLessonMatchTypes(['private', 'disability']);
     }
 
-    function isGroupAdults() {
-      return ['group.adults'].indexOf(vm.type) > -1;
+    function isLessonMatchTypes(types) {
+      return types.indexOf(vm.type) > -1;
     }
 
     function onAddLesson() {
@@ -95,7 +96,7 @@
     function pickParticipant(pc) {
       pc.checked = !pc.checked;
 
-      if (!isLessonPrivate()) return;
+      if (!isLessonMatchTypes(['private'])) return;
 
       let checkCount = pc.checked ? 1 : -1;
 
@@ -105,18 +106,56 @@
         vm.innerCounts.pickedMinis += checkCount;
       }
 
-      for (let pc of vm.participantCheckboxes) {
-        pc.disabled = disableParticipant(pc);
+      let otherCheckboxes = vm.participantCheckboxes.filter((p) => {
+        return p !== pc;
+      });
+
+      for (let oc of otherCheckboxes) {
+        oc.disabled = disableParticipant(oc);
       }
     }
 
     function disableParticipant(pc) {
       // If this is mini, checks if others are picked
+      // LN Don't try to simplify these logic blocks
+      // They may look lengthy, but easier to understand than a short one with lots of && and ||
       if (pc.participant.age <= 5) {
-        return vm.innerCounts.pickedOthers > 0;
+        if (vm.innerCounts.pickedOthers > 0)
+          return true;
+
+        if (vm.innerCounts.pickedMinis < 4)
+          return false;
+
+        return !pc.checked;
       }
 
-      return vm.innerCounts.pickedMinis > 0;
+      if (vm.innerCounts.pickedMinis > 0)
+        return true;
+
+      if (vm.innerCounts.pickedOthers < 4)
+        return false;
+
+      return !pc.checked;
+    }
+
+    function getParticipantPopoverMsg(pc) {
+      if (pc.participant.age <= 5) {
+        if (vm.innerCounts.pickedOthers > 0)
+          return 'It is strongly advised for any child aged 5 and under to do ' +
+            'a separate lesson, either as a group or a private lesson';
+
+        if (vm.innerCounts.pickedMinis >= 4)
+          return 'Up to 4 people can join a lesson.';
+      }
+
+      if (vm.innerCounts.pickedMinis > 0)
+        return 'It is strongly advised for any child aged 5 and under to do ' +
+          'a separate lesson, either as a group or a private lesson';
+
+      if (vm.innerCounts.pickedOthers >= 4)
+        return 'Up to 4 people can join a lesson.';
+
+      return '';
     }
   }
 })();
