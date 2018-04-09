@@ -14,6 +14,7 @@
 
     return {
       new: createNew,
+      newFromDates: createNewFromDates,
       copy: copy
     };
 
@@ -34,6 +35,16 @@
         [],
         settings.TIME_OPTIONS[isGroup(type) ? 1 : 0]
       );
+    }
+
+    function createNewFromDates(type, dates, duration) {
+      let lessons = [];
+
+      for (let date of dates) {
+        lessons.push(createNew(type, date, duration));
+      }
+
+      return lessons;
     }
 
     function isGroup(type) {

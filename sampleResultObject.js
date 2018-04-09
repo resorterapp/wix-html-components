@@ -121,10 +121,6 @@ let sample = {
         group: {},
         private: {},
         disability: {
-          membership: {
-            type: 'DWA',
-            id: '14696867636'
-          },
           instructor: {
             description: 'Miss Cody.'
           },

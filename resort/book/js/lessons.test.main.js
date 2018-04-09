@@ -85,6 +85,36 @@
         },
         {
           _id: uuid.v4(),
+          title: 'Ray',
+          age: 7,
+          skiLevel: 'None',
+          snowboardLevel: 'Green (Light)',
+          telemarkLevel: 'None',
+          physicalDisability: true,
+          physicalDetails: null
+        },
+        {
+          _id: uuid.v4(),
+          title: 'Rick',
+          age: 7,
+          skiLevel: 'None',
+          snowboardLevel: 'Green (Light)',
+          telemarkLevel: 'None',
+          physicalDisability: true,
+          physicalDetails: null
+        },
+        {
+          _id: uuid.v4(),
+          title: 'Lam',
+          age: 7,
+          skiLevel: 'None',
+          snowboardLevel: 'Green (Light)',
+          telemarkLevel: 'None',
+          physicalDisability: true,
+          physicalDetails: null
+        },
+        {
+          _id: uuid.v4(),
           title: 'Eliza',
           age: 4,
           skiLevel: 'Yellow',

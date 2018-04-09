@@ -47,14 +47,7 @@
             requests: null,
             lessons: []
           },
-          disability: {
-            instructor: {
-              required: false,
-              details: null
-            },
-            requests: null,
-            lessons: []
-          },
+          disability: [],
         }
       };
       createAllLessons();
@@ -66,22 +59,15 @@
       vm.deleteLessonGroupChildren = deleteLessonGroupChildren;
       vm.deleteLessonGroupMini = deleteLessonGroupMini;
       vm.deleteLessonPrivate = deleteLessonPrivate;
-      vm.deleteLessonDisability = deleteLessonDisability;
       vm.duplicateLessonGroupAdults = duplicateLessonGroupAdults;
       vm.duplicateLessonGroupChildren = duplicateLessonGroupChildren;
       vm.duplicateLessonGroupMini = duplicateLessonGroupMini;
       vm.duplicateLessonPrivate = duplicateLessonPrivate;
-      vm.duplicateLessonDisability = duplicateLessonDisability;
+      vm.addDisabilityLessons = addDisabilityLessons;
     }
 
     function createLessons(type) {
-      let lessons = [];
-
-      for (let date of vm.dates) {
-        lessons.push(Lesson.new(type, date, 4));
-      }
-
-      return lessons;
+      return Lesson.newFromDates(type, vm.dates, 4);
     }
 
     function createAllLessons() {
@@ -90,7 +76,6 @@
       vm.results.lessons.group.children = createLessons('group.children');
       vm.results.lessons.group.mini = createLessons('group.mini');
       vm.results.lessons.private.lessons = createLessons('private.lessons');
-      vm.results.lessons.disability.lessons = createLessons('disability.lessons');
     }
 
     function deleteLesson(lessonsList, lesson) {
@@ -119,11 +104,6 @@
 
     function deleteLessonPrivate(lesson) {
       let lessonsList = vm.results.lessons.private.lessons;
-      return deleteLesson(lessonsList, lesson);
-    }
-
-    function deleteLessonDisability(lesson) {
-      let lessonsList = vm.results.lessons.disability.lessons;
       return deleteLesson(lessonsList, lesson);
     }
 
@@ -160,9 +140,8 @@
       return duplicateLesson(lessonsList, lesson);
     }
 
-    function duplicateLessonDisability(lesson) {
-      let lessonsList = vm.results.lessons.disability.lessons;
-      return duplicateLesson(lessonsList, lesson);
+    function addDisabilityLessons(results) {
+      return vm.results.lessons.disability.push(results);
     }
   }
 })();

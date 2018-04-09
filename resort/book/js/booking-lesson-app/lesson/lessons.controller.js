@@ -115,23 +115,7 @@
 
       // Filters the empty lessons
       for (let activityLessons of activityLessonsList) {
-        let lessons = filterEmptyLessons(activityLessons.lessons);
-
-        // Filters the lesson sections that have no lessons (because filtered above)
-        const types = _.keys(lessons.group);
-        for (const type of types) {
-          if (_.isEmpty(lessons.group[type]))
-            delete lessons.group[type];
-        }
-
-        if (_.isEmpty(lessons.group))
-          delete lessons.group;
-
-        if (_.isEmpty(lessons.private.lessons))
-          delete lessons.private;
-
-        if (_.isEmpty(lessons.disability.lessons))
-          delete lessons.disability;
+        filterEmptyLessons(activityLessons.lessons);
       }
 
       results.activityLessons = activityLessonsList.filter((al) => {
@@ -146,7 +130,13 @@
       lessons.group.children = filterNonParticipantLessons(lessons.group.children);
       lessons.group.mini = filterNonParticipantLessons(lessons.group.mini);
       lessons.private.lessons = filterNonParticipantLessons(lessons.private.lessons);
-      lessons.disability.lessons = filterNonParticipantLessons(lessons.disability.lessons);
+
+      for (let disabilityLessons of lessons.disability) {
+        disabilityLessons.lessons = filterNonParticipantLessons(disabilityLessons.lessons);
+      }
+      lessons.disability = lessons.disability.filter((dl) => {
+        return !_.isEmpty(dl.lessons);
+      });
 
       return lessons;
     }

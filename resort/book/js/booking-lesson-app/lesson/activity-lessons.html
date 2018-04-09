@@ -120,54 +120,11 @@
   <div id="[{ $ctrl.activity }]-private-disabled-lessons" class="lessons-booker-inner"
        ng-if="$ctrl.participants.disabled.length">
     <h3>Private (disabled) Lessons</h3>
-    <div class="alert alert-warning">
-      A maximum of up to 4 people can join a lesson. Everyone must be at the same level of ability.
-    </div>
-    <form action="" class="form-horizontal">
-      <div class="form-group specific-instructor">
-        <label class="col-sm-3">
-          Specific instructor in mind?
-        </label>
-        <div class="col-sm-9">
-          <select ng-model="$ctrl.results.lessons.disability.instructor.required"
-                  ng-options="o.value as o.name for o in $ctrl.settings.YES_NO_OPTIONS">
-          </select>
-        </div>
-      </div>
-      <div class="form-group instructor-name-description"
-           ng-if="$ctrl.results.lessons.disability.instructor.required">
-        <label class="col-sm-3">
-          Name or description of the instructor
-        </label>
-        <div class="col-sm-9">
-          <textarea class="form-control" rows="4"
-                    ng-model="$ctrl.results.lessons.disability.instructor.details"></textarea>
-        </div>
-      </div>
-      <div class="form-group specific-requirements">
-        <label class="col-sm-3">
-          Any special requests?
-        </label>
-        <div class="col-sm-9">
-          <textarea class="form-control" rows="5"
-                    placeholder="Any specific requirements you want your instructor to know? What do you want to get out of the lesson? Max. 150 characters."
-                    ng-model="$ctrl.results.lessons.disability.requests"></textarea>
-        </div>
-      </div>
-    </form>
-
-    <div class="lessons-list">
-      {% include components/lessons_list_headers.html %}
-
-      <lesson-item ng-repeat="lesson in $ctrl.results.lessons.disability.lessons | orderBy: 'date'"
-                   class="lesson-item-component"
-                   lesson="lesson"
-                   type="'disability'"
-                   participants="$ctrl.participants.disabled"
-                   duplicate-lesson="$ctrl.duplicateLessonDisability"
-                   delete-lesson="$ctrl.deleteLessonDisability">
-      </lesson-item>
-    </div>
+    <disability-lessons
+        ng-repeat="participant in $ctrl.participants.disabled"
+        participant="participant"
+        dates="$ctrl.dates"
+        add-to-activity-lessons="$ctrl.addDisabilityLessons"></disability-lessons>
   </div>
 
 </div>
