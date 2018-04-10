@@ -11,7 +11,7 @@
       </select>
     </div>
   </div>
-  <div class="col-sm-1 lesson-item-duration" ng-if="$ctrl.isLessonPrivate()">
+  <div class="col-sm-1 lesson-item-duration" ng-if="$ctrl.isLessonPrivateOrDisability()">
     <div class="selector">
       <select name="duration"
               ng-model="$ctrl.lesson.duration"
