@@ -13,7 +13,6 @@
   function Lesson(uuid, settings) {
 
     return {
-      new: createNew,
       newFromDates: createNewFromDates,
       copy: copy
     };
@@ -33,7 +32,7 @@
         date,
         duration,
         [],
-        settings.TIME_OPTIONS[isGroup(type) ? 1 : 0]
+        settings.TIME_OPTIONS[1]
       );
     }
 
@@ -45,10 +44,6 @@
       }
 
       return lessons;
-    }
-
-    function isGroup(type) {
-      return type.indexOf('group') > -1;
     }
 
     function copy(lesson) {
