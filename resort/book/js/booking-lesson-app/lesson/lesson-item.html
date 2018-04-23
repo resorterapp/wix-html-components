@@ -3,12 +3,19 @@
   <div class="col-sm-2 lesson-item-date">
     <span>[{ $ctrl.lesson.date | date: 'MMM d, yyyy' }]</span>
   </div>
-  <div class="col-sm-2 lesson-item-time">
+  <div class="col-sm-1 lesson-item-time">
     <div class="selector">
       <select name="time"
               ng-model="$ctrl.lesson.time"
               ng-options="o for o in $ctrl.getTimeOptions()">
       </select>
+    </div>
+  </div>
+  <div class="col-sm-2 lesson-item-activity">
+    <div class="selector">
+      <select name="activity" title="activity"
+              ng-model="$ctrl.lesson.activity"
+              ng-options="o for o in $ctrl.availableActivities"></select>
     </div>
   </div>
   <div class="col-sm-1 lesson-item-duration" ng-if="$ctrl.isLessonPrivateOrDisability()">
@@ -34,9 +41,7 @@
       </label>
     </div>
   </div>
-  <div class="col-sm-2 lesson-item-add">
-    <a class="btn-link btn-add-lesson" ng-click="$ctrl.onAddLesson()">Add Lesson</a>
-    &nbsp;|&nbsp;
+  <div class="col-sm-1 lesson-item-add">
     <a class="btn-link btn-delete-lesson" ng-click="$ctrl.onDelete()">
       <i class="far fa-trash-alt"></i>
     </a>

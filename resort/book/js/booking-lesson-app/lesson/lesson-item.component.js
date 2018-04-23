@@ -11,6 +11,7 @@
         lesson: '<',
         type: '<',
         participants: '<',
+        activities: '<',
 
         // functions
         duplicateLesson: '<',
@@ -21,6 +22,10 @@
   LessonItemController.$inject = ['settings'];
 
   function LessonItemController(settings) {
+    const CHILD_ADVICE = 'It is strongly advised for any child aged 5 and under to do ' +
+            'a separate lesson, either as a group or a private lesson';
+    const MAX_PEOPLE_ADVICE = 'Up to 4 people can join a lesson';
+
     let vm = this;
 
     // Initialises
@@ -30,6 +35,9 @@
 
     function onInit() {
       vm.settings = settings;
+
+      vm.availableActivities = buildActivitiesList(vm.participants);
+      vm.lesson.activity = vm.availableActivities[1];
 
       // Binds functions
       vm.isLessonPrivateOrDisability = isLessonPrivateOrDisability;
@@ -115,6 +123,10 @@
       }
     }
 
+    function buildActivitiesList() {
+      return vm.activities;
+    }
+
     function disableParticipant(pc) {
       // If this is mini, checks if others are picked
       // LN Don't try to simplify these logic blocks
@@ -141,19 +153,17 @@
     function getParticipantPopoverMsg(pc) {
       if (pc.participant.age <= 5) {
         if (vm.innerCounts.pickedOthers > 0)
-          return 'It is strongly advised for any child aged 5 and under to do ' +
-            'a separate lesson, either as a group or a private lesson';
+          return CHILD_ADVICE;
 
         if (vm.innerCounts.pickedMinis >= 4)
-          return 'Up to 4 people can join a lesson.';
+          return MAX_PEOPLE_ADVICE;
       }
 
       if (vm.innerCounts.pickedMinis > 0)
-        return 'It is strongly advised for any child aged 5 and under to do ' +
-          'a separate lesson, either as a group or a private lesson';
+        return CHILD_ADVICE;
 
       if (vm.innerCounts.pickedOthers >= 4)
-        return 'Up to 4 people can join a lesson.';
+        return MAX_PEOPLE_ADVICE;
 
       return '';
     }

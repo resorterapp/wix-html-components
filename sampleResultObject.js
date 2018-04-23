@@ -1,6 +1,6 @@
 let sample = {
   _originURL: 'something',
-  activityLessons: [
+  lessons: [
     {
       activity: 'Ski',
       lessons: {

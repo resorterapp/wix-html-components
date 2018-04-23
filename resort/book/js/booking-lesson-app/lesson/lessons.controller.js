@@ -25,16 +25,14 @@
     vm.data = {};
     vm.dates = [];
     vm.settings = settings;
-    vm.activitiesList = settings.ACTIVITY_TYPES;
-    vm.currentActivity = settings.ACTIVITY_TYPES[0];
     vm.results = {
       _originURL: null,
-      activityLessons: []
+      lessons: {}
     };
 
     // Binds functions
     vm.isDataAvailable = isDataAvailable;
-    vm.addActivityLessons = addActivityLessons;
+    vm.addLessons = addLessons;
     vm.getResults = getResults;
 
     function loadData(_) {
@@ -46,8 +44,8 @@
       vm.results._originURL = Wix.msgOrigin;
       vm.data = Wix.getData();
       vm.dates = buildDatesRange(vm.data.date.checkIn, vm.data.date.checkOut);
-      vm.activitiesList = buildActivitiesList(vm.data.participants);
       vm.participants = buildParticipantsList(vm.data.participants);
+      vm.activities = vm.data.activities;
     }
 
     function isDataAvailable() {
@@ -79,20 +77,6 @@
       };
     }
 
-    function buildActivitiesList(participants) {
-      let activities = [];
-
-      for (let i = 0; i < participants.length; i++) {
-        let participant = participants[i];
-
-        if (participant.skiLevel && participant.skiLevel !== 'None') activities.push('Ski');
-        if (participant.snowboardLevel && participant.snowboardLevel !== 'None') activities.push('Snowboard');
-        if (participant.telemarkLevel && participant.telemarkLevel !== 'None') activities.push('Telemark');
-      }
-
-      return _.uniq(activities);
-    }
-
     function buildDatesRange(fromDate, toDate) {
       let range = moment.range(fromDate, toDate);
       let dates = Array.from(range.by('day'));
@@ -106,21 +90,10 @@
      * Filter the results:
      * - Remove lessons with no participants
      * Then return the filtered one
-     *
-     * @returns {{msg: string, results: {_originURL: null, activityLessons: Array}}}
      */
     function getResults() {
       let results = angular.copy(vm.results);
-      let activityLessonsList = results.activityLessons;
-
-      // Filters the empty lessons
-      for (let activityLessons of activityLessonsList) {
-        filterEmptyLessons(activityLessons.lessons);
-      }
-
-      results.activityLessons = activityLessonsList.filter((al) => {
-        return !_.isEmpty(al.lessons);
-      });
+      filterEmptyLessons(results.lessons);
 
       return results;
     }
@@ -147,8 +120,8 @@
       });
     }
 
-    function addActivityLessons(activityLessons) {
-      vm.results.activityLessons.push(activityLessons);
+    function addLessons(lessons) {
+      vm.results.lessons = lessons;
     }
 
     function windowOnMessage(event) {

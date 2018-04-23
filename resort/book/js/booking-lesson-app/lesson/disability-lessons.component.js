@@ -11,6 +11,7 @@
       controller: DisabilityLessons,
       bindings: {
         // Variables
+        activities: '<',
         participant: '<',
         dates: '<',
 

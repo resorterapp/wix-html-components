@@ -42,6 +42,7 @@
 
     <lesson-item ng-repeat="lesson in $ctrl.results.lessons | orderBy: 'date'"
                  class="lesson-item-component"
+                 activities="$ctrl.activities"
                  lesson="lesson"
                  type="'disability'"
                  participants="$ctrl.participants"

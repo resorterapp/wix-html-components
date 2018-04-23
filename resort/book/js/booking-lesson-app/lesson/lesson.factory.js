@@ -17,30 +17,32 @@
       copy: copy
     };
 
-    function build(date, duration, participants, time) {
+    function build(date, duration, participants, time, activity) {
       return {
         uuid: uuid.v4(),
         date: date,
         duration: duration,
         participants: participants,
-        time: time
+        time: time,
+        activity: activity
       };
     }
 
-    function createNew(type, date, duration) {
+    function createNew(type, date, duration, activity) {
       return build(
         date,
         duration,
         [],
-        settings.TIME_OPTIONS[1]
+        settings.TIME_OPTIONS[1],
+        activity
       );
     }
 
-    function createNewFromDates(type, dates, duration) {
+    function createNewFromDates(type, dates, duration, activity) {
       let lessons = [];
 
       for (let date of dates) {
-        lessons.push(createNew(type, date, duration));
+        lessons.push(createNew(type, date, duration, activity));
       }
 
       return lessons;

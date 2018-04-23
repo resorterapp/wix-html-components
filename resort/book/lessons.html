@@ -12,28 +12,17 @@
 
   <body ng-app="BookingLessonApp">
     <div ng-controller="LessonsController as $ctrl">
-      <!-- Book lessons header -->
-
-      <!-- Choose activity -->
-      <div class="lesson-activity-dropdown inline-block">
-        <span>Choose activity:</span>
-        <div class="selector inline-block">
-          <select name="lessonActivity" id="lessonActivity"
-                  ng-options="option for option in $ctrl.activitiesList"
-                  ng-model="$ctrl.currentActivity"></select>
-        </div>
-      </div>
-
       <!-- Book Lesson by Activity -->
       <div class="lessons-booker-container" ng-if="$ctrl.isDataAvailable()">
         <activity-lessons
-            ng-repeat="activity in $ctrl.activitiesList"
-            ng-show="$ctrl.currentActivity == activity"
-            activity="activity"
+            activities="$ctrl.activities"
             dates="$ctrl.dates"
             participants="$ctrl.participants"
-            add-activity-lessons="$ctrl.addActivityLessons"></activity-lessons>
+            add-lessons="$ctrl.addLessons"></activity-lessons>
       </div>
+
+      <a class="btn btn-primary" ng-click="results = $ctrl.getResults()">View Results</a>
+      <results-panel results="results"></results-panel>
     </div>
     <!-- 3rd-party JS libraries/frameworks -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>

@@ -12,6 +12,14 @@
         checkIn: new Date('2018-07-01'),
         checkOut: new Date('2018-07-04')
       },
+      activities: [
+        'Ski',
+        'Snowboarding',
+        'Telemark',
+        'Snowmobiling',
+        'Snowbiking',
+        'Snowshoeing',
+      ],
       participants: [
         {
           _id: uuid.v4(),
