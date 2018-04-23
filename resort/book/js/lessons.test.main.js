@@ -14,7 +14,7 @@
       },
       activities: [
         'Ski',
-        'Snowboarding',
+        'Snowboard',
         'Telemark',
         'Snowmobiling',
         'Snowbiking',
@@ -23,7 +23,7 @@
       participants: [
         {
           _id: uuid.v4(),
-          title: 'John',
+          firstName: 'John',
           age: 40,
           skiLevel: 'Black (Light)',
           snowboardLevel: 'None',
@@ -33,7 +33,7 @@
         },
         {
           _id: uuid.v4(),
-          title: 'William',
+          firstName: 'William',
           age: 40,
           skiLevel: 'Black (Light)',
           snowboardLevel: 'None',
@@ -43,7 +43,7 @@
         },
         {
           _id: uuid.v4(),
-          title: 'Johnson',
+          firstName: 'Johnson',
           age: 40,
           skiLevel: 'Black (Light)',
           snowboardLevel: 'None',
@@ -53,7 +53,7 @@
         },
         {
           _id: uuid.v4(),
-          title: 'Smith',
+          firstName: 'Smith',
           age: 40,
           skiLevel: 'Black (Light)',
           snowboardLevel: 'None',
@@ -63,7 +63,7 @@
         },
         {
           _id: uuid.v4(),
-          title: 'Jack',
+          firstName: 'Jack',
           age: 40,
           skiLevel: 'Black (Light)',
           snowboardLevel: 'None',
@@ -73,7 +73,7 @@
         },
         {
           _id: uuid.v4(),
-          title: 'Jane',
+          firstName: 'Jane',
           age: 36,
           skiLevel: 'Blue (Light)',
           snowboardLevel: 'None',
@@ -83,7 +83,7 @@
         },
         {
           _id: uuid.v4(),
-          title: 'Will',
+          firstName: 'Will',
           age: 7,
           skiLevel: 'None',
           snowboardLevel: 'Green (Light)',
@@ -93,7 +93,7 @@
         },
         {
           _id: uuid.v4(),
-          title: 'Ray',
+          firstName: 'Ray',
           age: 7,
           skiLevel: 'None',
           snowboardLevel: 'Green (Light)',
@@ -103,7 +103,7 @@
         },
         {
           _id: uuid.v4(),
-          title: 'Rick',
+          firstName: 'Rick',
           age: 7,
           skiLevel: 'None',
           snowboardLevel: 'Green (Light)',
@@ -113,7 +113,7 @@
         },
         {
           _id: uuid.v4(),
-          title: 'Lam',
+          firstName: 'Lam',
           age: 7,
           skiLevel: 'None',
           snowboardLevel: 'Green (Light)',
@@ -123,7 +123,7 @@
         },
         {
           _id: uuid.v4(),
-          title: 'Eliza',
+          firstName: 'Eliza',
           age: 4,
           skiLevel: 'Yellow',
           snowboardLevel: 'None',

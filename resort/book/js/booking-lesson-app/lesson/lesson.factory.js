@@ -21,10 +21,10 @@
       return {
         uuid: uuid.v4(),
         date: date,
-        duration: duration,
-        participants: participants,
         time: time,
-        activity: activity
+        duration: duration,
+        activity: activity,
+        participants: participants,
       };
     }
 

@@ -33,7 +33,7 @@
 
       vm.participants = [vm.participant];
       vm.results = {
-        person: vm.participant.title,
+        person: vm.participant.firstName,
         instructor: {
           required: false,
           details: null
