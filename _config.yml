@@ -28,7 +28,7 @@ github_username:  jekyll
 markdown: kramdown
 theme: minima
 
-post_message_origin: https://wishingwellprojects.wixsite.com
+post_message_origin: https://www.beta.resorterapp.com
 
 sass:
   style: compressed
