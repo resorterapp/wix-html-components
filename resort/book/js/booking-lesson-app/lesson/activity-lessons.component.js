@@ -56,7 +56,7 @@
       vm.deleteLessonGroupChildren = deleteLessonGroupChildren;
       vm.deleteLessonGroupMini = deleteLessonGroupMini;
       vm.deleteLessonPrivate = deleteLessonPrivate;
-      vm.duplicateLessonGroupAdults = duplicateLessonGroupAdults;
+      vm.addLessonGroupAdults = addLessonGroupAdults;
       vm.duplicateLessonGroupChildren = duplicateLessonGroupChildren;
       vm.duplicateLessonGroupMini = duplicateLessonGroupMini;
       vm.duplicateLessonPrivate = duplicateLessonPrivate;
@@ -108,18 +108,12 @@
       AnchorSmoothScroll.scrollTo(elementID);
     }
 
-    function duplicateLesson(lessonsList, lesson) {
-      let copiedLesson = Lesson.copy(lesson);
-
-      // Empty the participants list
-      copiedLesson.participants = [];
-
-      lessonsList.push(copiedLesson);
+    function addLessonToDate(lessonsList, date, type) {
+      lessonsList.push(Lesson.createNew(type, date, 4, null));
     }
 
-    function duplicateLessonGroupAdults(lesson) {
-      let lessonsList = vm.results.group.adults;
-      return duplicateLesson(lessonsList, lesson);
+    function addLessonGroupAdults(date) {
+      return addLessonToDate(vm.results.group.adults, date, 'group.adults');
     }
 
     function duplicateLessonGroupChildren(lesson) {

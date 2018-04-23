@@ -13,6 +13,7 @@
   function Lesson(uuid, settings) {
 
     return {
+      createNew: createNew,
       newFromDates: createNewFromDates,
       copy: copy
     };

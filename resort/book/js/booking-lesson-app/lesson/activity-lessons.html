@@ -13,7 +13,13 @@
       <strong>PM</strong> lessons start at <strong>1:30pm</strong> and finish at <strong>2:50pm</strong>.
     </div>
     <div class="group-lessons-adult lessons-list" ng-if="$ctrl.participants.adults.length">
-      <h4>Adult (18+ yrs)</h4>
+      <div class="row">
+        <h4 class="col-sm-3">Adult (18+ yrs)</h4>
+        <add-lesson-button
+            class="col-sm-2 col-sm-offset-7"
+            dates="$ctrl.dates"
+            add-lesson-to-date="$ctrl.addLessonGroupAdults"></add-lesson-button>
+      </div>
 
       {% include components/group_lessons_list_headers.html %}
 

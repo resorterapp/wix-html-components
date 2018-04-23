@@ -1,0 +1,9 @@
+<div class="add-lesson-container text-right">
+  <h4><a class="btn-link" ng-click="$ctrl.toggleDatePicker = !$ctrl.toggleDatePicker">Add Lesson</a></h4>
+  <input type="text" class="date-picker"
+         ng-model="$ctrl.pickedDate"
+         ng-change="$ctrl.pickedDateChange($ctrl.pickedDate)"
+         uib-datepicker-popup is-open="$ctrl.toggleDatePicker"
+         datepicker-options="$ctrl.datePickerOptions"
+         popup-placement="left-top">
+</div>
