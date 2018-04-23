@@ -19,9 +19,9 @@
       }
     });
 
-  LessonItemController.$inject = ['settings'];
+  LessonItemController.$inject = ['_', 'settings'];
 
-  function LessonItemController(settings) {
+  function LessonItemController(_, settings) {
     const CHILD_ADVICE = 'It is strongly advised for any child aged 5 and under to do ' +
             'a separate lesson, either as a group or a private lesson';
     const MAX_PEOPLE_ADVICE = 'Up to 4 people can join a lesson';
@@ -37,7 +37,8 @@
       vm.settings = settings;
 
       vm.availableActivities = buildActivitiesList(vm.participants);
-      vm.lesson.activity = vm.availableActivities[1];
+      // Gets the first available activity
+      vm.lesson.activity = vm.availableActivities[0];
 
       // Binds functions
       vm.isLessonPrivateOrDisability = isLessonPrivateOrDisability;
@@ -124,7 +125,11 @@
     }
 
     function buildActivitiesList() {
-      return vm.activities;
+      let baseActivities = isLessonMatchTypes(['private'])
+        ? settings.ACTIVITY_TYPES.private
+        : settings.ACTIVITY_TYPES.default;
+
+      return _.intersection(vm.activities, baseActivities);
     }
 
     function disableParticipant(pc) {
