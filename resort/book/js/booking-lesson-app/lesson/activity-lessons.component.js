@@ -57,9 +57,9 @@
       vm.deleteLessonGroupMini = deleteLessonGroupMini;
       vm.deleteLessonPrivate = deleteLessonPrivate;
       vm.addLessonGroupAdults = addLessonGroupAdults;
-      vm.duplicateLessonGroupChildren = duplicateLessonGroupChildren;
-      vm.duplicateLessonGroupMini = duplicateLessonGroupMini;
-      vm.duplicateLessonPrivate = duplicateLessonPrivate;
+      vm.addLessonGroupChildren = addLessonGroupChildren;
+      vm.addLessonGroupMini = addLessonGroupMini;
+      vm.addLessonPrivate = addLessonPrivate;
       vm.addDisabilityLessons = addDisabilityLessons;
     }
 
@@ -116,19 +116,16 @@
       return addLessonToDate(vm.results.group.adults, date, 'group.adults');
     }
 
-    function duplicateLessonGroupChildren(lesson) {
-      let lessonsList = vm.results.group.children;
-      return duplicateLesson(lessonsList, lesson);
+    function addLessonGroupChildren(date) {
+      return addLessonToDate(vm.results.group.children, date, 'group.children');
     }
 
-    function duplicateLessonGroupMini(lesson) {
-      let lessonsList = vm.results.group.mini;
-      return duplicateLesson(lessonsList, lesson);
+    function addLessonGroupMini(date) {
+      return addLessonToDate(vm.results.group.mini, date, 'group.mini');
     }
 
-    function duplicateLessonPrivate(lesson) {
-      let lessonsList = vm.results.private.lessons;
-      return duplicateLesson(lessonsList, lesson);
+    function addLessonPrivate(date) {
+      return addLessonToDate(vm.results.private.lessons, date, 'private.lessons');
     }
 
     function addDisabilityLessons(results) {

@@ -29,13 +29,18 @@
                    lesson="lesson"
                    type="'group.adults'"
                    participants="$ctrl.participants.adults"
-                   duplicate-lesson="$ctrl.duplicateLessonGroupAdults"
                    delete-lesson="$ctrl.deleteLessonGroupAdults">
       </lesson-item>
     </div>
 
     <div class="group-lessons-children lessons-list" ng-if="$ctrl.participants.children.length">
-      <h4>Child (6–12 yrs) / Teen (13–17 years)</h4>
+      <div class="row">
+        <h4 class="col-sm-3">Child (6–12 yrs) / Teen (13–17 years)</h4>
+        <add-lesson-button
+            class="col-sm-2 col-sm-offset-7"
+            dates="$ctrl.dates"
+            add-lesson-to-date="$ctrl.addLessonGroupChildren"></add-lesson-button>
+      </div>
 
       {% include components/group_lessons_list_headers.html %}
 
@@ -45,13 +50,18 @@
                    lesson="lesson"
                    type="'group.children'"
                    participants="$ctrl.participants.children"
-                   duplicate-lesson="$ctrl.duplicateLessonGroupChildren"
                    delete-lesson="$ctrl.deleteLessonGroupChildren">
       </lesson-item>
     </div>
 
     <div class="group-lessons-mini lessons-list" ng-if="$ctrl.participants.mini.length">
-      <h4>Mini (3–5 yrs)</h4>
+      <div class="row">
+        <h4 class="col-sm-3">Mini (3–5 yrs)</h4>
+        <add-lesson-button
+            class="col-sm-2 col-sm-offset-7"
+            dates="$ctrl.dates"
+            add-lesson-to-date="$ctrl.addLessonGroupMini"></add-lesson-button>
+      </div>
 
       {% include components/group_lessons_list_headers.html %}
 
@@ -61,7 +71,6 @@
                    lesson="lesson"
                    type="'group.mini'"
                    participants="$ctrl.participants.mini"
-                   duplicate-lesson="$ctrl.duplicateLessonGroupMini"
                    delete-lesson="$ctrl.deleteLessonGroupMini">
       </lesson-item>
     </div>
@@ -121,7 +130,6 @@
                    lesson="lesson"
                    type="'private'"
                    participants="$ctrl.participants.normal"
-                   duplicate-lesson="$ctrl.duplicateLessonPrivate"
                    delete-lesson="$ctrl.deleteLessonPrivate">
       </lesson-item>
     </div>
