@@ -140,3 +140,14 @@ a {
   padding-bottom: 10px;
   border-bottom: 1px solid #ddd;
 }
+
+.add-lesson-container {
+
+  .btn-add-lesson {
+    padding: 0 4px;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

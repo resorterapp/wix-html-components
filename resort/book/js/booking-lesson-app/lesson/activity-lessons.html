@@ -14,14 +14,19 @@
     </div>
     <div class="group-lessons-adult lessons-list" ng-if="$ctrl.participants.adults.length">
       <div class="row">
-        <h4 class="col-sm-3">Adult (18+ yrs)</h4>
+        <h4 class="col-sm-12">Adult (18+ yrs)</h4>
+      </div>
+
+      <div class="lessons-list-headers row">
+        <div class="col-sm-2">Date</div>
+        <div class="col-sm-1">AM/PM</div>
+        <div class="col-sm-2">Activity</div>
+        <div class="col-sm-5">Participants</div>
         <add-lesson-button
-            class="col-sm-2 col-sm-offset-7"
+            class="col-sm-2"
             dates="$ctrl.dates"
             add-lesson-to-date="$ctrl.addLessonGroupAdults"></add-lesson-button>
       </div>
-
-      {% include components/group_lessons_list_headers.html %}
 
       <lesson-item ng-repeat="lesson in $ctrl.results.group.adults | orderBy: 'date'"
                    activities="$ctrl.activities"
@@ -35,14 +40,19 @@
 
     <div class="group-lessons-children lessons-list" ng-if="$ctrl.participants.children.length">
       <div class="row">
-        <h4 class="col-sm-3">Child (6–12 yrs) / Teen (13–17 years)</h4>
+        <h4 class="col-sm-12">Child (6–12 yrs) / Teen (13–17 years)</h4>
+      </div>
+
+      <div class="lessons-list-headers row">
+        <div class="col-sm-2">Date</div>
+        <div class="col-sm-1">AM/PM</div>
+        <div class="col-sm-2">Activity</div>
+        <div class="col-sm-5">Participants</div>
         <add-lesson-button
-            class="col-sm-2 col-sm-offset-7"
+            class="col-sm-2"
             dates="$ctrl.dates"
             add-lesson-to-date="$ctrl.addLessonGroupChildren"></add-lesson-button>
       </div>
-
-      {% include components/group_lessons_list_headers.html %}
 
       <lesson-item ng-repeat="lesson in $ctrl.results.group.children | orderBy: 'date'"
                    class="lesson-item-component"
@@ -56,14 +66,19 @@
 
     <div class="group-lessons-mini lessons-list" ng-if="$ctrl.participants.mini.length">
       <div class="row">
-        <h4 class="col-sm-3">Mini (3–5 yrs)</h4>
+        <h4 class="col-sm-12">Mini (3–5 yrs)</h4>
+      </div>
+
+      <div class="lessons-list-headers row">
+        <div class="col-sm-2">Date</div>
+        <div class="col-sm-1">AM/PM</div>
+        <div class="col-sm-2">Activity</div>
+        <div class="col-sm-5">Participants</div>
         <add-lesson-button
-            class="col-sm-2 col-sm-offset-7"
+            class="col-sm-2"
             dates="$ctrl.dates"
             add-lesson-to-date="$ctrl.addLessonGroupMini"></add-lesson-button>
       </div>
-
-      {% include components/group_lessons_list_headers.html %}
 
       <lesson-item ng-repeat="lesson in $ctrl.results.group.mini | orderBy: 'date'"
                    class="lesson-item-component"
@@ -122,7 +137,17 @@
     </form>
 
     <div class="lessons-list">
-      {% include components/lessons_list_headers.html %}
+      <div class="lessons-list-headers row">
+        <div class="col-sm-2">Date</div>
+        <div class="col-sm-1">AM/PM</div>
+        <div class="col-sm-2">Activity</div>
+        <div class="col-sm-1">Duration</div>
+        <div class="col-sm-4">Participants</div>
+        <add-lesson-button
+            class="col-sm-2"
+            dates="$ctrl.dates"
+            add-lesson-to-date="$ctrl.addLessonPrivate"></add-lesson-button>
+      </div>
 
       <lesson-item ng-repeat="lesson in $ctrl.results.private.lessons | orderBy: 'date'"
                    class="lesson-item-component"
