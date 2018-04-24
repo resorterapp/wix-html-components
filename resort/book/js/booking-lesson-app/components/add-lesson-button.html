@@ -1,0 +1,11 @@
+<div class="add-lesson-container text-right">
+  <a class="btn-add-lesson" ng-click="$ctrl.toggleDatePicker = !$ctrl.toggleDatePicker">Add Lesson</a>
+  <input type="text" class="date-picker"
+         ng-model="$ctrl.pickedDate"
+         ng-model-options="{timezone: 'UTC'}"
+         ng-change="$ctrl.pickedDateChange($ctrl.pickedDate)"
+         uib-datepicker-popup is-open="$ctrl.toggleDatePicker"
+         datepicker-options="$ctrl.datePickerOptions"
+         show-button-bar="false"
+         popup-placement="left-top">
+</div>

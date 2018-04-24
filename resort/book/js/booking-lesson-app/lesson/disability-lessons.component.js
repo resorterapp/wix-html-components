@@ -43,7 +43,7 @@
       };
 
       vm.deleteLesson = deleteLesson;
-      vm.duplicateLesson = duplicateLesson;
+      vm.addLesson = addLesson;
 
       vm.results.lessons = createLessons();
 
@@ -63,13 +63,8 @@
       vm.results.lessons.splice(idx, 1);
     }
 
-    function duplicateLesson(lesson) {
-      let copiedLesson = Lesson.copy(lesson);
-
-      // Empty the participants list
-      copiedLesson.participants = [];
-
-      vm.results.lessons.push(copiedLesson);
+    function addLesson(date) {
+      vm.results.lessons.push(Lesson.createNew(TYPE, date, 4, null));
     }
   }
 })();

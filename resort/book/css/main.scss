@@ -55,6 +55,14 @@ a {
     color: #337ab7;
     margin: 0 10px;
   }
+
+  .add-lesson-container {
+    .date-picker {
+      width: 0;
+      height: 0;
+      border: none;
+    }
+  }
 }
 
 .lessons-list {
@@ -113,6 +121,10 @@ a {
       overflow: hidden;
       text-overflow: ellipsis;
     }
+
+    .btn-delete-lesson {
+      padding: 0 10px;
+    }
   }
 
   .selector select {
@@ -127,4 +139,15 @@ a {
 .personal-disability-lessons-container {
   padding-bottom: 10px;
   border-bottom: 1px solid #ddd;
+}
+
+.add-lesson-container {
+
+  .btn-add-lesson {
+    padding: 0 4px;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }

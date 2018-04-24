@@ -38,7 +38,17 @@
   </form>
 
   <div class="lessons-list">
-    {% include components/lessons_list_headers.html %}
+    <div class="lessons-list-headers row">
+      <div class="col-sm-2">Date</div>
+      <div class="col-sm-1">AM/PM</div>
+      <div class="col-sm-2">Activity</div>
+      <div class="col-sm-1">Duration</div>
+      <div class="col-sm-4">Participants</div>
+      <add-lesson-button
+          class="col-sm-2"
+          dates="$ctrl.dates"
+          add-lesson-to-date="$ctrl.addLesson"></add-lesson-button>
+    </div>
 
     <lesson-item ng-repeat="lesson in $ctrl.results.lessons | orderBy: 'date'"
                  class="lesson-item-component"
@@ -46,7 +56,6 @@
                  lesson="lesson"
                  type="'disability'"
                  participants="$ctrl.participants"
-                 duplicate-lesson="$ctrl.duplicateLesson"
                  delete-lesson="$ctrl.deleteLesson">
     </lesson-item>
   </div>
