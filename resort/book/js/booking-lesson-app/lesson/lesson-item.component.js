@@ -23,7 +23,7 @@
 
   function LessonItemController(_, settings) {
     const CHILD_ADVICE = 'It is strongly advised for any child aged 5 and under to do ' +
-            'a separate lesson, either as a group or a private lesson';
+      'a separate lesson, either as a group or a private lesson';
     const MAX_PEOPLE_ADVICE = 'Up to 4 people can join a lesson';
 
     let vm = this;
