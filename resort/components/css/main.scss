@@ -1,0 +1,80 @@
+---
+---
+
+/* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+@import url('https://fonts.googleapis.com/css?family=Dosis:700');
+
+$yellow: #f0fd4e;
+$green-light: #8cf85a;
+$green-dark: #29af1d;
+$blue-light: #5cc2fc;
+$blue-dark: #1177b8;
+$black-light: #969696;
+$black-dark: #212121;
+
+body {
+  color: #34495e;
+  padding-top: 40px;
+  text-shadow: white 1px 1px 1px;
+}
+
+.clear-fix {
+  zoom: 1;
+
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+.value {
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 1;
+  margin: 0 0 0 20px;
+  text-shadow: white 2px 2px 2px;
+  float: left;
+}
+
+input[type="range"] {
+  display: block;
+  float: left;
+  -webkit-appearance: none;
+  background: $black-light; /* Old browsers */
+  background: -moz-linear-gradient(left, $yellow 5%, $green-light 20%, $green-dark 36%, $blue-light 52%, $blue-dark 67%, $black-light 84%, $black-dark 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, $yellow 5%, $green-light 20%, $green-dark 36%, $blue-light 52%, $blue-dark 67%, $black-light 84%, $black-dark 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, $yellow 5%, $green-light 20%, $green-dark 36%, $blue-light 52%, $blue-dark 67%, $black-light 84%, $black-dark 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$yellow}', endColorstr='#{$black-dark}', GradientType=1); /* IE6-9 */
+  width: 500px;
+  height: 20px;
+  border-radius: 5px;
+  margin: 0 auto;
+  outline: 0;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #777777;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+  }
+
+  &::-webkit-slider-thumb:hover {
+    background-color: white;
+    border: 2px solid #484848;
+  }
+
+  &::-webkit-slider-thumb:active {
+    transform: scale(1.6);
+  }
+}
+
