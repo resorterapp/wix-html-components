@@ -1,58 +1,60 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <title>Lessons Test</title>
-    <!-- 3rd-party JS/CSS libraries/frameworks that need to be loaded in the head -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-    <!-- Custom CSS goes here -->
-    <link rel="stylesheet" href="css/main.css" type="text/css">
-  </head>
+<head>
+  <title>Lessons Test</title>
+  <!-- 3rd-party JS/CSS libraries/frameworks that need to be loaded in the head -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+  <!-- Custom CSS goes here -->
+  <link rel="stylesheet" href="css/main.css" type="text/css">
+</head>
 
-  <body ng-app="BookingLessonApp">
-    <div ng-controller="LessonsController as $ctrl">
-      <!-- Book Lesson by Activity -->
-      <div class="lessons-booker-container" ng-if="$ctrl.isDataAvailable()">
-        <activity-lessons
-            activities="$ctrl.activities"
-            dates="$ctrl.dates"
-            participants="$ctrl.participants"
-            add-lessons="$ctrl.addLessons"></activity-lessons>
-      </div>
-    </div>
-    <!-- 3rd-party JS libraries/frameworks -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/4.1.0/rx.all.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/rx-angular/1.1.3/rx.angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-animate.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-range/3.1.1/moment-range.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/node-uuid/1.4.8/uuid.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>
-    <script src="js/booking-lesson-app/libraries/checklist-model.js"></script>
+<body ng-app="BookingLessonApp">
+<div ng-controller="LessonsController as $ctrl">
+  <!-- Book Lesson by Activity -->
+  <div class="lessons-booker-container" ng-if="$ctrl.isDataAvailable()">
+    <activity-lessons
+        activities="$ctrl.activities"
+        dates="$ctrl.dates"
+        participants="$ctrl.participants"
+        add-lessons="$ctrl.addLessons"></activity-lessons>
+  </div>
+  <a class="btn btn-primary" ng-click="results = $ctrl.getResults()">View Results</a>
+  <results-panel results="results"></results-panel>
+</div>
+<!-- 3rd-party JS libraries/frameworks -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/4.1.0/rx.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rx-angular/1.1.3/rx.angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-animate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-range/3.1.1/moment-range.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/node-uuid/1.4.8/uuid.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>
+<script src="js/booking-lesson-app/libraries/checklist-model.js"></script>
 
-    <!-- Our own JS -->
-    <script type="text/javascript">
-        // Initialise Moment
-        window['moment-range'].extendMoment(moment);
-    </script>
-    <script src="js/booking-lesson-app/app.module.js"></script>
-    <script src="js/booking-lesson-app/app.config.js"></script>
-    <script src="js/booking-lesson-app/app.settings.js"></script>
-    <script src="js/booking-lesson-app/app.constants.js"></script>
-    <script src="js/booking-lesson-app/components/add-lesson-button.component.js"></script>
-    <script src="js/booking-lesson-app/factories/wix.factory.js"></script>
-    <script src="js/booking-lesson-app/factories/anchor-smooth-scroll.factory.js"></script>
-    <script src="js/booking-lesson-app/lesson/lessons.controller.js"></script>
-    <script src="js/booking-lesson-app/lesson/lesson.factory.js"></script>
-    <script src="js/booking-lesson-app/lesson/lessons-list.component.js"></script>
-    <script src="js/booking-lesson-app/lesson/lesson-item.component.js"></script>
-    <script src="js/booking-lesson-app/lesson/disability-lessons.component.js"></script>
-    <script src="js/booking-lesson-app/lesson/activity-lessons.component.js"></script>
-    <script src="js/booking-lesson-app/components/results-panel.component.js"></script>
-    <script src="js/ending-logics.js"></script>
-  </body>
+<!-- Our own JS -->
+<script type="text/javascript">
+  // Initialise Moment
+  window['moment-range'].extendMoment(moment);
+</script>
+<script src="js/booking-lesson-app/app.module.js"></script>
+<script src="js/booking-lesson-app/app.config.js"></script>
+<script src="js/booking-lesson-app/app.settings.js"></script>
+<script src="js/booking-lesson-app/app.constants.js"></script>
+<script src="js/booking-lesson-app/components/add-lesson-button.component.js"></script>
+<script src="js/booking-lesson-app/factories/wix.factory.js"></script>
+<script src="js/booking-lesson-app/factories/anchor-smooth-scroll.factory.js"></script>
+<script src="js/booking-lesson-app/lesson/lessons.controller.js"></script>
+<script src="js/booking-lesson-app/lesson/lesson.factory.js"></script>
+<script src="js/booking-lesson-app/lesson/lessons-list.component.js"></script>
+<script src="js/booking-lesson-app/lesson/lesson-item.component.js"></script>
+<script src="js/booking-lesson-app/lesson/disability-lessons.component.js"></script>
+<script src="js/booking-lesson-app/lesson/activity-lessons.component.js"></script>
+<script src="js/booking-lesson-app/components/results-panel.component.js"></script>
+<script src="js/ending-logics.js"></script>
+</body>
 
 </html>
