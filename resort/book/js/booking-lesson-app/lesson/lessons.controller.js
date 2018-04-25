@@ -130,9 +130,10 @@
 
       let message = event.data.msg;
 
-      if (message === 'SEND_TRIP_DATA') return Wix.setData(event.data.msgData);
+      if (message === 'SEND_TRIP_DATA')
+        return Wix.setData(event.data.msgData);
 
-      if (message === 'GET_LESSONS_DATA')
+      if (message === 'GET_LESSONS_DATA') {
         return $window.parent.postMessage(
           {
             msg: 'LESSONS_DATA',
@@ -140,6 +141,7 @@
           },
           '*'
         );
+      }
     }
   }
 })();
