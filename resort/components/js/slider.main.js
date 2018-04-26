@@ -32,6 +32,8 @@
   }
 
   function receiveMsg(event) {
-    rangeSlider.value = parseInt(event.data);
+    let value = parseInt(event.data);
+    rangeSlider.value = value;
+    displayValue.innerHTML = value;
   }
 })();
