@@ -4,15 +4,6 @@
 (function () {
   'use strict';
 
-  const VALUES = [
-    'Yellow',
-    'Green (Light)',
-    'Green (Dark)',
-    'Blue (Light)',
-    'Blue (Dark)',
-    'Black (Light)',
-    'Black (Dark)',
-  ];
   let rangeSlider;
   let displayValue;
 
@@ -28,6 +19,8 @@
     let params = (new URL(document.location)).searchParams;
     rangeSlider.max = params.get('max');
     rangeSlider.min = params.get('min');
+
+    window.onmessage = receiveMsg;
   }
 
   function rangeValue () {
@@ -35,11 +28,10 @@
   }
 
   function buttonClick() {
-    window.parent.postMessage(VALUES[parseInt(rangeSlider.value) - 1], '*');
+    window.parent.postMessage(parseInt(rangeSlider.value), '*');
   }
 
   function receiveMsg(event) {
-    // LN Continue working on this
-    rangeSlider.value = parseInt(event.data) + 1;
+    rangeSlider.value = parseInt(event.data);
   }
 })();
