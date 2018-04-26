@@ -21,6 +21,10 @@
     rangeSlider.min = params.get('min');
 
     window.onmessage = receiveMsg;
+    window.onload = () => {
+      // Tells Wix that I'm loaded
+      postMsg('LOADED!');
+    };
   }
 
   function rangeValue () {
@@ -28,7 +32,11 @@
   }
 
   function buttonClick() {
-    window.parent.postMessage(parseInt(rangeSlider.value), '*');
+    postMsg(parseInt(rangeSlider.value));
+  }
+
+  function postMsg(msg) {
+    window.parent.postMessage(msg, '*');
   }
 
   function receiveMsg(event) {
