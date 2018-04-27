@@ -12,7 +12,7 @@
       <br>
       <strong>PM</strong> lessons start at <strong>1:30pm</strong>* and finish at <strong>2:50pm</strong>*.
       <br>
-      <small><i>* Subject to change. Confirm with resort when they make contact.</i></small>
+      <small><i>* Activities & time are subject to availability. Confirm with resort when they make contact.</i></small>
     </div>
     <div class="group-lessons-adult lessons-list" ng-if="$ctrl.participants.adults.length">
       <div class="row">
@@ -103,7 +103,7 @@
     <div class="alert alert-warning">
       A maximum of up to 4 people can join a lesson. Everyone must be the same ability level.
       <br>
-      <small><i>* Subject to change. Confirm with resort when they make contact.</i></small>
+      <small><i>* Activities & time are subject to availability. Confirm with resort when they make contact.</i></small>
     </div>
 
     <form action="" class="form-horizontal">
@@ -167,6 +167,11 @@
   <div id="[{ $ctrl.activity }]-private-disabled-lessons" class="lessons-booker-inner"
        ng-if="$ctrl.participants.disabled.length">
     <h3>Private (disabled) Lessons</h3>
+    <div class="alert alert-warning">
+      These private lessons are tailored to one disabled person only.
+      <br>
+      <small><i>* Activities & time are subject to availability. Confirm with resort when they make contact.</i></small>
+    </div>
     <disability-lessons
         ng-repeat="participant in $ctrl.participants.disabled"
         activities="$ctrl.activities"
