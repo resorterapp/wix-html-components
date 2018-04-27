@@ -12,6 +12,7 @@
 
 <body ng-app="BookingLessonApp">
 <div ng-controller="LessonsController as $ctrl">
+  <h2 class="lead">Choose lessons in the activities you chose</h2>
   <!-- Book Lesson by Activity -->
   <div class="lessons-booker-container" ng-if="$ctrl.isDataAvailable()">
     <activity-lessons
