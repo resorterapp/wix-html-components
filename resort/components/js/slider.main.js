@@ -4,6 +4,7 @@
 (function () {
   'use strict';
 
+  const STARTING_LEVEL = 1;
   let rangeSlider;
   let displayValue;
 
@@ -40,7 +41,7 @@
   }
 
   function receiveMsg(event) {
-    let value = parseInt(event.data);
+    let value = parseInt(event.data) || STARTING_LEVEL;
     rangeSlider.value = value;
     displayValue.innerHTML = value;
   }
