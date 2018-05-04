@@ -149,6 +149,6 @@
   function handleLessonsMessage(event) {
     if (!event.data || event.data.msg !== 'LESSONS_READY') return;
 
-    window.frames.lessons.postMessage(data, '{{ site.post_message_origin }}');
+    window.frames.lessons.postMessage(data, '*');
   }
 })();
