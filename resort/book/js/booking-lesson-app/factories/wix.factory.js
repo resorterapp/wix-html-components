@@ -1,5 +1,3 @@
----
----
 (function () {
   'use strict';
 
@@ -12,7 +10,7 @@
   function Wix($window, rx) {
     let subject = new rx.Subject();
     let data = {};
-    let msgOrigin = '{{ site.post_message_origin }}';
+    let msgOrigin = '*';
 
     return {
       msgOrigin: msgOrigin,

@@ -126,7 +126,7 @@
 
     function windowOnMessage(event) {
       // Checks the event origin to make sure it's from our site
-      if (event.origin !== Wix.msgOrigin || !(event.data)) return;
+      if (!(event.data)) return;
 
       let message = event.data.msg;
 
