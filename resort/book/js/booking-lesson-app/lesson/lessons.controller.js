@@ -47,7 +47,6 @@
 
     // Binds functions
     vm.isDataAvailable = isDataAvailable;
-    vm.addLessons = addLessons;
     vm.getResults = getResults;
 
     function loadData(_) {
@@ -135,10 +134,6 @@
       });
     }
 
-    function addLessons(lessons) {
-      vm.results.lessons = lessons;
-    }
-
     function windowOnMessage(event) {
       // Checks the event origin to make sure it's from our site
       if (!(event.data)) return;
@@ -156,6 +151,11 @@
           },
           '*'
         );
+      }
+
+      if (message === 'SET_LESSONS_DATA') {
+        vm.results.lessons = event.data.lessonsData;
+        return Wix.setData(event.data.msgData);
       }
     }
   }

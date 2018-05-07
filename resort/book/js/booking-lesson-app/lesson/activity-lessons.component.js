@@ -28,7 +28,9 @@
 
     function onInit() {
       vm.settings = settings;
-      createAllLessons();
+      if (isResultsEmpty(vm.results)) {
+        createAllLessons();
+      }
 
       // Binds the functions
       vm.scrollTo = scrollTo;
@@ -47,6 +49,26 @@
         private: false,
         disabled: false
       };
+    }
+
+    function isResultsEmpty(results) {
+      const EMPTY_RESULTS = {
+        group: {
+          adults: [],
+          children: [],
+          mini: [],
+        },
+        private: {
+          instructor: {
+            required: false,
+            details: null
+          },
+          requests: null,
+          lessons: []
+        },
+        disability: [],
+      };
+      return angular.equals(results, EMPTY_RESULTS);
     }
 
     function createLessons(type) {
