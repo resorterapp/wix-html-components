@@ -27,7 +27,22 @@
     vm.settings = settings;
     vm.results = {
       _originURL: null,
-      lessons: {}
+      lessons: {
+        group: {
+          adults: [],
+          children: [],
+          mini: [],
+        },
+        private: {
+          instructor: {
+            required: false,
+            details: null
+          },
+          requests: null,
+          lessons: []
+        },
+        disability: [],
+      }
     };
 
     // Binds functions

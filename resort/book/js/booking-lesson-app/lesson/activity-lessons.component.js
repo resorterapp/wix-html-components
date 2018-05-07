@@ -11,9 +11,7 @@
         activities: '<',
         dates: '<',
         participants: '<',
-
-        // functions
-        addLessons: '<'
+        results: '<',
       }
     });
 
@@ -30,25 +28,7 @@
 
     function onInit() {
       vm.settings = settings;
-
-      vm.results = {
-        group: {
-          adults: [],
-          children: [],
-          mini: [],
-        },
-        private: {
-          instructor: {
-            required: false,
-            details: null
-          },
-          requests: null,
-          lessons: []
-        },
-        disability: [],
-      };
       createAllLessons();
-      vm.addLessons(vm.results);
 
       // Binds the functions
       vm.scrollTo = scrollTo;
