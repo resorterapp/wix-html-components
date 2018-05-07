@@ -61,6 +61,12 @@
       vm.addLessonGroupMini = addLessonGroupMini;
       vm.addLessonPrivate = addLessonPrivate;
       vm.addDisabilityLessons = addDisabilityLessons;
+
+      vm.isCollapsed = {
+        group: false,
+        private: false,
+        disabled: false
+      };
     }
 
     function createLessons(type) {
