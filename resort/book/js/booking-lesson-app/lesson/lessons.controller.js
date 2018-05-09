@@ -134,6 +134,11 @@
       });
     }
 
+    function prefillData(eventData) {
+      vm.results.lessons = eventData.lessonsData;
+      return Wix.setData(eventData.msgData);
+    }
+
     function windowOnMessage(event) {
       // Checks the event origin to make sure it's from our site
       if (!(event.data)) return;
@@ -154,8 +159,7 @@
       }
 
       if (message === 'SET_LESSONS_DATA') {
-        vm.results.lessons = event.data.lessonsData;
-        return Wix.setData(event.data.msgData);
+        return prefillData(event.data);
       }
     }
   }

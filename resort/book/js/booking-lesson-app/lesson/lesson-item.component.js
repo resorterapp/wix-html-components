@@ -94,7 +94,7 @@
       for (const participant of vm.participants) {
         participantCheckboxes.push({
           participant: participant,
-          checked: false,
+          checked: _.findIndex(vm.lesson.participants, participant),
           disabled: false
         });
       }
