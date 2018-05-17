@@ -56,6 +56,7 @@
       vm.pickParticipant = pickParticipant;
       vm.disableParticipant = disableParticipant;
       vm.getParticipantPopoverMsg = getParticipantPopoverMsg;
+      vm.compareParticipant = compareParticipant;
     }
 
     function getTimeOptions() {
@@ -94,12 +95,16 @@
       for (const participant of vm.participants) {
         participantCheckboxes.push({
           participant: participant,
-          checked: _.findIndex(vm.lesson.participants, participant),
+          checked: _.findIndex(vm.lesson.participants, ['_id', participant._id]) >= 0,
           disabled: false
         });
       }
 
       return participantCheckboxes;
+    }
+
+    function compareParticipant(p1, p2) {
+      return p1._id === p2._id;
     }
 
     function pickParticipant(pc) {

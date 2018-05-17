@@ -133,236 +133,159 @@
   };
 
   let savedData = {
-    msg: 'SET_LESSONS_DATA',
-    msgData: {
-      date: {
-        checkIn: new Date('2018-07-01'),
-        checkOut: new Date('2018-07-04')
+    "msgData": {
+      "date": {
+        "checkIn": "2018-06-03T14:00:00.000Z",
+        "checkOut": "2018-06-05T14:00:00.000Z"
       },
-      activities: [
-        'Ski',
-        'Snowboard',
-        'Telemark',
-        'Snowmobiling',
-        'Snowbiking',
-        'Snowshoeing',
+      "activities": [
+        "Ski",
+        "Snowboard",
+        "Telemark"
       ],
-      participants: [
+      "chosenActivities": {
+        "3c2062ee-fe33-4a5d-8977-b619007f6ad5": {
+          "skiChosen": true,
+          "snowboardChosen": true,
+          "telemarkChosen": false,
+          "snowbikeChosen": false,
+          "snowmobileChosen": false,
+          "snowshoeChosen": false
+        },
+        "5e9f4680-26d3-4370-9802-c9ad6bca4021": {
+          "skiChosen": true,
+          "snowboardChosen": true,
+          "telemarkChosen": false,
+          "snowbikeChosen": false,
+          "snowmobileChosen": false,
+          "snowshoeChosen": false
+        }
+      },
+      "participants": [
         {
-          "_id": "58c2d8c5-e5ab-44ec-9a3b-62b53306d3a6",
-          "firstName": "John",
-          "age": 40,
-          "skiLevel": "Black (Light)",
-          "snowboardLevel": "None",
-          "telemarkLevel": "None",
+          "_id": "3c2062ee-fe33-4a5d-8977-b619007f6ad5",
+          "masterEmail": "65e056f7-9341-4726-bf42-45c3a08cf79f",
+          "age": 37,
+          "firstName": "Corey",
+          "lastName": "Holland",
+          "physicalDisability": null,
+          "physicalDetails": null,
+          "foodAllergy": null,
+          "allergyDetails": null,
+          "membership": null,
+          "membershipId": null,
+          "activities": "{\"skiChosen\":true,\"snowboardChosen\":true,\"telemarkChosen\":false,\"snowbikeChosen\":false,\"snowmobileChosen\":false,\"snowshoeChosen\":false}",
+          "shoesize": null,
+          "weight": null,
+          "height": null,
+          "skiLevel": 5,
+          "snowboardLevel": 2,
+          "telemarkLevel": 1,
+          "snowbikeLevel": 1,
+          "snowmobileLevel": 1,
+          "snowshoeLevel": 1,
+          "_createdDate": "2018-05-15T06:16:47.010Z",
+          "_updatedDate": "2018-05-17T01:17:40.298Z"
+        },
+        {
+          "_id": "5e9f4680-26d3-4370-9802-c9ad6bca4021",
+          "masterEmail": "65e056f7-9341-4726-bf42-45c3a08cf79f",
+          "age": 23,
+          "firstName": "Neil",
+          "lastName": "Holland",
+          "skiLevel": 3,
+          "snowboardLevel": 5,
+          "telemarkLevel": 1,
+          "snowbikeLevel": 1,
+          "snowmobileLevel": 1,
+          "snowshoeLevel": 1,
           "physicalDisability": false,
-          "physicalDetails": null
-        },
-        {
-          "_id": "3d9b67bf-d7a3-4b7e-a9ea-69d81e0b2eb4",
-          "firstName": "William",
-          "age": 40,
-          "skiLevel": "Black (Light)",
-          "snowboardLevel": "None",
-          "telemarkLevel": "None",
-          "physicalDisability": false,
-          "physicalDetails": null
-        },
-        {
-          "_id": "3be0bd64-ca6a-4c5c-ab7c-030c331c582e",
-          "firstName": "Johnson",
-          "age": 40,
-          "skiLevel": "Black (Light)",
-          "snowboardLevel": "None",
-          "telemarkLevel": "None",
-          "physicalDisability": false,
-          "physicalDetails": null
-        },
-        {
-          "_id": "d33cb631-892f-4569-9e8c-26cbf209ce31",
-          "firstName": "Smith",
-          "age": 40,
-          "skiLevel": "Black (Light)",
-          "snowboardLevel": "None",
-          "telemarkLevel": "None",
-          "physicalDisability": false,
-          "physicalDetails": null
-        },
-        {
-          "_id": "50f6abfb-1a74-4536-914d-243709665e3e",
-          "firstName": "Jack",
-          "age": 40,
-          "skiLevel": "Black (Light)",
-          "snowboardLevel": "None",
-          "telemarkLevel": "None",
-          "physicalDisability": false,
-          "physicalDetails": null
-        },
-        {
-          "_id": "1c204121-2381-4c89-a5e5-34ccf5dd2597",
-          "firstName": "Jane",
-          "age": 36,
-          "skiLevel": "Blue (Light)",
-          "snowboardLevel": "None",
-          "telemarkLevel": "None",
-          "physicalDisability": false,
-          "physicalDetails": null
-        },
-        {
-          _id: uuid.v4(),
-          firstName: 'Will',
-          age: 7,
-          skiLevel: 'None',
-          snowboardLevel: 'Green (Light)',
-          telemarkLevel: 'None',
-          physicalDisability: true,
-          physicalDetails: null
-        },
-        {
-          _id: uuid.v4(),
-          firstName: 'Ray',
-          age: 7,
-          skiLevel: 'None',
-          snowboardLevel: 'Green (Light)',
-          telemarkLevel: 'None',
-          physicalDisability: true,
-          physicalDetails: null
-        },
-        {
-          _id: uuid.v4(),
-          firstName: 'Rick',
-          age: 7,
-          skiLevel: 'None',
-          snowboardLevel: 'Green (Light)',
-          telemarkLevel: 'None',
-          physicalDisability: true,
-          physicalDetails: null
-        },
-        {
-          _id: uuid.v4(),
-          firstName: 'Lam',
-          age: 7,
-          skiLevel: 'None',
-          snowboardLevel: 'Green (Light)',
-          telemarkLevel: 'None',
-          physicalDisability: true,
-          physicalDetails: null
-        },
-        {
-          "_id": "561448f8-572a-45d7-af36-dfc49f237413",
-          "firstName": "Eliza",
-          "age": 4,
-          "skiLevel": "Yellow",
-          "snowboardLevel": "None",
-          "telemarkLevel": "None",
-          "physicalDisability": false,
-          "physicalDetails": null
+          "physicalDetails": "",
+          "foodAllergy": false,
+          "allergyDetails": "",
+          "membership": "DWA",
+          "membershipId": "",
+          "activities": "{\"skiChosen\":true,\"snowboardChosen\":true,\"telemarkChosen\":false,\"snowbikeChosen\":false,\"snowmobileChosen\":false,\"snowshoeChosen\":false}",
+          "_createdDate": "2018-05-14T04:22:57.981Z",
+          "_updatedDate": "2018-05-17T00:54:06.269Z"
         }
       ]
     },
-    lessonsData: {
+    "msg": "SET_LESSONS_DATA",
+    "lessonsData": {
       "group": {
         "adults": [
           {
-            "uuid": "5204e142-6122-487d-bf25-eda3230cd9ad",
-            "date": "2018-07-01T00:00:00.000Z",
-            "time": "PM",
-            "duration": 4,
-            "activity": "Snowboard",
-            "participants": [
-              {
-                "_id": "58c2d8c5-e5ab-44ec-9a3b-62b53306d3a6",
-                "firstName": "John",
-                "age": 40,
-                "skiLevel": "Black (Light)",
-                "snowboardLevel": "None",
-                "telemarkLevel": "None",
-                "physicalDisability": false,
-                "physicalDetails": null
-              },
-              {
-                "_id": "3d9b67bf-d7a3-4b7e-a9ea-69d81e0b2eb4",
-                "firstName": "William",
-                "age": 40,
-                "skiLevel": "Black (Light)",
-                "snowboardLevel": "None",
-                "telemarkLevel": "None",
-                "physicalDisability": false,
-                "physicalDetails": null
-              }
-            ]
-          },
-          {
-            "uuid": "0ea2087b-d02b-4151-9c7d-08af8b1b6219",
-            "date": "2018-07-02T00:00:00.000Z",
+            "uuid": "6413ff66-d264-4042-ba3e-2d9aeab6024f",
+            "date": "2018-06-03T14:00:00.000Z",
             "time": "PM",
             "duration": 4,
             "activity": "Ski",
             "participants": [
               {
-                "_id": "d33cb631-892f-4569-9e8c-26cbf209ce31",
-                "firstName": "Smith",
-                "age": 40,
-                "skiLevel": "Black (Light)",
-                "snowboardLevel": "None",
-                "telemarkLevel": "None",
-                "physicalDisability": false,
-                "physicalDetails": null
-              },
+                "_id": "3c2062ee-fe33-4a5d-8977-b619007f6ad5",
+                "masterEmail": "65e056f7-9341-4726-bf42-45c3a08cf79f",
+                "age": 37,
+                "firstName": "Corey",
+                "lastName": "Holland",
+                "physicalDisability": null,
+                "physicalDetails": null,
+                "foodAllergy": null,
+                "allergyDetails": null,
+                "membership": null,
+                "membershipId": null,
+                "activities": "{\"skiChosen\":true,\"snowboardChosen\":true,\"telemarkChosen\":false,\"snowbikeChosen\":false,\"snowmobileChosen\":false,\"snowshoeChosen\":false}",
+                "shoesize": null,
+                "weight": null,
+                "height": null,
+                "skiLevel": 5,
+                "snowboardLevel": 2,
+                "telemarkLevel": 1,
+                "snowbikeLevel": 1,
+                "snowmobileLevel": 1,
+                "snowshoeLevel": 1,
+                "_createdDate": "2018-05-15T06:16:47.010Z",
+                "_updatedDate": "2018-05-17T00:49:34.849Z"
+              }
+            ]
+          },
+          {
+            "uuid": "07d8af52-3f49-46e8-9a51-08224419024d",
+            "date": "2018-06-04T14:00:00.000Z",
+            "time": "PM",
+            "duration": 4,
+            "activity": "Ski",
+            "participants": [
               {
-                "_id": "50f6abfb-1a74-4536-914d-243709665e3e",
-                "firstName": "Jack",
-                "age": 40,
-                "skiLevel": "Black (Light)",
-                "snowboardLevel": "None",
-                "telemarkLevel": "None",
+                "_id": "5e9f4680-26d3-4370-9802-c9ad6bca4021",
+                "masterEmail": "65e056f7-9341-4726-bf42-45c3a08cf79f",
+                "age": 23,
+                "firstName": "Neil",
+                "lastName": "Holland",
                 "physicalDisability": false,
-                "physicalDetails": null
+                "physicalDetails": "",
+                "foodAllergy": false,
+                "allergyDetails": "",
+                "membership": "DWA",
+                "membershipId": "",
+                "activities": "{\"skiChosen\":true,\"snowboardChosen\":true,\"telemarkChosen\":false,\"snowbikeChosen\":false,\"snowmobileChosen\":false,\"snowshoeChosen\":false}",
+                "shoesize": null,
+                "weight": null,
+                "height": null,
+                "skiLevel": 3,
+                "snowboardLevel": 5,
+                "telemarkLevel": 1,
+                "snowbikeLevel": 1,
+                "snowmobileLevel": 1,
+                "snowshoeLevel": 1,
+                "_createdDate": "2018-05-14T04:22:57.981Z",
+                "_updatedDate": "2018-05-17T00:49:43.756Z"
               }
             ]
           }
         ],
         "children": [],
-        "mini": [
-          {
-            "uuid": "80186e90-b1ea-4386-8568-0dfa20060ecd",
-            "date": "2018-07-01T00:00:00.000Z",
-            "time": "PM",
-            "duration": 4,
-            "activity": "Ski",
-            "participants": [
-              {
-                "_id": "561448f8-572a-45d7-af36-dfc49f237413",
-                "firstName": "Eliza",
-                "age": 4,
-                "skiLevel": "Yellow",
-                "snowboardLevel": "None",
-                "telemarkLevel": "None",
-                "physicalDisability": false,
-                "physicalDetails": null
-              }
-            ]
-          },
-          {
-            "uuid": "db7b1a97-df5f-45e5-adb3-d47eae458fb8",
-            "date": "2018-07-02T00:00:00.000Z",
-            "time": "PM",
-            "duration": 4,
-            "activity": "Telemark",
-            "participants": [
-              {
-                "_id": "561448f8-572a-45d7-af36-dfc49f237413",
-                "firstName": "Eliza",
-                "age": 4,
-                "skiLevel": "Yellow",
-                "snowboardLevel": "None",
-                "telemarkLevel": "None",
-                "physicalDisability": false,
-                "physicalDetails": null
-              }
-            ]
-          }
-        ]
+        "mini": []
       },
       "private": {
         "instructor": {
@@ -370,89 +293,10 @@
           "details": null
         },
         "requests": null,
-        "lessons": [
-          {
-            "uuid": "94459629-d8d1-41c4-a8ae-fe40ac9768b1",
-            "date": "2018-07-01T00:00:00.000Z",
-            "time": "PM",
-            "duration": 4,
-            "activity": "Snowboard",
-            "participants": [
-              {
-                "_id": "58c2d8c5-e5ab-44ec-9a3b-62b53306d3a6",
-                "firstName": "John",
-                "age": 40,
-                "skiLevel": "Black (Light)",
-                "snowboardLevel": "None",
-                "telemarkLevel": "None",
-                "physicalDisability": false,
-                "physicalDetails": null
-              },
-              {
-                "_id": "d33cb631-892f-4569-9e8c-26cbf209ce31",
-                "firstName": "Smith",
-                "age": 40,
-                "skiLevel": "Black (Light)",
-                "snowboardLevel": "None",
-                "telemarkLevel": "None",
-                "physicalDisability": false,
-                "physicalDetails": null
-              }
-            ]
-          },
-          {
-            "uuid": "7bf196c5-83ea-466b-bcc7-c7a4d789ebd3",
-            "date": "2018-07-02T00:00:00.000Z",
-            "time": "PM",
-            "duration": 4,
-            "activity": "Ski",
-            "participants": [
-              {
-                "_id": "1c204121-2381-4c89-a5e5-34ccf5dd2597",
-                "firstName": "Jane",
-                "age": 36,
-                "skiLevel": "Blue (Light)",
-                "snowboardLevel": "None",
-                "telemarkLevel": "None",
-                "physicalDisability": false,
-                "physicalDetails": null
-              },
-              {
-                "_id": "3be0bd64-ca6a-4c5c-ab7c-030c331c582e",
-                "firstName": "Johnson",
-                "age": 40,
-                "skiLevel": "Black (Light)",
-                "snowboardLevel": "None",
-                "telemarkLevel": "None",
-                "physicalDisability": false,
-                "physicalDetails": null
-              },
-              {
-                "_id": "3d9b67bf-d7a3-4b7e-a9ea-69d81e0b2eb4",
-                "firstName": "William",
-                "age": 40,
-                "skiLevel": "Black (Light)",
-                "snowboardLevel": "None",
-                "telemarkLevel": "None",
-                "physicalDisability": false,
-                "physicalDetails": null
-              },
-              {
-                "_id": "d33cb631-892f-4569-9e8c-26cbf209ce31",
-                "firstName": "Smith",
-                "age": 40,
-                "skiLevel": "Black (Light)",
-                "snowboardLevel": "None",
-                "telemarkLevel": "None",
-                "physicalDisability": false,
-                "physicalDetails": null
-              }
-            ]
-          }
-        ]
+        "lessons": []
       },
       "disability": []
-    },
+    }
   };
 
   init();

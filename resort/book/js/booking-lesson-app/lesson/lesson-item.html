@@ -36,7 +36,9 @@
         <input type="checkbox"
                ng-disabled="pc.disabled"
                ng-click="$ctrl.pickParticipant(pc)"
-               data-checklist-model="$ctrl.lesson.participants" data-checklist-value="pc.participant">
+               data-checklist-model="$ctrl.lesson.participants"
+               data-checklist-value="pc.participant"
+               data-checklist-comparator="$ctrl.compareParticipant">
         [{ pc.participant.firstName }]
       </label>
     </div>
