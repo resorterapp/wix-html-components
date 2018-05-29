@@ -67,28 +67,32 @@
     }
 
     function buildParticipantsList(participants) {
-      return {
-        'adults': participants.filter(function (p) {
-          return p.age >= 18
-            && !p.physicalDisability;
-        }),
-        'children': participants.filter(function (p) {
-          return p.age < 18
-            && p.age >= 6
-            && !p.physicalDisability;
-        }),
-        'mini': participants.filter(function (p) {
-          return p.age < 6
-            && p.age >= 3
-            && !p.physicalDisability;
-        }),
-        'normal': participants.filter(function (p) {
-          return !p.physicalDisability;
-        }),
-        'disabled': participants.filter(function (p) {
-          return p.physicalDisability;
-        }),
+      let participantsList = {
+        adults: [],
+        children: [],
+        mini: [],
+        normal: [],
+        disabled: []
       };
+
+      for (const participant of participants) {
+        if (participant.physicalDisability) {
+          participantsList.disabled.push(participant);
+          continue;
+        }
+
+        participantsList.normal.push(participant);
+
+        if (participant.age >= settings.AGE_GROUP.ADULT) {
+          participantsList.adults.push(participant);
+        } else if (participant.age >= settings.AGE_GROUP.TEEN_CHILD) {
+          participantsList.children.push(participant);
+        } else if (participant.age >= settings.AGE_GROUP.MINI) {
+          participantsList.mini.push(participant);
+        }
+      }
+
+      return participantsList;
     }
 
     function buildDatesRange(fromDate, toDate) {

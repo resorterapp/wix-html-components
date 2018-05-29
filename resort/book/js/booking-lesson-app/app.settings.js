@@ -6,6 +6,11 @@
   'use strict';
 
   const SETTINGS = {
+    AGE_GROUP: {
+      ADULT: 18,
+      TEEN_CHILD: 6,
+      MINI: 3
+    },
     ACTIVITY_TYPES: {
       default: [
         'Ski',
