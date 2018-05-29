@@ -11,6 +11,7 @@
       TEEN_CHILD: 6,
       MINI: 3
     },
+    MAX_PEOPLE: 4,
     ACTIVITY_TYPES: {
       default: [
         'Ski',

@@ -151,3 +151,11 @@ a {
     }
   }
 }
+
+.text-muted {
+  cursor: not-allowed;
+}
+
+label, input, select {
+  cursor: pointer;
+}

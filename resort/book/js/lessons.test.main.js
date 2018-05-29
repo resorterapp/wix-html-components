@@ -15,7 +15,7 @@
           _id: uuid.v4(),
           firstName: 'John',
           age: 40,
-          activities: '{"skiChosen":true,"snowboardChosen":false,"telemarkChosen":false,"snowbikeChosen":false,"snowmobileChosen":false,"snowshoeChosen":false}',
+          activities: '{"skiChosen":true,"snowboardChosen":true,"telemarkChosen":true,"snowbikeChosen":false,"snowmobileChosen":false,"snowshoeChosen":false}',
           skiLevel: 'Black (Light)',
           snowboardLevel: 'None',
           telemarkLevel: 'None',
@@ -37,7 +37,7 @@
           _id: uuid.v4(),
           firstName: 'Jane',
           age: 36,
-          activities: '{"skiChosen":true,"snowboardChosen":false,"telemarkChosen":false,"snowbikeChosen":false,"snowmobileChosen":false,"snowshoeChosen":false}',
+          activities: '{"skiChosen":false,"snowboardChosen":true,"telemarkChosen":false,"snowbikeChosen":false,"snowmobileChosen":false,"snowshoeChosen":false}',
           skiLevel: 'Blue (Light)',
           snowboardLevel: 'None',
           telemarkLevel: 'None',
@@ -256,7 +256,7 @@
     if (!event.data || event.data.msg !== 'LESSONS_READY')
       throw new Error('Invalid LESSON message');
 
-    // window.frames.lessons.postMessage(data, '*');
-    window.frames.lessons.postMessage(savedData, '*');
+    window.frames.lessons.postMessage(data, '*');
+    // window.frames.lessons.postMessage(savedData, '*');
   }
 })();
