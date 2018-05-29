@@ -17,11 +17,10 @@
 
   ActivityLessonsController.$inject = [
     'settings',
-    'Lesson',
-    'AnchorSmoothScroll'
+    'Lesson'
   ];
 
-  function ActivityLessonsController(settings, Lesson, AnchorSmoothScroll) {
+  function ActivityLessonsController(settings, Lesson) {
     let vm = this;
 
     this.$onInit = onInit;
@@ -33,7 +32,6 @@
       }
 
       // Binds the functions
-      vm.scrollTo = scrollTo;
       vm.deleteLessonGroupAdults = deleteLessonGroupAdults;
       vm.deleteLessonGroupChildren = deleteLessonGroupChildren;
       vm.deleteLessonGroupMini = deleteLessonGroupMini;
@@ -110,10 +108,6 @@
     function deleteLessonPrivate(lesson) {
       let lessonsList = vm.results.private.lessons;
       return deleteLesson(lessonsList, lesson);
-    }
-
-    function scrollTo(elementID) {
-      AnchorSmoothScroll.scrollTo(elementID);
     }
 
     function addLessonToDate(lessonsList, date, type) {
