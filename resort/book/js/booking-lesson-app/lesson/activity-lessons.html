@@ -42,6 +42,7 @@
                      participants="$ctrl.participants.adults"
                      delete-lesson="$ctrl.deleteLessonGroupAdults">
         </lesson-item>
+        <no-lesson lessons="$ctrl.results.group.adults"></no-lesson>
       </div>
 
       <div class="group-lessons-children lessons-list" ng-if="$ctrl.participants.children.length">
@@ -68,6 +69,7 @@
                      participants="$ctrl.participants.children"
                      delete-lesson="$ctrl.deleteLessonGroupChildren">
         </lesson-item>
+        <no-lesson lessons="$ctrl.results.group.children"></no-lesson>
       </div>
 
       <div class="group-lessons-mini lessons-list" ng-if="$ctrl.participants.mini.length">
@@ -94,6 +96,7 @@
                      participants="$ctrl.participants.mini"
                      delete-lesson="$ctrl.deleteLessonGroupMini">
         </lesson-item>
+        <no-lesson lessons="$ctrl.results.group.mini"></no-lesson>
       </div>
     </div>
 
@@ -169,6 +172,7 @@
                      participants="$ctrl.participants.normal"
                      delete-lesson="$ctrl.deleteLessonPrivate">
         </lesson-item>
+        <no-lesson lessons="$ctrl.results.private.lessons"></no-lesson>
       </div>
     </div>
 
