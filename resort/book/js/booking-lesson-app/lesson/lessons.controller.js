@@ -139,7 +139,10 @@
     }
 
     function prefillData(eventData) {
-      vm.results.lessons = eventData.lessonsData;
+      if (eventData.lessonsData) {
+        vm.results.lessons = eventData.lessonsData;
+      }
+
       return Wix.setData(eventData.msgData);
     }
 

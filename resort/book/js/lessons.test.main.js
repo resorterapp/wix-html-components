@@ -240,6 +240,70 @@
       disability: []
     }
   };
+  let nullData = {
+    msg: 'SET_LESSONS_DATA',
+    msgData: {
+      date: {
+        checkIn: '2018-06-03T14:00:00.000Z',
+        checkOut: '2018-06-05T14:00:00.000Z'
+      },
+      activities: [
+        'Ski',
+        'Snowboard',
+        'Telemark'
+      ],
+      participants: [
+        {
+          _id: '3c2062ee-fe33-4a5d-8977-b619007f6ad5',
+          masterEmail: '65e056f7-9341-4726-bf42-45c3a08cf79f',
+          age: 37,
+          firstName: 'Corey',
+          lastName: 'Holland',
+          physicalDisability: null,
+          physicalDetails: null,
+          foodAllergy: null,
+          allergyDetails: null,
+          membership: null,
+          membershipId: null,
+          activities: '{"skiChosen":true,"snowboardChosen":false,"telemarkChosen":false,"snowbikeChosen":false,"snowmobileChosen":false,"snowshoeChosen":false}',
+          shoesize: null,
+          weight: null,
+          height: null,
+          skiLevel: 5,
+          snowboardLevel: 2,
+          telemarkLevel: 1,
+          snowbikeLevel: 1,
+          snowmobileLevel: 1,
+          snowshoeLevel: 1,
+          _createdDate: '2018-05-15T06:16:47.010Z',
+          _updatedDate: '2018-05-17T01:17:40.298Z'
+        },
+        {
+          _id: '5e9f4680-26d3-4370-9802-c9ad6bca4021',
+          masterEmail: '65e056f7-9341-4726-bf42-45c3a08cf79f',
+          age: 23,
+          firstName: 'Neil',
+          lastName: 'Holland',
+          skiLevel: 3,
+          snowboardLevel: 5,
+          telemarkLevel: 1,
+          snowbikeLevel: 1,
+          snowmobileLevel: 1,
+          snowshoeLevel: 1,
+          physicalDisability: false,
+          physicalDetails: '',
+          foodAllergy: false,
+          allergyDetails: '',
+          membership: 'DWA',
+          membershipId: '',
+          activities: '{"skiChosen":true,"snowboardChosen":true,"telemarkChosen":false,"snowbikeChosen":false,"snowmobileChosen":false,"snowshoeChosen":false}',
+          _createdDate: '2018-05-14T04:22:57.981Z',
+          _updatedDate: '2018-05-17T00:54:06.269Z'
+        }
+      ]
+    },
+    lessonsData: null
+  };
 
   init();
 
@@ -256,7 +320,7 @@
     if (!event.data || event.data.msg !== 'LESSONS_READY')
       throw new Error('Invalid LESSON message');
 
-    window.frames.lessons.postMessage(data, '*');
+    window.frames.lessons.postMessage(nullData, '*');
     // window.frames.lessons.postMessage(savedData, '*');
   }
 })();
