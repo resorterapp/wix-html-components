@@ -50,7 +50,7 @@ function StoreCardComponentController() {
 
   function initStripe() {
     // Creates a Stripe client
-    const stripe = Stripe('pk_test_1uptoUzTpxwotcXDMf349fDs');
+    const stripe = Stripe('pk_test_UDiefJhyiR7eW9pCuYagXsuJ');
 
     // Create an instance of Elements.
     const elements = stripe.elements();
