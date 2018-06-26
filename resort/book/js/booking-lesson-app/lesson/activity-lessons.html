@@ -34,18 +34,11 @@
             dates="$ctrl.dates"
             add-lesson-to-date="$ctrl.addLessonGroupAdults"></add-lesson-button>
         </div>
-        <lesson-item-first-timer
-          activities="$ctrl.activities"
-          lesson="$ctrl.results.group.adults[0]"
-          type="'group.adults'"
-          participants="$ctrl.participants.adults"
-          delete-lesson="$ctrl.deleteLessonGroupAdults">
-        </lesson-item-first-timer>
-
         <lesson-item
           ng-repeat="lesson in $ctrl.results.group.adults | orderBy: 'date'"
           activities="$ctrl.activities"
           class="lesson-item-component"
+          dates="$ctrl.dates"
           lesson="lesson"
           type="'group.adults'"
           participants="$ctrl.participants.adults"
@@ -74,6 +67,7 @@
           ng-repeat="lesson in $ctrl.results.group.children | orderBy: 'date'"
           class="lesson-item-component"
           activities="$ctrl.activities"
+          dates="$ctrl.dates"
           lesson="lesson"
           type="'group.children'"
           participants="$ctrl.participants.children"
@@ -102,6 +96,7 @@
           ng-repeat="lesson in $ctrl.results.group.mini | orderBy: 'date'"
           class="lesson-item-component"
           activities="$ctrl.activities"
+          dates="$ctrl.dates"
           lesson="lesson"
           type="'group.mini'"
           participants="$ctrl.participants.mini"
@@ -184,6 +179,7 @@
           ng-repeat="lesson in $ctrl.results.private.lessons | orderBy: 'date'"
           class="lesson-item-component"
           activities="$ctrl.activities"
+          dates="$ctrl.dates"
           lesson="lesson"
           type="'private'"
           participants="$ctrl.participants.normal"

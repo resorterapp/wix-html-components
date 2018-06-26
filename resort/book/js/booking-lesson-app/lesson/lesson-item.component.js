@@ -10,13 +10,13 @@ function LessonItemComponent() {
       controller: LessonItemController,
       bindings: {
         // variables
-        lesson: '<',
-        type: '<',
-        participants: '<',
         activities: '<',
+        dates: '<',
+        lesson: '<',
+        participants: '<',
+        type: '<',
 
         // functions
-        duplicateLesson: '<',
         deleteLesson: '<'
       }
     })
@@ -25,13 +25,13 @@ function LessonItemComponent() {
       controller: LessonItemController,
       bindings: {
         // variables
-        lesson: '<',
-        type: '<',
-        participants: '<',
         activities: '<',
+        dates: '<',
+        lesson: '<',
+        participants: '<',
+        type: '<',
 
         // functions
-        duplicateLesson: '<',
         deleteLesson: '<'
       }
     });
@@ -48,8 +48,6 @@ function LessonItemController(_, settings) {
 
   // Initialises
   this.$onInit = onInit;
-
-  ///////////
 
   function onInit() {
     vm.settings = settings;
@@ -75,16 +73,24 @@ function LessonItemController(_, settings) {
     vm.disableParticipant = disableParticipant;
     vm.compareParticipant = compareParticipant;
     vm.activityOnChange = activityOnChange;
+
+    // Options for date picker
+    vm.toggleDatePicker = false;
+    vm.datePickerOptions = {
+      maxDate: vm.dates[vm.dates.length - 1],
+      minDate: vm.dates[0],
+      initDate: vm.dates[0],
+      showWeeks: false,
+      startingDay: 1 // LN For Monday
+    };
   }
 
-  function getTimeOptions() {
-    if (isLessonMatchTypes(['group.adults'])) {
-      return settings.TIME_OPTIONS.filter((item) => {
-        return item !== 'All day';
-      });
-    }
+  ///////////
 
-    return settings.TIME_OPTIONS;
+  function getTimeOptions() {
+    return isLessonMatchTypes(['group.adults'])
+      ? settings.TIME_OPTIONS.filter((item) => item !== 'All day')
+      : settings.TIME_OPTIONS;
   }
 
   function onDelete() {
@@ -147,9 +153,7 @@ function LessonItemController(_, settings) {
       }
     }
 
-    let otherCheckboxes = vm.participantCheckboxes.filter(function (p) {
-      return p !== pc;
-    });
+    let otherCheckboxes = vm.participantCheckboxes.filter(p => p !== pc);
 
     for (let oc of otherCheckboxes) {
       oc.disabled = disableParticipant(oc);
@@ -157,7 +161,7 @@ function LessonItemController(_, settings) {
   }
 
   function buildActivitiesList() {
-    let baseActivities = isLessonMatchTypes(['private'])
+    const baseActivities = isLessonMatchTypes(['private'])
       ? settings.ACTIVITY_TYPES.private
       : settings.ACTIVITY_TYPES.default;
 

@@ -10,19 +10,22 @@
         Specific instructor in mind?
       </label>
       <div class="col-sm-9">
-        <select ng-model="$ctrl.results.instructor.required"
-                ng-options="o.value as o.name for o in $ctrl.settings.YES_NO_OPTIONS">
+        <select
+          ng-model="$ctrl.results.instructor.required"
+          ng-options="o.value as o.name for o in $ctrl.settings.YES_NO_OPTIONS">
         </select>
       </div>
     </div>
-    <div class="form-group instructor-name-description"
-         ng-if="$ctrl.results.instructor.required">
+    <div
+      class="form-group instructor-name-description"
+      ng-if="$ctrl.results.instructor.required">
       <label class="col-sm-3">
         Name or description of the instructor
       </label>
       <div class="col-sm-9">
-          <textarea class="form-control" rows="4"
-                    ng-model="$ctrl.results.instructor.details"></textarea>
+          <textarea
+            class="form-control" rows="4"
+            ng-model="$ctrl.results.instructor.details"></textarea>
       </div>
     </div>
     <div class="form-group specific-requirements">
@@ -30,9 +33,10 @@
         Any special requests?
       </label>
       <div class="col-sm-9">
-          <textarea class="form-control" rows="5"
-                    placeholder="Any specific requirements you want your instructor to know? What do you want to get out of the lesson? Max. 150 characters."
-                    ng-model="$ctrl.results.requests"></textarea>
+          <textarea
+            class="form-control" rows="5"
+            placeholder="Any specific requirements you want your instructor to know? What do you want to get out of the lesson? Max. 150 characters."
+            ng-model="$ctrl.results.requests"></textarea>
       </div>
     </div>
   </form>
@@ -45,18 +49,20 @@
       <div class="col-sm-1">Duration</div>
       <div class="col-sm-4">Participants</div>
       <add-lesson-button
-          class="col-sm-2"
-          dates="$ctrl.dates"
-          add-lesson-to-date="$ctrl.addLesson"></add-lesson-button>
+        class="col-sm-2"
+        dates="$ctrl.dates"
+        add-lesson-to-date="$ctrl.addLesson"></add-lesson-button>
     </div>
 
-    <lesson-item ng-repeat="lesson in $ctrl.results.lessons | orderBy: 'date'"
-                 class="lesson-item-component"
-                 activities="$ctrl.activities"
-                 lesson="lesson"
-                 type="'disability'"
-                 participants="$ctrl.participants"
-                 delete-lesson="$ctrl.deleteLesson">
+    <lesson-item
+      ng-repeat="lesson in $ctrl.results.lessons | orderBy: 'date'"
+      class="lesson-item-component"
+      activities="$ctrl.activities"
+      dates="$ctrl.dates"
+      lesson="lesson"
+      type="'disability'"
+      participants="$ctrl.participants"
+      delete-lesson="$ctrl.deleteLesson">
     </lesson-item>
     <no-lesson lessons="$ctrl.results.lessons"></no-lesson>
   </div>

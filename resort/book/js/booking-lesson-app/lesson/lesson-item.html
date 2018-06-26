@@ -2,44 +2,61 @@
 <div class="lesson-item row">
   <div class="col-sm-2 lesson-item-date">
     <span>[{ $ctrl.lesson.date | date: 'd MMM yyyy' }]</span>
+    <a
+      class="btn-change-lesson-date"
+      ng-click="$ctrl.toggleDatePicker = !$ctrl.toggleDatePicker"><i class="far fa-edit"></i></a>
+    <input
+      type="text" class="date-picker"
+      uib-datepicker-popup
+      ng-model="$ctrl.lesson.date"
+      ng-model-option="{ timezone: 'UTC' }"
+      is-open="$ctrl.toggleDatePicker"
+      datepicker-options="$ctrl.datePickerOptions"
+      show-button-bar="false"
+      popup-placement="right-top">
   </div>
   <div class="col-sm-1 lesson-item-time">
     <div class="selector">
-      <select name="time"
-              ng-model="$ctrl.lesson.time"
-              ng-options="o for o in $ctrl.getTimeOptions()">
+      <select
+        name="time"
+        ng-model="$ctrl.lesson.time"
+        ng-options="o for o in $ctrl.getTimeOptions()">
       </select>
     </div>
   </div>
   <div class="col-sm-2 lesson-item-activity">
     <div class="selector">
-      <select name="activity" title="activity"
-              ng-model="$ctrl.lesson.activity"
-              ng-change="$ctrl.activityOnChange()"
-              ng-options="o for o in $ctrl.availableActivities"></select>
+      <select
+        name="activity" title="activity"
+        ng-model="$ctrl.lesson.activity"
+        ng-change="$ctrl.activityOnChange()"
+        ng-options="o for o in $ctrl.availableActivities"></select>
     </div>
   </div>
   <div class="col-sm-1 lesson-item-duration" ng-if="$ctrl.isLessonPrivateOrDisability()">
     <div class="selector">
-      <select name="duration"
-              ng-model="$ctrl.lesson.duration"
-              ng-options="option.value as option.name for option in $ctrl.settings.DURATION_OPTIONS">
+      <select
+        name="duration"
+        ng-model="$ctrl.lesson.duration"
+        ng-options="option.value as option.name for option in $ctrl.settings.DURATION_OPTIONS">
       </select>
     </div>
   </div>
   <div class="lesson-item-participants" ng-class="$ctrl.getParticipantsColumnCssClass()">
     <div class="row">
-      <label ng-repeat="pc in $ctrl.participantCheckboxes"
-             uib-popover="[{ pc.message }]"
-             popover-enable="pc.disabled"
-             popover-trigger="'mouseenter'"
-             ng-class="['col-sm-3', { 'text-muted': pc.disabled }]">
-        <input type="checkbox"
-               ng-disabled="pc.disabled"
-               ng-click="$ctrl.pickParticipant(pc)"
-               checklist-model="$ctrl.lesson.participants"
-               checklist-value="pc.participant"
-               checklist-comparator="$ctrl.compareParticipant">
+      <label
+        ng-repeat="pc in $ctrl.participantCheckboxes"
+        uib-popover="[{ pc.message }]"
+        popover-enable="pc.disabled"
+        popover-trigger="'mouseenter'"
+        ng-class="['col-sm-3', { 'text-muted': pc.disabled }]">
+        <input
+          type="checkbox"
+          ng-disabled="pc.disabled"
+          ng-click="$ctrl.pickParticipant(pc)"
+          checklist-model="$ctrl.lesson.participants"
+          checklist-value="pc.participant"
+          checklist-comparator="$ctrl.compareParticipant">
         [{ pc.participant.firstName }]
       </label>
     </div>

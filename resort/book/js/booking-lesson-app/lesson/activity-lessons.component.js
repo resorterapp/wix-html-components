@@ -49,6 +49,8 @@
       };
     }
 
+    ///////////
+
     function isResultsEmpty(results) {
       const EMPTY_RESULTS = {
         group: {
