@@ -19,6 +19,21 @@ function LessonItemComponent() {
         duplicateLesson: '<',
         deleteLesson: '<'
       }
+    })
+    .component('lessonItemFirstTimer', {
+      templateUrl: 'js/booking-lesson-app/lesson/lesson-item.first-timer.html',
+      controller: LessonItemController,
+      bindings: {
+        // variables
+        lesson: '<',
+        type: '<',
+        participants: '<',
+        activities: '<',
+
+        // functions
+        duplicateLesson: '<',
+        deleteLesson: '<'
+      }
     });
 
   LessonItemController.$inject = ['_', 'settings'];
