@@ -65,7 +65,7 @@ function LessonItemController(_, settings) {
 
     vm.innerCounts = {
       pickedMinis: 0,
-      pickedOthers: 0
+      pickedOthers: 0,
     };
     vm.participantCheckboxes = buildSpecificParticipantsList();
 
@@ -121,7 +121,7 @@ function LessonItemController(_, settings) {
         participant: participant,
         checked: _.findIndex(vm.lesson.participants, ['_id', participant._id]) >= 0,
         disabled: false,
-        message: null
+        message: null,
       };
 
       if (!participantCheckbox.checked) {
@@ -215,7 +215,12 @@ function LessonItemController(_, settings) {
   }
 
   function activityOnChange() {
-    for (let participantCheckbox of vm.participantCheckboxes)
+    // Clears the previous participants list
+    vm.lesson.participants = [];
+
+    for (let participantCheckbox of vm.participantCheckboxes) {
+      participantCheckbox.checked = false;
       participantCheckbox.disabled = disableParticipant(participantCheckbox);
+    }
   }
 }
