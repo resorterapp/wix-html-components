@@ -17,8 +17,8 @@ function LessonItemComponent() {
         type: '<',
 
         // functions
-        deleteLesson: '<'
-      }
+        deleteLesson: '<',
+      },
     })
     .component('lessonItemFirstTimer', {
       templateUrl: 'js/booking-lesson-app/lesson/lesson-item.first-timer.html',
@@ -32,8 +32,8 @@ function LessonItemComponent() {
         type: '<',
 
         // functions
-        deleteLesson: '<'
-      }
+        deleteLesson: '<',
+      },
     });
 
   LessonItemController.$inject = ['_', 'settings'];
@@ -56,23 +56,12 @@ function LessonItemController(_, settings) {
     // Gets the first available activity
     vm.lesson.activity = vm.availableActivities[0];
 
-    // Binds functions
-    vm.isLessonPrivateOrDisability = isLessonPrivateOrDisability;
-    vm.getParticipantsColumnCssClass = getParticipantsColumnCssClass;
-    vm.getTimeOptions = getTimeOptions;
-    vm.onAddLesson = onAddLesson;
-    vm.onDelete = onDelete;
-
+    // Preps for participants' checkboxes
     vm.innerCounts = {
       pickedMinis: 0,
       pickedOthers: 0,
     };
     vm.participantCheckboxes = buildSpecificParticipantsList();
-
-    vm.pickParticipant = pickParticipant;
-    vm.disableParticipant = disableParticipant;
-    vm.compareParticipant = compareParticipant;
-    vm.activityOnChange = activityOnChange;
 
     // Options for date picker
     vm.toggleDatePicker = false;
@@ -81,8 +70,19 @@ function LessonItemController(_, settings) {
       minDate: vm.dates[0],
       initDate: vm.dates[0],
       showWeeks: false,
-      startingDay: 1 // LN For Monday
+      startingDay: 1, // LN: 1 for Monday
     };
+
+    // Binds functions
+    vm.isLessonPrivateOrDisability = isLessonPrivateOrDisability;
+    vm.getParticipantsColumnCssClass = getParticipantsColumnCssClass;
+    vm.getTimeOptions = getTimeOptions;
+    vm.onAddLesson = onAddLesson;
+    vm.onDelete = onDelete;
+    vm.pickParticipant = pickParticipant;
+    vm.disableParticipant = disableParticipant;
+    vm.compareParticipant = compareParticipant;
+    vm.activityOnChange = activityOnChange;
   }
 
   ///////////
