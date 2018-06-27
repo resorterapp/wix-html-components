@@ -83,6 +83,7 @@ function LessonItemController(_, settings) {
     vm.disableParticipant = disableParticipant;
     vm.compareParticipant = compareParticipant;
     vm.activityOnChange = activityOnChange;
+    vm.showBinButton = showBinButton();
   }
 
   ///////////
@@ -222,5 +223,30 @@ function LessonItemController(_, settings) {
       participantCheckbox.checked = false;
       participantCheckbox.disabled = disableParticipant(participantCheckbox);
     }
+
+    // Update the showBinButton
+    vm.showBinButton = showBinButton();
+  }
+
+  function showBinButton() {
+    // True if there is no FT identified in the participants
+    return !_.some(vm.participants, isParticipantFT);
+  }
+
+  function isParticipantFT(participant) {
+    if (!vm.lesson.isFirstLesson) return false;
+
+    const activity = vm.lesson.activity;
+
+    // Doesn't need to care about non-main activities
+    if (settings.ACTIVITY_TYPES.default.indexOf(activity) < 0) return false;
+
+    // Handles Snowboarding first
+    if (activity === 'Snowboard') {
+      return participant.snowboardLevel <= 1;
+    }
+
+    // Now, the telemark/ski
+    return participant.skiLevel <= 1 && participant.telemarkLevel <= 1;
   }
 }
