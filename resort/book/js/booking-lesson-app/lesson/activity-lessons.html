@@ -42,6 +42,7 @@
           lesson="lesson"
           type="'group.adults'"
           participants="$ctrl.participants.adults"
+          move-lesson-group-to-private="$ctrl.moveLessonGroupToPrivate"
           delete-lesson="$ctrl.deleteLessonGroupAdults">
         </lesson-item>
         <no-lesson lessons="$ctrl.results.group.adults"></no-lesson>
@@ -71,6 +72,7 @@
           lesson="lesson"
           type="'group.children'"
           participants="$ctrl.participants.children"
+          move-lesson-group-to-private="$ctrl.moveLessonGroupToPrivate"
           delete-lesson="$ctrl.deleteLessonGroupChildren">
         </lesson-item>
         <no-lesson lessons="$ctrl.results.group.children"></no-lesson>
@@ -100,6 +102,7 @@
           lesson="lesson"
           type="'group.mini'"
           participants="$ctrl.participants.mini"
+          move-lesson-group-to-private="$ctrl.moveLessonGroupToPrivate"
           delete-lesson="$ctrl.deleteLessonGroupMini">
         </lesson-item>
         <no-lesson lessons="$ctrl.results.group.mini"></no-lesson>
@@ -183,6 +186,7 @@
           lesson="lesson"
           type="'private'"
           participants="$ctrl.participants.normal"
+          move-lesson-to-group="$ctrl.moveLessonToGroup"
           delete-lesson="$ctrl.deleteLessonPrivate">
         </lesson-item>
         <no-lesson lessons="$ctrl.results.private.lessons"></no-lesson>

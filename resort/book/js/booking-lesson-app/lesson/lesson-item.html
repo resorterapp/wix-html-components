@@ -62,6 +62,12 @@
     </div>
   </div>
   <div class="col-sm-1 lesson-item-actions text-right">
+    <a
+      class="btn-link btn-move-lesson"
+      title="Move to Private/Group"
+      ng-click="$ctrl.onMove()" ng-if="!$ctrl.showBinButton">
+      <i class="far fa-arrow-alt-circle-right"></i>
+    </a>
     <a class="btn-link btn-delete-lesson" ng-click="$ctrl.onDelete()" ng-if="$ctrl.showBinButton">
       <i class="far fa-trash-alt"></i>
     </a>

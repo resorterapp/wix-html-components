@@ -18,6 +18,8 @@ function LessonItemComponent() {
 
         // functions
         deleteLesson: '<',
+        moveLessonGroupToPrivate: '<',
+        moveLessonToGroup: '<',
       },
     })
     .component('lessonItemFirstTimer', {
@@ -79,6 +81,7 @@ function LessonItemController(_, isParticipantFT, settings) {
     vm.getTimeOptions = getTimeOptions;
     vm.onAddLesson = onAddLesson;
     vm.onDelete = onDelete;
+    vm.onMove = onMove;
     vm.pickParticipant = pickParticipant;
     vm.disableParticipant = disableParticipant;
     vm.compareParticipant = compareParticipant;
@@ -98,12 +101,34 @@ function LessonItemController(_, isParticipantFT, settings) {
     vm.deleteLesson(vm.lesson);
   }
 
+  function onMove() {
+    // Wonders if there is `movedFrom` property
+    if (vm.lesson.hasOwnProperty('movedFrom')) {
+      // If there is -> 2nd move from Private
+      vm.moveLessonToGroup(vm.lesson);
+    } else {
+      // If has no movedFrom -> first move from Group
+      vm.lesson.movedFrom = vm.type;
+      vm.moveLessonGroupToPrivate(vm.lesson);
+    }
+
+    vm.deleteLesson(vm.lesson);
+  }
+
   function getParticipantsColumnCssClass() {
     return isLessonPrivateOrDisability() ? 'col-sm-5' : 'col-sm-6';
   }
 
   function isLessonPrivateOrDisability() {
     return isLessonMatchTypes(['private', 'disability']);
+  }
+
+  function isLessonGroup() {
+    return isLessonMatchTypes([
+      'group.adults',
+      'group.children',
+      'group.mini',
+    ]);
   }
 
   function isLessonMatchTypes(types) {
@@ -123,11 +148,22 @@ function LessonItemController(_, isParticipantFT, settings) {
         checked: _.findIndex(vm.lesson.participants, ['_id', participant._id]) >= 0,
         disabled: false,
         message: null,
-        isFt: false
+        isFt: false,
       };
 
       // Wonders if participant is FT
-      if (isParticipantFT(vm.lesson, participant)) {
+      const isFt = isParticipantFT(vm.lesson, participant);
+      // If FT && (Group || (Private && movedFrom))
+      if (
+        isFt
+        && (
+          isLessonGroup()
+          || (
+            isLessonMatchTypes(['private'])
+            && vm.lesson.hasOwnProperty('movedFrom')
+          )
+        )
+      ) {
         participantCheckbox.disabled = true;
         participantCheckbox.isFt = true;
         participantCheckbox.message = `First-time lesson for ${vm.lesson.activity} is mandatory`;
@@ -248,8 +284,9 @@ function LessonItemController(_, isParticipantFT, settings) {
 
   function showBinButton() {
     // True if there is no FT identified in the participants
-    let hasFts = _.some(vm.participants, p => isParticipantFT(vm.lesson, p));
+    const hasFts = _.some(vm.participants, p => isParticipantFT(vm.lesson, p));
+    const wasMoved = vm.lesson.hasOwnProperty('movedFrom');
 
-    return isLessonPrivateOrDisability() || (!hasFts && isLessonGroup());
+    return (isLessonPrivateOrDisability() && !wasMoved) || (!hasFts && isLessonGroup());
   }
 }

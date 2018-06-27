@@ -60,6 +60,8 @@
       vm.addLessonGroupMini = addLessonGroupMini;
       vm.addLessonPrivate = addLessonPrivate;
       vm.addDisabilityLessons = addDisabilityLessons;
+      vm.moveLessonGroupToPrivate = moveLessonGroupToPrivate;
+      vm.moveLessonToGroup = moveLessonToGroup;
 
       vm.isCollapsed = {
         group: false,
@@ -146,6 +148,26 @@
 
     function addDisabilityLessons(results) {
       return vm.results.disability.push(results);
+    }
+
+    function moveLessonGroupToPrivate(lesson) {
+      // Makes a copy
+      let copied = Lesson.copy(lesson);
+
+      // Adds to the private lessons
+      vm.results.private.lessons.push(copied);
+    }
+
+    function moveLessonToGroup(lesson) {
+      // Makes a copy
+      let copied = Lesson.copy(lesson);
+
+      // Assumes that there is a movedFrom in lesson
+      const type = copied.movedFrom.split('.')[1];
+      delete copied.movedFrom;
+
+      // Adds to the equivalent group lessons
+      vm.results.group[type].push(copied);
     }
   }
 })();
