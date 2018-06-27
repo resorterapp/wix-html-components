@@ -62,7 +62,7 @@
     </div>
   </div>
   <div class="col-sm-1 lesson-item-actions text-right">
-    <a class="btn-link btn-delete-lesson" ng-click="$ctrl.onDelete()">
+    <a class="btn-link btn-delete-lesson" ng-click="$ctrl.onDelete()" ng-if="!$ctrl.lesson.isFirstLesson">
       <i class="far fa-trash-alt"></i>
     </a>
   </div>
