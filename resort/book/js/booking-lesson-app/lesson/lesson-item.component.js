@@ -123,17 +123,14 @@ function LessonItemController(_, isParticipantFT, settings) {
         checked: _.findIndex(vm.lesson.participants, ['_id', participant._id]) >= 0,
         disabled: false,
         message: null,
+        isFt: false
       };
 
       // Wonders if participant is FT
       if (isParticipantFT(vm.lesson, participant)) {
         participantCheckbox.disabled = true;
+        participantCheckbox.isFt = true;
         participantCheckbox.message = `First-time lesson for ${vm.lesson.activity} is mandatory`;
-
-        if (!participantCheckbox.checked) {
-          participantCheckbox.checked = true;
-          vm.lesson.participants.push(participant);
-        }
       }
 
       if (!participantCheckbox.checked) {
@@ -187,6 +184,10 @@ function LessonItemController(_, isParticipantFT, settings) {
   function disableParticipant(pc) {
     // LN Don't try to simplify these logic blocks
     // They may look lengthy, but easier to understand than a short one with lots of && and ||
+
+    if (pc.isFt) {
+      return true;
+    }
 
     pc.message = null;
 
@@ -247,6 +248,8 @@ function LessonItemController(_, isParticipantFT, settings) {
 
   function showBinButton() {
     // True if there is no FT identified in the participants
-    return !_.some(vm.participants, p => isParticipantFT(vm.lesson, p));
+    let hasFts = _.some(vm.participants, p => isParticipantFT(vm.lesson, p));
+
+    return isLessonPrivateOrDisability() || (!hasFts && isLessonGroup());
   }
 }
