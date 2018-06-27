@@ -36,10 +36,14 @@ function LessonItemComponent() {
       },
     });
 
-  LessonItemController.$inject = ['_', 'settings'];
+  LessonItemController.$inject = [
+    '_',
+    'isParticipantFT',
+    'settings',
+  ];
 }
 
-function LessonItemController(_, settings) {
+function LessonItemController(_, isParticipantFT, settings) {
   const CHILD_ADVICE = 'It is strongly advised for any child aged 5 and under to do ' +
     'a separate lesson, either as a group or a private lesson';
   const MAX_PEOPLE_ADVICE = 'Up to 4 people can join a lesson';
@@ -122,7 +126,7 @@ function LessonItemController(_, settings) {
       };
 
       // Wonders if participant is FT
-      if (isParticipantFT(participant)) {
+      if (isParticipantFT(vm.lesson, participant)) {
         participantCheckbox.disabled = true;
         participantCheckbox.message = `First-time lesson for ${vm.lesson.activity} is mandatory`;
 
@@ -243,23 +247,6 @@ function LessonItemController(_, settings) {
 
   function showBinButton() {
     // True if there is no FT identified in the participants
-    return !_.some(vm.participants, isParticipantFT);
-  }
-
-  function isParticipantFT(participant) {
-    if (!vm.lesson.isFirstLesson) return false;
-
-    const activity = vm.lesson.activity;
-
-    // Doesn't need to care about non-main activities
-    if (settings.ACTIVITY_TYPES.default.indexOf(activity) < 0) return false;
-
-    // Handles Snowboarding first
-    if (activity === 'Snowboard') {
-      return participant.snowboardLevel <= 1;
-    }
-
-    // Now, the telemark/ski
-    return participant.skiLevel <= 1 && participant.telemarkLevel <= 1;
+    return !_.some(vm.participants, p => isParticipantFT(vm.lesson, p));
   }
 }
