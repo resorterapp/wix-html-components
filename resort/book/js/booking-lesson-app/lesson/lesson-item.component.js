@@ -57,11 +57,7 @@ function LessonItemController(_, settings) {
     vm.lesson.activity = vm.availableActivities[0];
 
     // Preps for participants' checkboxes
-    vm.innerCounts = {
-      pickedMinis: 0,
-      pickedOthers: 0,
-    };
-    vm.participantCheckboxes = buildSpecificParticipantsList();
+    resetCheckboxes();
 
     // Options for date picker
     vm.toggleDatePicker = false;
@@ -124,6 +120,17 @@ function LessonItemController(_, settings) {
         disabled: false,
         message: null,
       };
+
+      // Wonders if participant is FT
+      if (isParticipantFT(participant)) {
+        participantCheckbox.disabled = true;
+        participantCheckbox.message = `First-time lesson for ${vm.lesson.activity} is mandatory`;
+
+        if (!participantCheckbox.checked) {
+          participantCheckbox.checked = true;
+          vm.lesson.participants.push(participant);
+        }
+      }
 
       if (!participantCheckbox.checked) {
         participantCheckbox.disabled = disableParticipant(participantCheckbox);
@@ -219,13 +226,19 @@ function LessonItemController(_, settings) {
     // Clears the previous participants list
     vm.lesson.participants = [];
 
-    for (let participantCheckbox of vm.participantCheckboxes) {
-      participantCheckbox.checked = false;
-      participantCheckbox.disabled = disableParticipant(participantCheckbox);
-    }
+    resetCheckboxes();
 
     // Update the showBinButton
     vm.showBinButton = showBinButton();
+  }
+
+  function resetCheckboxes() {
+    // Preps for participants' checkboxes
+    vm.innerCounts = {
+      pickedMinis: 0,
+      pickedOthers: 0,
+    };
+    vm.participantCheckboxes = buildSpecificParticipantsList();
   }
 
   function showBinButton() {
