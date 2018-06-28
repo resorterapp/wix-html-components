@@ -56,12 +56,10 @@ a {
     margin: 0 10px;
   }
 
-  .add-lesson-container {
-    .date-picker {
-      width: 0;
-      height: 0;
-      border: none;
-    }
+  .date-picker {
+    width: 0;
+    height: 0;
+    border: none;
   }
 }
 
@@ -122,7 +120,7 @@ a {
       text-overflow: ellipsis;
     }
 
-    .btn-delete-lesson {
+    .btn-link {
       padding: 0 10px;
     }
   }

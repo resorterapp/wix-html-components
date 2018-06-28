@@ -1,205 +1,222 @@
----
----
-
 <div id="lessons" class="activity-lessons">
-    <div id="group-lessons" class="lessons-booker-inner">
-        <h3>
-            Group Lessons
-            <a class="collapse-btn small btn-link" ng-click="$ctrl.isCollapsed.group = !$ctrl.isCollapsed.group">
-                [{ $ctrl.isCollapsed.group ? "Expand" : "Skip" }]
-            </a>
-        </h3>
+  <div id="group-lessons" class="lessons-booker-inner">
+    <h3>
+      Group Lessons
+      <a class="collapse-btn small btn-link" ng-click="$ctrl.isCollapsed.group = !$ctrl.isCollapsed.group">
+        [{ $ctrl.isCollapsed.group ? "Expand" : "Skip" }]
+      </a>
+    </h3>
 
-        <div class="lessons-body" uib-collapse="$ctrl.isCollapsed.group">
-            <div class="alert alert-info">
-                Lesson durations vary from resort to resort but typically adult lesson duration is around <strong>2 -3 hours</strong>.
-                <br>
-                <strong>AM</strong> lessons start around <strong>10am</strong>;
-                <br>
-                <strong>PM</strong> lessons start around <strong>1.30pm</strong>;
-                <br>
-                Children lesson duration can be full day or half day. Start and end times are aimed to allow parents time to drop off and pick up children.
-            </div>
-            <div class="group-lessons-adult lessons-list" ng-if="$ctrl.participants.adults.length">
-                <div class="row">
-                    <h4 class="col-sm-12">Adult (18+ yrs)</h4>
-                </div>
-
-                <div class="lessons-list-headers row">
-                    <div class="col-sm-2">Date</div>
-                    <div class="col-sm-1">AM/PM</div>
-                    <div class="col-sm-2">Activity</div>
-                    <div class="col-sm-5">Participants</div>
-                    <add-lesson-button
-                            class="col-sm-2"
-                            dates="$ctrl.dates"
-                            add-lesson-to-date="$ctrl.addLessonGroupAdults"></add-lesson-button>
-                </div>
-
-                <lesson-item ng-repeat="lesson in $ctrl.results.group.adults | orderBy: 'date'"
-                             activities="$ctrl.activities"
-                             class="lesson-item-component"
-                             lesson="lesson"
-                             type="'group.adults'"
-                             participants="$ctrl.participants.adults"
-                             delete-lesson="$ctrl.deleteLessonGroupAdults">
-                </lesson-item>
-                <no-lesson lessons="$ctrl.results.group.adults"></no-lesson>
-            </div>
-
-            <div class="group-lessons-children lessons-list" ng-if="$ctrl.participants.children.length">
-                <div class="row">
-                    <h4 class="col-sm-12">Child (6–12 yrs) / Teen (13–17 years)</h4>
-                </div>
-
-                <div class="lessons-list-headers row">
-                    <div class="col-sm-2">Date</div>
-                    <div class="col-sm-1">AM/PM</div>
-                    <div class="col-sm-2">Activity</div>
-                    <div class="col-sm-5">Participants</div>
-                    <add-lesson-button
-                            class="col-sm-2"
-                            dates="$ctrl.dates"
-                            add-lesson-to-date="$ctrl.addLessonGroupChildren"></add-lesson-button>
-                </div>
-
-                <lesson-item ng-repeat="lesson in $ctrl.results.group.children | orderBy: 'date'"
-                             class="lesson-item-component"
-                             activities="$ctrl.activities"
-                             lesson="lesson"
-                             type="'group.children'"
-                             participants="$ctrl.participants.children"
-                             delete-lesson="$ctrl.deleteLessonGroupChildren">
-                </lesson-item>
-                <no-lesson lessons="$ctrl.results.group.children"></no-lesson>
-            </div>
-
-            <div class="group-lessons-mini lessons-list" ng-if="$ctrl.participants.mini.length">
-                <div class="row">
-                    <h4 class="col-sm-12">Mini (3–5 yrs)</h4>
-                </div>
-
-                <div class="lessons-list-headers row">
-                    <div class="col-sm-2">Date</div>
-                    <div class="col-sm-1">AM/PM</div>
-                    <div class="col-sm-2">Activity</div>
-                    <div class="col-sm-5">Participants</div>
-                    <add-lesson-button
-                            class="col-sm-2"
-                            dates="$ctrl.dates"
-                            add-lesson-to-date="$ctrl.addLessonGroupMini"></add-lesson-button>
-                </div>
-
-                <lesson-item ng-repeat="lesson in $ctrl.results.group.mini | orderBy: 'date'"
-                             class="lesson-item-component"
-                             activities="$ctrl.activities"
-                             lesson="lesson"
-                             type="'group.mini'"
-                             participants="$ctrl.participants.mini"
-                             delete-lesson="$ctrl.deleteLessonGroupMini">
-                </lesson-item>
-                <no-lesson lessons="$ctrl.results.group.mini"></no-lesson>
-            </div>
+    <div class="lessons-body" uib-collapse="$ctrl.isCollapsed.group">
+      <div class="alert alert-info">
+        Lesson durations vary from resort to resort but typically adult lesson duration is around <strong>2 -3
+        hours</strong>.
+        <br>
+        <strong>AM</strong> lessons start around <strong>10am</strong>;
+        <br>
+        <strong>PM</strong> lessons start around <strong>1.30pm</strong>;
+        <br>
+        Children lesson duration can be full day or half day. Start and end times are aimed to allow parents time to
+        drop off and pick up children.
+      </div>
+      <div class="group-lessons-adult lessons-list" ng-if="$ctrl.participants.adults.length">
+        <div class="row">
+          <h4 class="col-sm-12">Adult (18+ yrs)</h4>
         </div>
 
-    </div>
+        <div class="lessons-list-headers row">
+          <div class="col-sm-2">Date</div>
+          <div class="col-sm-1">AM/PM</div>
+          <div class="col-sm-2">Activity</div>
+          <div class="col-sm-5">Participants</div>
+          <add-lesson-button
+            class="col-sm-2"
+            dates="$ctrl.dates"
+            add-lesson-to-date="$ctrl.addLessonGroupAdults"></add-lesson-button>
+        </div>
+        <lesson-item
+          ng-repeat="lesson in $ctrl.results.group.adults | orderBy: 'date'"
+          activities="$ctrl.activities"
+          class="lesson-item-component"
+          dates="$ctrl.dates"
+          lesson="lesson"
+          type="'group.adults'"
+          participants="$ctrl.participants.adults"
+          move-lesson-group-to-private="$ctrl.moveLessonGroupToPrivate"
+          delete-lesson="$ctrl.deleteLessonGroupAdults">
+        </lesson-item>
+        <no-lesson lessons="$ctrl.results.group.adults"></no-lesson>
+      </div>
 
-    <div id="private-lessons" class="lessons-booker-inner" ng-if="$ctrl.participants.normal.length">
-        <h3>
-            Private Lessons
-            <a class="collapse-btn small btn-link" ng-click="$ctrl.isCollapsed.private = !$ctrl.isCollapsed.private">
-                [{ $ctrl.isCollapsed.private ? "Expand" : "Skip" }]
-            </a>
-        </h3>
-
-        <div class="lessons-body" uib-collapse="$ctrl.isCollapsed.private">
-            <div class="alert alert-warning">
-                A maximum of up to 4 people can join a lesson. Everyone must be the same ability level.
-                <br>
-                <small><i>* Activities & time are subject to availability. Confirm with resort when they make contact.</i></small>
-            </div>
-
-            <form action="" class="form-horizontal">
-                <div class="form-group specific-instructor">
-                    <label class="col-sm-3">
-                        Specific instructor in mind?
-                    </label>
-                    <div class="col-sm-9">
-                        <select ng-model="$ctrl.results.private.instructor.required"
-                                ng-options="o.value as o.name for o in $ctrl.settings.YES_NO_OPTIONS">
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group instructor-name-description"
-                     ng-if="$ctrl.results.private.instructor.required">
-                    <label class="col-sm-3">
-                        Name or description of the instructor
-                    </label>
-                    <div class="col-sm-9">
-          <textarea class="form-control" rows="4"
-                    ng-model="$ctrl.results.private.instructor.details"></textarea>
-                    </div>
-                </div>
-                <div class="form-group specific-requirements">
-                    <label class="col-sm-3">
-                        Any special requests?
-                    </label>
-                    <div class="col-sm-9">
-                <textarea
-                        class="form-control" rows="5"
-                        placeholder="Any specific requirements you want your instructor to know? What do you want to get out of the lesson? Max. 150 characters."
-                        ng-model="$ctrl.results.private.requests"></textarea>
-                    </div>
-                </div>
-            </form>
-
-            <div class="lessons-list">
-                <div class="lessons-list-headers row">
-                    <div class="col-sm-2">Date</div>
-                    <div class="col-sm-1">AM/PM</div>
-                    <div class="col-sm-2">Activity</div>
-                    <div class="col-sm-1">Duration</div>
-                    <div class="col-sm-4">Participants</div>
-                    <add-lesson-button
-                            class="col-sm-2"
-                            dates="$ctrl.dates"
-                            add-lesson-to-date="$ctrl.addLessonPrivate"></add-lesson-button>
-                </div>
-
-                <lesson-item ng-repeat="lesson in $ctrl.results.private.lessons | orderBy: 'date'"
-                             class="lesson-item-component"
-                             activities="$ctrl.activities"
-                             lesson="lesson"
-                             type="'private'"
-                             participants="$ctrl.participants.normal"
-                             delete-lesson="$ctrl.deleteLessonPrivate">
-                </lesson-item>
-                <no-lesson lessons="$ctrl.results.private.lessons"></no-lesson>
-            </div>
+      <div class="group-lessons-children lessons-list" ng-if="$ctrl.participants.children.length">
+        <div class="row">
+          <h4 class="col-sm-12">Child (6–12 yrs) / Teen (13–17 years)</h4>
         </div>
 
-    </div>
-    <div id="private-disabled-lessons" class="lessons-booker-inner"
-         ng-if="$ctrl.participants.disabled.length">
-        <h3>
-            Private (disabled) Lessons
-            <a class="collapse-btn small btn-link" ng-click="$ctrl.isCollapsed.disabled = !$ctrl.isCollapsed.disabled">
-                [{ $ctrl.isCollapsed.disabled ? "Expand" : "Skip" }]
-            </a>
-        </h3>
-        <div class="lesson-body" uib-collapse="$ctrl.isCollapsed.disabled">
-            <div class="alert alert-warning">
-                These private lessons are tailored to one disabled person only.
-                <br>
-                <small><i>* Activities & time are subject to availability. Confirm with resort when they make contact.</i></small>
-            </div>
-            <disability-lessons
-                    ng-repeat="participant in $ctrl.participants.disabled"
-                    activities="$ctrl.activities"
-                    participant="participant"
-                    dates="$ctrl.dates"
-                    add-to-activity-lessons="$ctrl.addDisabilityLessons"></disability-lessons>
+        <div class="lessons-list-headers row">
+          <div class="col-sm-2">Date</div>
+          <div class="col-sm-1">AM/PM</div>
+          <div class="col-sm-2">Activity</div>
+          <div class="col-sm-5">Participants</div>
+          <add-lesson-button
+            class="col-sm-2"
+            dates="$ctrl.dates"
+            add-lesson-to-date="$ctrl.addLessonGroupChildren"></add-lesson-button>
         </div>
+
+        <lesson-item
+          ng-repeat="lesson in $ctrl.results.group.children | orderBy: 'date'"
+          class="lesson-item-component"
+          activities="$ctrl.activities"
+          dates="$ctrl.dates"
+          lesson="lesson"
+          type="'group.children'"
+          participants="$ctrl.participants.children"
+          move-lesson-group-to-private="$ctrl.moveLessonGroupToPrivate"
+          delete-lesson="$ctrl.deleteLessonGroupChildren">
+        </lesson-item>
+        <no-lesson lessons="$ctrl.results.group.children"></no-lesson>
+      </div>
+
+      <div class="group-lessons-mini lessons-list" ng-if="$ctrl.participants.mini.length">
+        <div class="row">
+          <h4 class="col-sm-12">Mini (3–5 yrs)</h4>
+        </div>
+
+        <div class="lessons-list-headers row">
+          <div class="col-sm-2">Date</div>
+          <div class="col-sm-1">AM/PM</div>
+          <div class="col-sm-2">Activity</div>
+          <div class="col-sm-5">Participants</div>
+          <add-lesson-button
+            class="col-sm-2"
+            dates="$ctrl.dates"
+            add-lesson-to-date="$ctrl.addLessonGroupMini"></add-lesson-button>
+        </div>
+
+        <lesson-item
+          ng-repeat="lesson in $ctrl.results.group.mini | orderBy: 'date'"
+          class="lesson-item-component"
+          activities="$ctrl.activities"
+          dates="$ctrl.dates"
+          lesson="lesson"
+          type="'group.mini'"
+          participants="$ctrl.participants.mini"
+          move-lesson-group-to-private="$ctrl.moveLessonGroupToPrivate"
+          delete-lesson="$ctrl.deleteLessonGroupMini">
+        </lesson-item>
+        <no-lesson lessons="$ctrl.results.group.mini"></no-lesson>
+      </div>
     </div>
+
+  </div>
+
+  <div id="private-lessons" class="lessons-booker-inner" ng-if="$ctrl.participants.normal.length">
+    <h3>
+      Private Lessons
+      <a class="collapse-btn small btn-link" ng-click="$ctrl.isCollapsed.private = !$ctrl.isCollapsed.private">
+        [{ $ctrl.isCollapsed.private ? "Expand" : "Skip" }]
+      </a>
+    </h3>
+
+    <div class="lessons-body" uib-collapse="$ctrl.isCollapsed.private">
+      <div class="alert alert-warning">
+        A maximum of up to 4 people can join a lesson. Everyone must be the same ability level.
+        <br>
+        <small><i>* Activities & time are subject to availability. Confirm with resort when they make contact.</i>
+        </small>
+      </div>
+
+      <form action="" class="form-horizontal">
+        <div class="form-group specific-instructor">
+          <label class="col-sm-3">
+            Specific instructor in mind?
+          </label>
+          <div class="col-sm-9">
+            <select
+              ng-model="$ctrl.results.private.instructor.required"
+              ng-options="o.value as o.name for o in $ctrl.settings.YES_NO_OPTIONS">
+            </select>
+          </div>
+        </div>
+        <div
+          class="form-group instructor-name-description"
+          ng-if="$ctrl.results.private.instructor.required">
+          <label class="col-sm-3">
+            Name or description of the instructor
+          </label>
+          <div class="col-sm-9">
+          <textarea
+            class="form-control" rows="4"
+            ng-model="$ctrl.results.private.instructor.details"></textarea>
+          </div>
+        </div>
+        <div class="form-group specific-requirements">
+          <label class="col-sm-3">
+            Any special requests?
+          </label>
+          <div class="col-sm-9">
+            <textarea
+              class="form-control" rows="5"
+              placeholder="Any specific requirements you want your instructor to know? What do you want to get out of the lesson? Max. 150 characters."
+              ng-model="$ctrl.results.private.requests">
+            </textarea>
+          </div>
+        </div>
+      </form>
+
+      <div class="lessons-list">
+        <div class="lessons-list-headers row">
+          <div class="col-sm-2">Date</div>
+          <div class="col-sm-1">AM/PM</div>
+          <div class="col-sm-2">Activity</div>
+          <div class="col-sm-1">Duration</div>
+          <div class="col-sm-4">Participants</div>
+          <add-lesson-button
+            class="col-sm-2"
+            dates="$ctrl.dates"
+            add-lesson-to-date="$ctrl.addLessonPrivate"></add-lesson-button>
+        </div>
+
+        <lesson-item
+          ng-repeat="lesson in $ctrl.results.private.lessons | orderBy: 'date'"
+          class="lesson-item-component"
+          activities="$ctrl.activities"
+          dates="$ctrl.dates"
+          lesson="lesson"
+          type="'private'"
+          participants="$ctrl.participants.normal"
+          move-lesson-to-group="$ctrl.moveLessonToGroup"
+          delete-lesson="$ctrl.deleteLessonPrivate">
+        </lesson-item>
+        <no-lesson lessons="$ctrl.results.private.lessons"></no-lesson>
+      </div>
+    </div>
+
+  </div>
+  <div
+    id="private-disabled-lessons" class="lessons-booker-inner"
+    ng-if="$ctrl.participants.disabled.length">
+    <h3>
+      Private (disabled) Lessons
+      <a class="collapse-btn small btn-link" ng-click="$ctrl.isCollapsed.disabled = !$ctrl.isCollapsed.disabled">
+        [{ $ctrl.isCollapsed.disabled ? "Expand" : "Skip" }]
+      </a>
+    </h3>
+    <div class="lesson-body" uib-collapse="$ctrl.isCollapsed.disabled">
+      <div class="alert alert-warning">
+        These private lessons are tailored to one disabled person only.
+        <br>
+        <small><i>* Activities & time are subject to availability. Confirm with resort when they make contact.</i>
+        </small>
+      </div>
+      <disability-lessons
+        ng-repeat="participant in $ctrl.participants.disabled"
+        activities="$ctrl.activities"
+        participant="participant"
+        dates="$ctrl.dates"
+        add-to-activity-lessons="$ctrl.addDisabilityLessons"></disability-lessons>
+    </div>
+  </div>
 
 </div>

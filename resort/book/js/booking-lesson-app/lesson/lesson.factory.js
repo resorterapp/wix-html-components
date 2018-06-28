@@ -7,7 +7,7 @@
 
   Lesson.$inject = [
     'uuid',
-    'settings'
+    'settings',
   ];
 
   function Lesson(uuid, settings) {
@@ -15,7 +15,7 @@
     return {
       createNew: createNew,
       newFromDates: createNewFromDates,
-      copy: copy
+      copy: copy,
     };
 
     function build(date, duration, participants, time, activity) {
@@ -26,6 +26,7 @@
         duration: duration,
         activity: activity,
         participants: participants,
+        isFirstLesson: false,
       };
     }
 
@@ -35,7 +36,7 @@
         duration,
         [],
         settings.TIME_OPTIONS[1],
-        activity
+        activity,
       );
     }
 
@@ -45,6 +46,9 @@
       for (let date of dates) {
         lessons.push(createNew(type, date, duration, activity));
       }
+
+      // Marks the first lesson
+      lessons[0].isFirstLesson = true;
 
       return lessons;
     }

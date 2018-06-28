@@ -1,6 +1,23 @@
 (function () {
   'use strict';
 
+  const EMPTY_RESULTS = {
+    group: {
+      adults: [],
+      children: [],
+      mini: [],
+    },
+    private: {
+      instructor: {
+        required: false,
+        details: null,
+      },
+      requests: null,
+      lessons: [],
+    },
+    disability: [],
+  };
+
   angular
     .module('BookingLessonApp')
     .component('activityLessons', {
@@ -12,15 +29,17 @@
         dates: '<',
         participants: '<',
         results: '<',
-      }
+      },
     });
 
   ActivityLessonsController.$inject = [
+    '_',
+    'isParticipantFT',
     'settings',
-    'Lesson'
+    'Lesson',
   ];
 
-  function ActivityLessonsController(settings, Lesson) {
+  function ActivityLessonsController(_, isParticipantFT, settings, Lesson) {
     let vm = this;
 
     this.$onInit = onInit;
@@ -41,44 +60,41 @@
       vm.addLessonGroupMini = addLessonGroupMini;
       vm.addLessonPrivate = addLessonPrivate;
       vm.addDisabilityLessons = addDisabilityLessons;
+      vm.moveLessonGroupToPrivate = moveLessonGroupToPrivate;
+      vm.moveLessonToGroup = moveLessonToGroup;
 
       vm.isCollapsed = {
         group: false,
         private: false,
-        disabled: false
+        disabled: false,
       };
     }
 
+    ///////////
+
     function isResultsEmpty(results) {
-      const EMPTY_RESULTS = {
-        group: {
-          adults: [],
-          children: [],
-          mini: [],
-        },
-        private: {
-          instructor: {
-            required: false,
-            details: null
-          },
-          requests: null,
-          lessons: []
-        },
-        disability: [],
-      };
       return angular.equals(results, EMPTY_RESULTS);
     }
 
     function createLessons(type) {
-      return Lesson.newFromDates(type, vm.dates, 4, null);
+      return Lesson.newFromDates(type, vm.dates, 4, 'Ski');
     }
 
     function createAllLessons() {
       // LN Look for a better way to do this
-      vm.results.group.adults = createLessons('group.adults');
-      vm.results.group.children = createLessons('group.children');
-      vm.results.group.mini = createLessons('group.mini');
       vm.results.private.lessons = createLessons('private.lessons');
+
+      // Add FTs to group lessons
+      const types = ['adults', 'children', 'mini'];
+
+      for (const type of types) {
+        let lessons = createLessons(`group.${type}`);
+        let firstLesson = lessons[0];
+        const fts = _.filter(vm.participants[type], p => isParticipantFT(firstLesson, p));
+
+        firstLesson.participants = fts;
+        vm.results.group[type] = lessons;
+      }
     }
 
     function deleteLesson(lessonsList, lesson) {
@@ -132,6 +148,26 @@
 
     function addDisabilityLessons(results) {
       return vm.results.disability.push(results);
+    }
+
+    function moveLessonGroupToPrivate(lesson) {
+      // Makes a copy
+      let copied = Lesson.copy(lesson);
+
+      // Adds to the private lessons
+      vm.results.private.lessons.push(copied);
+    }
+
+    function moveLessonToGroup(lesson) {
+      // Makes a copy
+      let copied = Lesson.copy(lesson);
+
+      // Assumes that there is a movedFrom in lesson
+      const type = copied.movedFrom.split('.')[1];
+      delete copied.movedFrom;
+
+      // Adds to the equivalent group lessons
+      vm.results.group[type].push(copied);
     }
   }
 })();
