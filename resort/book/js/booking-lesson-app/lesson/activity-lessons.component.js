@@ -77,23 +77,17 @@
     }
 
     function createLessons(type) {
-      return Lesson.newFromDates(type, vm.dates, 4, 'Ski');
+      return Lesson.newFromDates(type, vm.dates, 4, null);
     }
 
     function createAllLessons() {
       // LN Look for a better way to do this
       vm.results.private.lessons = createLessons('private.lessons');
 
-      // Add FTs to group lessons
       const types = ['adults', 'children', 'mini'];
 
       for (const type of types) {
-        let lessons = createLessons(`group.${type}`);
-        let firstLesson = lessons[0];
-        const fts = _.filter(vm.participants[type], p => isParticipantFT(firstLesson, p));
-
-        firstLesson.participants = fts;
-        vm.results.group[type] = lessons;
+        vm.results.group[type] = createLessons(`group.${type}`);
       }
     }
 

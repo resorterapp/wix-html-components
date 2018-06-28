@@ -96,9 +96,9 @@
           age: 40,
           activities: JSON.stringify(
             {
-              'skiChosen': true,
+              'skiChosen': false,
               'snowboardChosen': true,
-              'telemarkChosen': false,
+              'telemarkChosen': true,
               'snowbikeChosen': false,
               'snowmobileChosen': false,
               'snowshoeChosen': false,
@@ -119,9 +119,9 @@
           age: 36,
           activities: JSON.stringify(
             {
-              'skiChosen': true,
+              'skiChosen': false,
               'snowboardChosen': true,
-              'telemarkChosen': false,
+              'telemarkChosen': true,
               'snowbikeChosen': false,
               'snowmobileChosen': false,
               'snowshoeChosen': false,
@@ -173,7 +173,7 @@
               'snowshoeChosen': false,
             },
           ),
-          skiLevel: 5,
+          skiLevel: 1,
           snowboardLevel: 2,
           telemarkLevel: 1,
           snowbikeLevel: 1,

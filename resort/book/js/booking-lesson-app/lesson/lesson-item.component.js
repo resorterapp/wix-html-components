@@ -61,7 +61,7 @@ function LessonItemController(_, filterActivities, isParticipantFT, settings) {
 
     vm.availableActivities = buildActivitiesList(vm.participants);
     // Gets the first available activity
-    vm.lesson.activity = vm.availableActivities[0];
+    vm.lesson.activity = vm.lesson.activity || vm.availableActivities[0];
 
     // Preps for participants' checkboxes
     resetCheckboxes();
@@ -152,26 +152,33 @@ function LessonItemController(_, filterActivities, isParticipantFT, settings) {
         isFt: false,
       };
 
-      // Wonders if participant is FT
-      const isFt = isParticipantFT(vm.lesson, participant);
-      // If FT && (Group || (Private && movedFrom))
-      if (
-        isFt
-        && (
-          isLessonGroup()
-          || (
-            isLessonMatchTypes(['private'])
-            && vm.lesson.hasOwnProperty('movedFrom')
-          )
-        )
-      ) {
-        participantCheckbox.disabled = true;
-        participantCheckbox.isFt = true;
-        participantCheckbox.message = `First-time lesson for ${vm.lesson.activity} is mandatory`;
-      }
-
       if (!participantCheckbox.checked) {
         participantCheckbox.disabled = disableParticipant(participantCheckbox);
+      }
+
+      if (!participantCheckbox.message) {
+        // Wonders if participant is FT
+        const isFt = isParticipantFT(vm.lesson, participant);
+        // If FT && (Group || (Private && movedFrom))
+        if (
+          isFt
+          && (
+            isLessonGroup()
+            || (
+              isLessonMatchTypes(['private'])
+              && vm.lesson.hasOwnProperty('movedFrom')
+            )
+          )
+        ) {
+          participantCheckbox.disabled = true;
+          participantCheckbox.isFt = true;
+          participantCheckbox.message = `First-time lesson for ${vm.lesson.activity} is mandatory`;
+
+          if (!participantCheckbox.checked) {
+            participantCheckbox.checked = true;
+            vm.lesson.participants.push(participant);
+          }
+        }
       }
 
       participantCheckboxes.push(participantCheckbox);
@@ -192,7 +199,7 @@ function LessonItemController(_, filterActivities, isParticipantFT, settings) {
     if (isLessonMatchTypes(['private'])) {
       let checkCount = pc.checked ? 1 : -1;
 
-      if (pc.participant.age > 5) {
+      if (pc.participant.age >= settings.AGE_GROUP.TEEN_CHILD) {
         vm.innerCounts.pickedOthers += checkCount;
       } else {
         vm.innerCounts.pickedMinis += checkCount;
@@ -238,18 +245,18 @@ function LessonItemController(_, filterActivities, isParticipantFT, settings) {
     }
 
     // If this is mini, checks if others are picked
-    if (pc.participant.age < settings.AGE_GROUP.MINI) {
+    if (pc.participant.age < settings.AGE_GROUP.TEEN_CHILD) {
       if (vm.innerCounts.pickedOthers > 0) {
         pc.message = CHILD_ADVICE;
         return true;
       }
 
-      if (vm.innerCounts.pickedMinis < settings.MAX_PEOPLE) {
+      if (vm.innerCounts.pickedMinis >= settings.MAX_PEOPLE) {
         pc.message = MAX_PEOPLE_ADVICE;
-        return false;
+        return true;
       }
 
-      return !pc.checked;
+      return false && !pc.checked;
     }
 
     if (vm.innerCounts.pickedMinis > 0) {
@@ -257,12 +264,12 @@ function LessonItemController(_, filterActivities, isParticipantFT, settings) {
       return true;
     }
 
-    if (vm.innerCounts.pickedOthers < settings.MAX_PEOPLE) {
+    if (vm.innerCounts.pickedOthers >= settings.MAX_PEOPLE) {
       pc.message = MAX_PEOPLE_ADVICE;
-      return false;
+      return true;
     }
 
-    return !pc.checked;
+    return false && !pc.checked;
   }
 
   function activityOnChange() {
