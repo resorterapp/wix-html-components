@@ -98,7 +98,7 @@
             {
               'skiChosen': true,
               'snowboardChosen': true,
-              'telemarkChosen': true,
+              'telemarkChosen': false,
               'snowbikeChosen': false,
               'snowmobileChosen': false,
               'snowshoeChosen': false,
@@ -121,7 +121,7 @@
             {
               'skiChosen': true,
               'snowboardChosen': true,
-              'telemarkChosen': true,
+              'telemarkChosen': false,
               'snowbikeChosen': false,
               'snowmobileChosen': false,
               'snowshoeChosen': false,
