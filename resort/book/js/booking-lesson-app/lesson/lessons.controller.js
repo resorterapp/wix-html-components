@@ -36,13 +36,13 @@
         private: {
           instructor: {
             required: false,
-            details: null
+            details: null,
           },
           requests: null,
-          lessons: []
+          lessons: [],
         },
         disability: [],
-      }
+      },
     };
 
     // Binds functions
@@ -72,7 +72,7 @@
         children: [],
         mini: [],
         normal: [],
-        disabled: []
+        disabled: [],
       };
 
       for (const participant of participants) {
@@ -159,9 +159,9 @@
         return $window.parent.postMessage(
           {
             msg: 'LESSONS_DATA',
-            results: vm.getResults()
+            results: vm.getResults(),
           },
-          '*'
+          '*',
         );
       }
 
