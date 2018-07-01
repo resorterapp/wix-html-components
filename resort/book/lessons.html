@@ -15,10 +15,10 @@
   <!-- Book Lesson by Activity -->
   <div class="lessons-booker-container" ng-if="$ctrl.isDataAvailable()">
     <activity-lessons
-        activities="$ctrl.activities"
-        dates="$ctrl.dates"
-        participants="$ctrl.participants"
-        results="$ctrl.results.lessons"></activity-lessons>
+      activities="$ctrl.activities"
+      dates="$ctrl.dates"
+      participants="$ctrl.participants"
+      results="$ctrl.results.lessons"></activity-lessons>
   </div>
 </div>
 
@@ -49,6 +49,7 @@
 <script src="js/booking-lesson-app/factories/wix.factory.js"></script>
 <script src="js/booking-lesson-app/services/activities-filter.service.js"></script>
 <script src="js/booking-lesson-app/services/ft-checker.service.js"></script>
+<script src="js/booking-lesson-app/services/get-selected-results.service.js"></script>
 <script src="js/booking-lesson-app/lesson/lessons.controller.js"></script>
 <script src="js/booking-lesson-app/lesson/lesson.factory.js"></script>
 <script src="js/booking-lesson-app/lesson/lesson-item.component.js"></script>

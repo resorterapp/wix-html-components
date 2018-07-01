@@ -12,9 +12,13 @@
     '_',
     'settings',
     'Wix',
+    'getSelectedResult',
   ];
 
-  function LessonsController($scope, $window, moment, _, settings, Wix) {
+  function LessonsController(
+    $scope, $window, moment, _, settings,
+    Wix, getSelectedResult
+  ) {
     let vm = this;
 
     // Registers this as the listener of Wix event
@@ -85,9 +89,15 @@
 
         if (participant.age >= settings.AGE_GROUP.ADULT) {
           participantsList.adults.push(participant);
-        } else if (participant.age >= settings.AGE_GROUP.TEEN_CHILD) {
+          continue;
+        }
+
+        if (participant.age >= settings.AGE_GROUP.TEEN_CHILD) {
           participantsList.children.push(participant);
-        } else if (participant.age >= settings.AGE_GROUP.MINI) {
+          continue;
+        }
+
+        if (participant.age >= settings.AGE_GROUP.MINI) {
           participantsList.mini.push(participant);
         }
       }
@@ -110,32 +120,7 @@
      * Then return the filtered one
      */
     function getResults() {
-      let results = angular.copy(vm.results);
-      filterEmptyLessons(results.lessons);
-
-      return results;
-    }
-
-    function filterEmptyLessons(lessons) {
-      lessons.group.adults = filterNonParticipantLessons(lessons.group.adults);
-      lessons.group.children = filterNonParticipantLessons(lessons.group.children);
-      lessons.group.mini = filterNonParticipantLessons(lessons.group.mini);
-      lessons.private.lessons = filterNonParticipantLessons(lessons.private.lessons);
-
-      for (let disabilityLessons of lessons.disability) {
-        disabilityLessons.lessons = filterNonParticipantLessons(disabilityLessons.lessons);
-      }
-      lessons.disability = lessons.disability.filter((dl) => {
-        return !_.isEmpty(dl.lessons);
-      });
-
-      return lessons;
-    }
-
-    function filterNonParticipantLessons(lessons) {
-      return lessons.filter((l) => {
-        return !_.isEmpty(l.participants);
-      });
+      return getSelectedResult(vm.results);
     }
 
     function prefillData(eventData) {
