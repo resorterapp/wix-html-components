@@ -94,8 +94,10 @@
       const firstTimers = _.filter(candidates, 'isFirstTimer');
 
       // The first lesson is a FT lesson if there is at least 1 FT candidate
-      lessons[0].isFirstTimeLesson = firstTimers.length > 0;
-      lessons[0].participants = [...firstTimers];
+      if (firstTimers.length) {
+        lessons[0].isFirstTimeLesson = true;
+        lessons[0].participants = _.union(lessons[0].participants, firstTimers);
+      }
 
       return lessons;
     }
