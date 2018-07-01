@@ -121,7 +121,30 @@
             {
               'skiChosen': false,
               'snowboardChosen': true,
-              'telemarkChosen': true,
+              'telemarkChosen': false,
+              'snowbikeChosen': false,
+              'snowmobileChosen': false,
+              'snowshoeChosen': false,
+            },
+          ),
+          skiLevel: 1,
+          snowboardLevel: 1,
+          telemarkLevel: 1,
+          snowbikeLevel: 1,
+          snowmobileLevel: 1,
+          snowshoeLevel: 1,
+          physicalDisability: false,
+          physicalDetails: null,
+        },
+        {
+          _id: uuid.v4(),
+          firstName: 'Aust',
+          age: 36,
+          activities: JSON.stringify(
+            {
+              'skiChosen': true,
+              'snowboardChosen': true,
+              'telemarkChosen': false,
               'snowbikeChosen': false,
               'snowmobileChosen': false,
               'snowshoeChosen': false,
@@ -212,7 +235,7 @@
           activities: JSON.stringify(
             {
               'skiChosen': true,
-              'snowboardChosen': false,
+              'snowboardChosen': true,
               'telemarkChosen': false,
               'snowbikeChosen': false,
               'snowmobileChosen': false,

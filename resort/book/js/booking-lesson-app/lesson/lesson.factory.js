@@ -17,6 +17,7 @@
     const DEFAULT_DURATION = 4;
 
     return {
+      build: build,
       createNew: createNew,
       newFromDates: newFromDates,
       copy: copy,

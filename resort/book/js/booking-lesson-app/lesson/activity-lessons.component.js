@@ -93,10 +93,27 @@
       const candidates = vm.participants[type];
       const firstTimers = _.filter(candidates, 'isFirstTimer');
 
-      // The first lesson is a FT lesson if there is at least 1 FT candidate
-      if (firstTimers.length) {
-        lessons[0].isFirstTimeLesson = true;
-        lessons[0].participants = _.union(lessons[0].participants, firstTimers);
+      // Loops through 3 kinds of activities
+      for (const activity of settings.ACTIVITY_TYPES.default) {
+        // Finds all the FTs belong to this activity
+        const fts = _.filter(firstTimers, ft => {
+          const activities = JSON.parse(ft.activities);
+          return activities[`${activity.toLowerCase()}Chosen`];
+        });
+
+        // If there's no such FT, ignores this activity
+        if (_.isEmpty(fts)) continue;
+
+        let ftLesson = Lesson.build(
+          vm.dates[0],
+          4,
+          [...fts],
+          settings.TIME_OPTIONS[1],
+          activity,
+          true
+        );
+
+        lessons.push(ftLesson);
       }
 
       return lessons;
