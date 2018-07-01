@@ -24,7 +24,7 @@
 
   function DisabilityLessons(settings, Lesson) {
     let vm = this;
-    const TYPE = 'disability.lessons';
+    const DEFAULT_DURATION = 2;
 
     this.$onInit = onInit;
 
@@ -52,7 +52,10 @@
     }
 
     function createLessons() {
-      return Lesson.newFromDates(vm.dates, 2);
+      let lessons = Lesson.newFromDates(vm.dates, DEFAULT_DURATION);
+      lessons[0].isFirstTimeLesson = vm.participant.isFirstTimer;
+
+      return lessons;
     }
 
     function deleteLesson(lesson) {
@@ -65,7 +68,7 @@
     }
 
     function addLesson(date) {
-      vm.results.lessons.push(Lesson.createNew(TYPE, date, 4, null));
+      vm.results.lessons.push(Lesson.createNew(date, DEFAULT_DURATION, null));
     }
   }
 })();
