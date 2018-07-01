@@ -16,8 +16,8 @@
         dates: '<',
 
         // Functions
-        addToActivityLessons: '<'
-      }
+        addToActivityLessons: '<',
+      },
     });
 
   DisabilityLessons.$inject = [
@@ -41,10 +41,10 @@
         person: vm.participant.firstName,
         instructor: {
           required: false,
-          details: null
+          details: null,
         },
         requests: null,
-        lessons: []
+        lessons: [],
       };
 
       vm.deleteLesson = deleteLesson;
@@ -68,11 +68,11 @@
         for (const activity of activities) {
           let ftLesson = Lesson.build(
             vm.dates[0],
-            2,
+            DEFAULT_DURATION,
             [vm.participant],
             settings.TIME_OPTIONS[1],
             activity,
-            true
+            true,
           );
 
           lessons.push(ftLesson);
