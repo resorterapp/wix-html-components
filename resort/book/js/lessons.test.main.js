@@ -128,7 +128,7 @@
             },
           ),
           skiLevel: 1,
-          snowboardLevel: 2,
+          snowboardLevel: 1,
           telemarkLevel: 1,
           snowbikeLevel: 1,
           snowmobileLevel: 1,

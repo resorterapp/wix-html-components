@@ -52,7 +52,7 @@
     }
 
     function createLessons() {
-      return Lesson.newFromDates(TYPE, vm.dates, 2);
+      return Lesson.newFromDates(vm.dates, 2);
     }
 
     function deleteLesson(lesson) {

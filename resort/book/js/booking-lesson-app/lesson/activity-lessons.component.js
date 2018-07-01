@@ -76,18 +76,32 @@
       return angular.equals(results, EMPTY_RESULTS);
     }
 
-    function createLessons(type) {
-      return Lesson.newFromDates(type, vm.dates, 4, null);
+    function createLessons() {
+      return Lesson.newFromDates(vm.dates, 4, null);
+    }
+
+    /**
+     * Create group lessons (adults, children & mini)
+     * Check the lessons' candidates
+     *  if there is at least one first-timer, mark the FIRST lesson
+     *  i.e. lessons[0].isFirstTimeLesson = true
+     */
+    function createGroupLessons(type) {
+      let lessons = createLessons();
+      const candidates = vm.participants[type];
+      lessons[0].isFirstTimeLesson = _.some(candidates, 'isFirstTimer');
+
+      return lessons;
     }
 
     function createAllLessons() {
-      // LN Look for a better way to do this
-      vm.results.private.lessons = createLessons('private.lessons');
+      // TODO: Look for a better way to do this
+      vm.results.private.lessons = createLessons();
 
       const types = ['adults', 'children', 'mini'];
 
       for (const type of types) {
-        vm.results.group[type] = createLessons(`group.${type}`);
+        vm.results.group[type] = createGroupLessons(type);
       }
     }
 

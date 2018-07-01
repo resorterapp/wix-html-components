@@ -12,12 +12,13 @@
     '_',
     'settings',
     'Wix',
+    'isParticipantFT',
     'getSelectedResult',
   ];
 
   function LessonsController(
     $scope, $window, moment, _, settings,
-    Wix, getSelectedResult
+    Wix, isParticipantFT, getSelectedResult
   ) {
     let vm = this;
 
@@ -80,6 +81,8 @@
       };
 
       for (const participant of participants) {
+        participant.isFirstTimer = isParticipantFT(participant);
+
         if (participant.physicalDisability) {
           participantsList.disabled.push(participant);
           continue;
