@@ -88,8 +88,14 @@
      */
     function createGroupLessons(type) {
       let lessons = createLessons();
+
+      // Finds FTs
       const candidates = vm.participants[type];
-      lessons[0].isFirstTimeLesson = _.some(candidates, 'isFirstTimer');
+      const firstTimers = _.filter(candidates, 'isFirstTimer');
+
+      // The first lesson is a FT lesson if there is at least 1 FT candidate
+      lessons[0].isFirstTimeLesson = firstTimers.length > 0;
+      lessons[0].participants = [...firstTimers];
 
       return lessons;
     }

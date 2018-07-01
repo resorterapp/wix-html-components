@@ -53,7 +53,12 @@
 
     function createLessons() {
       let lessons = Lesson.newFromDates(vm.dates, DEFAULT_DURATION);
-      lessons[0].isFirstTimeLesson = vm.participant.isFirstTimer;
+
+      // The first lesson is a FT lesson if the candidate is FT
+      if (vm.participant.isFirstTimer) {
+        lessons[0].isFirstTimeLesson = true;
+        lessons[0].participants.push(vm.participant);
+      }
 
       return lessons;
     }
