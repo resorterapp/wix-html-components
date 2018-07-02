@@ -3,9 +3,9 @@
 
   angular
     .module('BookingLessonApp')
-    .factory('filterActivities', filterActivities);
+    .factory('ActivitiesFilterService', ActivitiesFilterService);
 
-  filterActivities.$inject = ['_', 'settings'];
+  ActivitiesFilterService.$inject = ['_', 'settings'];
 
   String.prototype.titlelize = function () {
     let strs = this.toLowerCase().split(' ');
@@ -15,37 +15,47 @@
     return strs.join(' ');
   };
 
-  function filterActivities(_, settings) {
+  function ActivitiesFilterService(_, settings) {
     const BASE_ACTIVITIES = settings.ACTIVITY_TYPES.private;
 
-    return function (activities, participants) {
+    return {
+      filter: filterActivities,
+      getParticipantActivities: getParticipantActivities,
+      getParticipantsActivities: getParticipantsActivities,
+    };
+
+    function filterActivities(activities, participants) {
       return _.intersection(
         activities,
         BASE_ACTIVITIES,
         getParticipantsActivities(participants)
       );
-    };
+    }
 
     function getParticipantsActivities(participants) {
       let activities = [];
 
       for (const participant of participants) {
-        let participantActivities = JSON.parse(participant.activities);
-        participantActivities = _.reduce(
-          participantActivities,
-          (acc, value, key) => {
-            if (value) {
-              let act = key.replace('Chosen', '');
-              acc.push(act.titlelize());
-            }
-            return acc;
-          },
-          [],
-        );
+        const participantActivities = getParticipantActivities(participant);
         activities = [...activities, ...participantActivities];
       }
 
       return _.uniq(activities);
+    }
+
+    function getParticipantActivities(participant) {
+      let participantActivities = JSON.parse(participant.activities);
+      return _.reduce(
+        participantActivities,
+        (acc, value, key) => {
+          if (value) {
+            let act = key.replace('Chosen', '');
+            acc.push(act.titlelize());
+          }
+          return acc;
+        },
+        [],
+      );
     }
   }
 })();

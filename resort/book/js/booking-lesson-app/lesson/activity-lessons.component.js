@@ -128,6 +128,22 @@
       for (const type of types) {
         vm.results.group[type] = createGroupLessons(type);
       }
+
+      for (const participant of vm.participants['disabled']) {
+        const disabilityResults = {
+          participantId: participant._id,
+          person: participant.firstName,
+          participant: participant,
+          instructor: {
+            required: false,
+            details: null,
+          },
+          requests: null,
+          lessons: [],
+        };
+
+        vm.results.disability.push(disabilityResults);
+      }
     }
 
     function deleteLesson(lessonsList, lesson) {

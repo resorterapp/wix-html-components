@@ -25,13 +25,13 @@ function LessonItemComponent() {
 
   LessonItemController.$inject = [
     '_',
-    'filterActivities',
+    'ActivitiesFilterService',
     'isParticipantFT',
     'settings',
   ];
 }
 
-function LessonItemController(_, filterActivities, isParticipantFT, settings) {
+function LessonItemController(_, ActivitiesFilterService, isParticipantFT, settings) {
   const CHILD_ADVICE = 'It is strongly advised for any child aged 5 and under to do ' +
     'a separate lesson, either as a group or a private lesson';
   const MAX_PEOPLE_ADVICE = 'Up to 4 people can join a lesson';
@@ -153,7 +153,7 @@ function LessonItemController(_, filterActivities, isParticipantFT, settings) {
       : settings.ACTIVITY_TYPES.default;
     const activities = _.intersection(vm.activities, baseActivities);
 
-    return filterActivities(activities, participants);
+    return ActivitiesFilterService.filter(activities, participants);
   }
 
   function invalidActivityAdvice(participantName) {
