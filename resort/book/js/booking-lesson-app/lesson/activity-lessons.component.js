@@ -159,24 +159,24 @@
       return deleteLesson(lessonsList, lesson);
     }
 
-    function addLessonToDate(lessonsList, date, type) {
-      lessonsList.push(Lesson.createNew(type, date, 4, null));
+    function addLessonToDate(lessonsList, date) {
+      lessonsList.push(Lesson.createNew(date, 4, null));
     }
 
     function addLessonGroupAdults(date) {
-      return addLessonToDate(vm.results.group.adults, date, 'group.adults');
+      return addLessonToDate(vm.results.group.adults, date);
     }
 
     function addLessonGroupChildren(date) {
-      return addLessonToDate(vm.results.group.children, date, 'group.children');
+      return addLessonToDate(vm.results.group.children, date);
     }
 
     function addLessonGroupMini(date) {
-      return addLessonToDate(vm.results.group.mini, date, 'group.mini');
+      return addLessonToDate(vm.results.group.mini, date);
     }
 
     function addLessonPrivate(date) {
-      return addLessonToDate(vm.results.private.lessons, date, 'private.lessons');
+      return addLessonToDate(vm.results.private.lessons, date);
     }
 
     function addDisabilityLessons(results) {
