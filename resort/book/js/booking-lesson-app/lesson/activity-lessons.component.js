@@ -76,18 +76,57 @@
       return angular.equals(results, EMPTY_RESULTS);
     }
 
-    function createLessons(type) {
-      return Lesson.newFromDates(type, vm.dates, 4, null);
+    function createLessons() {
+      return Lesson.newFromDates(vm.dates, 4, null);
+    }
+
+    /**
+     * Create group lessons (adults, children & mini)
+     * Check the lessons' candidates
+     *  if there is at least one first-timer, mark the FIRST lesson
+     *  i.e. lessons[0].isFirstTimeLesson = true
+     */
+    function createGroupLessons(type) {
+      let lessons = createLessons();
+
+      // Finds FTs
+      const candidates = vm.participants[type];
+      const firstTimers = _.filter(candidates, 'isFirstTimer');
+
+      // Loops through 3 kinds of activities
+      for (const activity of settings.ACTIVITY_TYPES.default) {
+        // Finds all the FTs belong to this activity
+        const fts = _.filter(firstTimers, ft => {
+          const activities = JSON.parse(ft.activities);
+          return activities[`${activity.toLowerCase()}Chosen`];
+        });
+
+        // If there's no such FT, ignores this activity
+        if (_.isEmpty(fts)) continue;
+
+        let ftLesson = Lesson.build(
+          vm.dates[0],
+          4,
+          [...fts],
+          settings.TIME_OPTIONS[1],
+          activity,
+          true
+        );
+
+        lessons.push(ftLesson);
+      }
+
+      return lessons;
     }
 
     function createAllLessons() {
-      // LN Look for a better way to do this
-      vm.results.private.lessons = createLessons('private.lessons');
+      // TODO: Look for a better way to do this
+      vm.results.private.lessons = createLessons();
 
       const types = ['adults', 'children', 'mini'];
 
       for (const type of types) {
-        vm.results.group[type] = createLessons(`group.${type}`);
+        vm.results.group[type] = createGroupLessons(type);
       }
     }
 

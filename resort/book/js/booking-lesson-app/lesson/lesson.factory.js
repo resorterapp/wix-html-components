@@ -6,19 +6,26 @@
     .factory('Lesson', Lesson);
 
   Lesson.$inject = [
+    '_',
     'uuid',
     'settings',
   ];
 
-  function Lesson(uuid, settings) {
+  function Lesson(_, uuid, settings) {
+
+    // Default duration in hours
+    const DEFAULT_DURATION = 4;
 
     return {
+      build: build,
       createNew: createNew,
-      newFromDates: createNewFromDates,
+      newFromDates: newFromDates,
       copy: copy,
     };
 
-    function build(date, duration, participants, time, activity) {
+    //////////
+
+    function build(date, duration, participants, time, activity, isFirstTimeLesson) {
       return {
         uuid: uuid.v4(),
         date: date,
@@ -26,11 +33,11 @@
         duration: duration,
         activity: activity,
         participants: participants,
-        isFirstLesson: false,
+        isFirstTimeLesson: isFirstTimeLesson || false,
       };
     }
 
-    function createNew(type, date, duration, activity) {
+    function createNew(date, duration, activity) {
       return build(
         date,
         duration,
@@ -40,17 +47,8 @@
       );
     }
 
-    function createNewFromDates(type, dates, duration, activity) {
-      let lessons = [];
-
-      for (let date of dates) {
-        lessons.push(createNew(type, date, duration, activity));
-      }
-
-      // Marks the first lesson
-      lessons[0].isFirstLesson = true;
-
-      return lessons;
+    function newFromDates(dates, duration, activity) {
+      return _.map(dates, date => createNew(date, duration, activity));
     }
 
     function copy(lesson) {

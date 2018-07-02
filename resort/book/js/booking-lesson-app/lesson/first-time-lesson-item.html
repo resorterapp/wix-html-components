@@ -25,13 +25,7 @@
     </div>
   </div>
   <div class="col-sm-2 lesson-item-activity">
-    <div class="selector">
-      <select
-        name="activity" title="activity"
-        ng-model="$ctrl.lesson.activity"
-        ng-change="$ctrl.activityOnChange()"
-        ng-options="o for o in $ctrl.availableActivities"></select>
-    </div>
+    <span>[{ $ctrl.lesson.activity }]</span>
   </div>
   <div class="col-sm-1 lesson-item-duration" ng-if="$ctrl.isLessonPrivateOrDisability()">
     <div class="selector">
@@ -45,20 +39,28 @@
   <div class="lesson-item-participants" ng-class="$ctrl.getParticipantsColumnCssClass()">
     <div class="row">
       <label
-        ng-repeat="pc in $ctrl.participantCheckboxes"
-        uib-popover="[{ pc.message }]"
-        popover-enable="pc.disabled"
-        popover-trigger="'mouseenter'"
-        ng-class="['col-sm-3', { 'text-muted': pc.disabled }]">
+        class="col-sm-3 text-muted"
+        ng-repeat="participant in $ctrl.lesson.participants"
+        uib-popover="[{ $ctrl.popupMessage }]"
+        popover-enable="true"
+        popover-trigger="'mouseenter'">
+
         <input
           type="checkbox"
-          ng-disabled="pc.disabled"
-          ng-click="$ctrl.pickParticipant(pc)"
-          checklist-model="$ctrl.lesson.participants"
-          checklist-value="pc.participant"
-          checklist-comparator="$ctrl.compareParticipant">
-        [{ pc.participant.firstName }]
+          checked="checked"
+          ng-disabled="true">
+
+        [{ participant.firstName }]
       </label>
     </div>
+  </div>
+  <div class="col-sm-1 lesson-item-actions text-right">
+    <a
+      class="btn-link btn-move-lesson"
+      title="Move to Private/Group"
+      ng-click="$ctrl.onMove()"
+      ng-if="$ctrl.type !== 'disability'">
+      <i class="far fa-arrow-alt-circle-right"></i>
+    </a>
   </div>
 </div>

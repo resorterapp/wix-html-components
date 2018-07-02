@@ -54,8 +54,18 @@
         add-lesson-to-date="$ctrl.addLesson"></add-lesson-button>
     </div>
 
+    <first-time-lesson-item
+      ng-repeat="lesson in $ctrl.results.lessons | filter: {isFirstTimeLesson: true} | orderBy: 'date'"
+      class="lesson-item-component"
+      dates="$ctrl.dates"
+      lesson="lesson"
+      type="'disability'"
+      move-lesson-to-group="$ctrl.moveLessonToGroup"
+      delete-lesson="$ctrl.deleteLessonPrivate">
+    </first-time-lesson-item>
+
     <lesson-item
-      ng-repeat="lesson in $ctrl.results.lessons | orderBy: 'date'"
+      ng-repeat="lesson in $ctrl.results.lessons | filter: {isFirstTimeLesson: false} | orderBy: 'date'"
       class="lesson-item-component"
       activities="$ctrl.activities"
       dates="$ctrl.dates"

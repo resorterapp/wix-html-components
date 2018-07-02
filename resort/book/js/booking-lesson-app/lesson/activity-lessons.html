@@ -34,8 +34,19 @@
             dates="$ctrl.dates"
             add-lesson-to-date="$ctrl.addLessonGroupAdults"></add-lesson-button>
         </div>
+
+        <first-time-lesson-item
+          ng-repeat="lesson in $ctrl.results.group.adults | filter: {isFirstTimeLesson: true} | orderBy: 'date'"
+          class="lesson-item-component"
+          dates="$ctrl.dates"
+          lesson="lesson"
+          type="'group.adults'"
+          move-lesson-group-to-private="$ctrl.moveLessonGroupToPrivate"
+          delete-lesson="$ctrl.deleteLessonGroupAdults">
+        </first-time-lesson-item>
+
         <lesson-item
-          ng-repeat="lesson in $ctrl.results.group.adults | orderBy: 'date'"
+          ng-repeat="lesson in $ctrl.results.group.adults | filter: {isFirstTimeLesson: false} | orderBy: 'date'"
           activities="$ctrl.activities"
           class="lesson-item-component"
           dates="$ctrl.dates"
@@ -64,8 +75,18 @@
             add-lesson-to-date="$ctrl.addLessonGroupChildren"></add-lesson-button>
         </div>
 
+        <first-time-lesson-item
+          ng-repeat="lesson in $ctrl.results.group.children | filter: {isFirstTimeLesson: true} | orderBy: 'date'"
+          class="lesson-item-component"
+          dates="$ctrl.dates"
+          lesson="lesson"
+          type="'group.children'"
+          move-lesson-group-to-private="$ctrl.moveLessonGroupToPrivate"
+          delete-lesson="$ctrl.deleteLessonGroupChildren">
+        </first-time-lesson-item>
+
         <lesson-item
-          ng-repeat="lesson in $ctrl.results.group.children | orderBy: 'date'"
+          ng-repeat="lesson in $ctrl.results.group.children | filter: {isFirstTimeLesson: false} | orderBy: 'date'"
           class="lesson-item-component"
           activities="$ctrl.activities"
           dates="$ctrl.dates"
@@ -94,8 +115,18 @@
             add-lesson-to-date="$ctrl.addLessonGroupMini"></add-lesson-button>
         </div>
 
+        <first-time-lesson-item
+          ng-repeat="lesson in $ctrl.results.group.mini | filter: {isFirstTimeLesson: true} | orderBy: 'date'"
+          class="lesson-item-component"
+          dates="$ctrl.dates"
+          lesson="lesson"
+          type="'group.mini'"
+          move-lesson-group-to-private="$ctrl.moveLessonGroupToPrivate"
+          delete-lesson="$ctrl.deleteLessonGroupMini">
+        </first-time-lesson-item>
+
         <lesson-item
-          ng-repeat="lesson in $ctrl.results.group.mini | orderBy: 'date'"
+          ng-repeat="lesson in $ctrl.results.group.mini | filter: {isFirstTimeLesson: false} | orderBy: 'date'"
           class="lesson-item-component"
           activities="$ctrl.activities"
           dates="$ctrl.dates"
@@ -178,8 +209,18 @@
             add-lesson-to-date="$ctrl.addLessonPrivate"></add-lesson-button>
         </div>
 
+        <first-time-lesson-item
+          ng-repeat="lesson in $ctrl.results.private.lessons | filter: {isFirstTimeLesson: true} | orderBy: 'date'"
+          class="lesson-item-component"
+          dates="$ctrl.dates"
+          lesson="lesson"
+          type="'private'"
+          move-lesson-to-group="$ctrl.moveLessonToGroup"
+          delete-lesson="$ctrl.deleteLessonPrivate">
+        </first-time-lesson-item>
+
         <lesson-item
-          ng-repeat="lesson in $ctrl.results.private.lessons | orderBy: 'date'"
+          ng-repeat="lesson in $ctrl.results.private.lessons | filter: {isFirstTimeLesson: false} | orderBy: 'date'"
           class="lesson-item-component"
           activities="$ctrl.activities"
           dates="$ctrl.dates"

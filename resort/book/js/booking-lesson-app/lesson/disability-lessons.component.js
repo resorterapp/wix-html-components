@@ -16,15 +16,19 @@
         dates: '<',
 
         // Functions
-        addToActivityLessons: '<'
-      }
+        addToActivityLessons: '<',
+      },
     });
 
-  DisabilityLessons.$inject = ['settings', 'Lesson'];
+  DisabilityLessons.$inject = [
+    'settings',
+    'filterActivities',
+    'Lesson',
+  ];
 
-  function DisabilityLessons(settings, Lesson) {
+  function DisabilityLessons(settings, filterActivities, Lesson) {
     let vm = this;
-    const TYPE = 'disability.lessons';
+    const DEFAULT_DURATION = 2;
 
     this.$onInit = onInit;
 
@@ -37,10 +41,10 @@
         person: vm.participant.firstName,
         instructor: {
           required: false,
-          details: null
+          details: null,
         },
         requests: null,
-        lessons: []
+        lessons: [],
       };
 
       vm.deleteLesson = deleteLesson;
@@ -52,7 +56,30 @@
     }
 
     function createLessons() {
-      return Lesson.newFromDates(TYPE, vm.dates, 2);
+      let lessons = Lesson.newFromDates(vm.dates, DEFAULT_DURATION);
+
+      // The first lesson is a FT lesson if the candidate is FT
+      if (vm.participant.isFirstTimer) {
+        // removes the first "normal" lesson since we will replace it with FT lessons
+        lessons = lessons.slice(1);
+
+        const activities = filterActivities(settings.ACTIVITY_TYPES.default, [vm.participant]);
+
+        for (const activity of activities) {
+          let ftLesson = Lesson.build(
+            vm.dates[0],
+            DEFAULT_DURATION,
+            [vm.participant],
+            settings.TIME_OPTIONS[1],
+            activity,
+            true,
+          );
+
+          lessons.push(ftLesson);
+        }
+      }
+
+      return lessons;
     }
 
     function deleteLesson(lesson) {
@@ -65,7 +92,7 @@
     }
 
     function addLesson(date) {
-      vm.results.lessons.push(Lesson.createNew(TYPE, date, 4, null));
+      vm.results.lessons.push(Lesson.createNew(date, DEFAULT_DURATION, null));
     }
   }
 })();
