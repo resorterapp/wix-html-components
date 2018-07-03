@@ -252,11 +252,11 @@
         </small>
       </div>
       <disability-lessons
-        ng-repeat="participant in $ctrl.participants.disabled"
+        ng-repeat="results in $ctrl.results.disability"
         activities="$ctrl.activities"
-        participant="participant"
-        dates="$ctrl.dates"
-        add-to-activity-lessons="$ctrl.addDisabilityLessons"></disability-lessons>
+        results="results"
+        participant="results.participant"
+        dates="$ctrl.dates"></disability-lessons>
     </div>
   </div>
 

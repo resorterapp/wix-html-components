@@ -11,22 +11,21 @@
       controller: DisabilityLessons,
       bindings: {
         // Variables
+        results: '<',
         activities: '<',
         participant: '<',
         dates: '<',
-
-        // Functions
-        addToActivityLessons: '<',
       },
     });
 
   DisabilityLessons.$inject = [
+    '_',
     'settings',
-    'filterActivities',
+    'ActivitiesFilterService',
     'Lesson',
   ];
 
-  function DisabilityLessons(settings, filterActivities, Lesson) {
+  function DisabilityLessons(_, settings, ActivitiesFilterService, Lesson) {
     let vm = this;
     const DEFAULT_DURATION = 2;
 
@@ -34,25 +33,14 @@
 
     function onInit() {
       vm.settings = settings;
-
       vm.participants = [vm.participant];
-      vm.results = {
-        participantId: vm.participant._id,
-        person: vm.participant.firstName,
-        instructor: {
-          required: false,
-          details: null,
-        },
-        requests: null,
-        lessons: [],
-      };
 
       vm.deleteLesson = deleteLesson;
       vm.addLesson = addLesson;
 
-      vm.results.lessons = createLessons();
+      if (!_.isEmpty(vm.results.lessons)) return;
 
-      vm.addToActivityLessons(vm.results);
+      vm.results.lessons = createLessons();
     }
 
     function createLessons() {
@@ -63,7 +51,7 @@
         // removes the first "normal" lesson since we will replace it with FT lessons
         lessons = lessons.slice(1);
 
-        const activities = filterActivities(settings.ACTIVITY_TYPES.default, [vm.participant]);
+        const activities = ActivitiesFilterService.filter(settings.ACTIVITY_TYPES.default, [vm.participant]);
 
         for (const activity of activities) {
           let ftLesson = Lesson.build(

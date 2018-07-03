@@ -1,6 +1,3 @@
----
----
-
 <div class="personal-disability-lessons-container">
   <h4 class="lead">For [{ $ctrl.participant.firstName }]</h4>
 
@@ -23,9 +20,9 @@
         Name or description of the instructor
       </label>
       <div class="col-sm-9">
-          <textarea
-            class="form-control" rows="4"
-            ng-model="$ctrl.results.instructor.details"></textarea>
+        <textarea
+          class="form-control" rows="4"
+          ng-model="$ctrl.results.instructor.details"></textarea>
       </div>
     </div>
     <div class="form-group specific-requirements">
@@ -33,10 +30,10 @@
         Any special requests?
       </label>
       <div class="col-sm-9">
-          <textarea
-            class="form-control" rows="5"
-            placeholder="Any specific requirements you want your instructor to know? What do you want to get out of the lesson? Max. 150 characters."
-            ng-model="$ctrl.results.requests"></textarea>
+        <textarea
+          class="form-control" rows="5"
+          placeholder="Any specific requirements you want your instructor to know? What do you want to get out of the lesson? Max. 150 characters."
+          ng-model="$ctrl.results.requests"></textarea>
       </div>
     </div>
   </form>

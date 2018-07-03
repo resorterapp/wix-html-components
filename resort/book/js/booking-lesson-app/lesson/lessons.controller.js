@@ -11,14 +11,22 @@
     'moment',
     '_',
     'settings',
+    'ActivitiesFilterService',
     'Wix',
     'isParticipantFT',
     'getSelectedResult',
   ];
 
   function LessonsController(
-    $scope, $window, moment, _, settings,
-    Wix, isParticipantFT, getSelectedResult
+    $scope,
+    $window,
+    moment,
+    _,
+    settings,
+    ActivitiesFilterService,
+    Wix,
+    isParticipantFT,
+    getSelectedResult,
   ) {
     let vm = this;
 
@@ -81,6 +89,11 @@
       };
 
       for (const participant of participants) {
+        // Ignores those who didn't choose any activities
+        const activities = ActivitiesFilterService.getParticipantActivities(participant);
+
+        if (_.isEmpty(activities)) continue;
+
         participant.isFirstTimer = isParticipantFT(participant);
 
         if (participant.physicalDisability) {
