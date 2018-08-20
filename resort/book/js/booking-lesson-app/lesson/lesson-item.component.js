@@ -33,7 +33,8 @@ function LessonItemComponent() {
 
 function LessonItemController(_, ActivitiesFilterService, isParticipantFT, settings) {
   const CHILD_ADVICE = 'It is strongly advised for any child aged 5 and under to do ' +
-    'a separate lesson, either as a group or a private lesson';
+    'a separate lesson, either as a group or a private lesson ' + 
+        'Enquire with resort when they contact you if they will make exceptions.';
   const MAX_PEOPLE_ADVICE = 'Up to 4 people can join a lesson';
 
   let vm = this;
